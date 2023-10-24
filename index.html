@@ -6,13 +6,14 @@
     <title>Movie Search</title>
 
     <link rel="stylesheet" href="./css/movie.css" />
+    <link rel="stylesheet" href="./css/language.css" />
   </head>
 
   <body>
     <!-- 네비게이션-->
     <header class="navbar">
       <div class="logo">
-        <img src="logo.png" alt="로고" />
+        <img src="./img/logo.png" alt="로고" />
       </div>
       <div>
         <h1>영화 검색 페이지</h1>
@@ -23,6 +24,19 @@
         <span style="font-size: 20px"> 영화 검색 &nbsp;</span>
         <input type="text" id="search-input" placeholder="검색어를 입력하세요" />
         <button id="search-button">검색</button>
+      </div>
+
+      <!-- 언어 변경 -->
+      <div class="dropdown" id="language-switcher">
+        <button class="dropbtn">언어 선택</button>
+        <div class="dropdown-content">
+          <button id="korean-flag">
+            <img src="img/korean-flag-icon.png" alt="한국 국기" />
+          </button>
+          <button id="english-flag">
+            <img src="img/us-flag-icon.png" alt="미국 국기" />
+          </button>
+        </div>
       </div>
 
       <button id="login-button">로그인</button>
@@ -41,4 +55,5 @@
     <div id="movie-container"></div>
   </body>
   <script defer src="./script/movie.js" type="module"></script>
+  <script defer src="./script/domEvent.js" type="module"></script>
 </html>

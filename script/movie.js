@@ -1,26 +1,9 @@
 import { options } from "../config/tmdbOption.js";
-
-// page
-const pagination = document.querySelector(".pagination");
-const pageNumbers = document.querySelector(".page-numbers");
-const prevButton = document.getElementById("prev");
-const nextButton = document.getElementById("next");
-
-let currentPage = 1;
-let currItemsIndex = 1;
-const itemsPerPage = 10; // 페이지당 항목 수
-let totalItems = 100; // 전체 항목 수
-
-// search
-let searchText = "";
-const searchButton = document.getElementById("search-button");
-const searchInput = document.getElementById("search-input");
-
-const loginButton = document.getElementById("login-button");
+import { page, search, user, language } from "./domEl.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   // 검색창에 자동으로 포커스를 주기
-  searchInput.focus();
+  search.searchInput.focus();
   NewPage(1);
 });
 
@@ -29,29 +12,29 @@ const container = document.getElementById("movie-container");
 
 // func
 let NewPage = (index) => {
-  if (searchText === "") {
-    fetch(`https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=${index}`, options)
+  if (search.searchText === "") {
+    fetch(`https://api.themoviedb.org/3/movie/top_rated?language=${language.setLanguage}&page=${index}`, options)
       .then((response) => response.json())
       .then((response) => {
         console.log(response);
-        totalItems = response.total_pages;
+        page.totalItems = response.total_pages;
         updatePagination();
-        currentPage = index;
+        page.currentPage = index;
         createPage(response);
         // ToPageFunc = ToPage;
       })
       .catch((err) => console.error(err));
   } else {
     fetch(
-      `https://api.themoviedb.org/3/search/movie?query=${searchText}&include_adult=false&language=en-US&page=${index}`,
+      `https://api.themoviedb.org/3/search/movie?query=${search.searchText}&include_adult=false&language=${language.setLanguage}&page=${index}`,
       options
     )
       .then((response) => response.json())
       .then((response) => {
         console.log(response);
-        totalItems = response.total_pages;
+        page.totalItems = response.total_pages;
         updatePagination();
-        currentPage = index;
+        page.currentPage = index;
         createPage(response);
         // ToPageFunc = ToSearch.bind(this, str);
       })
@@ -60,15 +43,15 @@ let NewPage = (index) => {
 };
 
 let updatePagination = () => {
-  pageNumbers.innerHTML = "";
+  page.pageNumbers.innerHTML = "";
 
-  for (let i = 0; i < itemsPerPage; i++) {
-    if (currItemsIndex + i <= totalItems) {
+  for (let i = 0; i < page.itemsPerPage; i++) {
+    if (page.currItemsIndex + i <= page.totalItems) {
       const pagebtn = document.createElement("button");
-      pagebtn.textContent = `${currItemsIndex + i}`;
-      pageNumbers.appendChild(pagebtn);
+      pagebtn.textContent = `${page.currItemsIndex + i}`;
+      page.pageNumbers.appendChild(pagebtn);
 
-      const pageindex = currItemsIndex + i;
+      const pageindex = page.currItemsIndex + i;
 
       pagebtn.addEventListener("click", () => {
         NewPage(pageindex);
@@ -77,17 +60,17 @@ let updatePagination = () => {
   }
 };
 
-prevButton.addEventListener("click", () => {
-  if (currItemsIndex > itemsPerPage) {
-    currItemsIndex -= itemsPerPage;
-    NewPage(currItemsIndex);
+page.prevButton.addEventListener("click", () => {
+  if (page.currItemsIndex > page.itemsPerPage) {
+    page.currItemsIndex -= page.itemsPerPage;
+    NewPage(page.currItemsIndex);
   }
 });
 
-nextButton.addEventListener("click", () => {
-  if (currItemsIndex + itemsPerPage < totalItems) {
-    currItemsIndex += itemsPerPage;
-    NewPage(currItemsIndex);
+page.nextButton.addEventListener("click", () => {
+  if (page.currItemsIndex + page.itemsPerPage < page.totalItems) {
+    page.currItemsIndex += page.itemsPerPage;
+    NewPage(page.currItemsIndex);
   }
 });
 
@@ -134,17 +117,17 @@ let createMovieCard = (data) => {
 };
 
 let Search = () => {
-  searchText = searchInput.value;
-  searchText;
-  currItemsIndex = 1;
+  search.searchText = search.searchInput.value;
+  search.searchText;
+  page.currItemsIndex = 1;
   NewPage(1);
 };
 
-searchButton.addEventListener("click", () => {
+search.searchButton.addEventListener("click", () => {
   Search();
 });
 
-searchInput.addEventListener("keyup", function (event) {
+search.searchInput.addEventListener("keyup", function (event) {
   if (event.key === "enter") {
     Search();
   }
@@ -158,7 +141,7 @@ searchInput.addEventListener("keyup", function (event) {
 //     youtubeVideo.src = '';
 // });
 
-loginButton.addEventListener("click", () => {
+user.loginButton.addEventListener("click", () => {
   console.log("login ");
 
   let modal = document.createElement("div");

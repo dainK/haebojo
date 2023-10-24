@@ -1,4 +1,5 @@
 import { options } from "../config/tmdbOption.js";
+import { page, search, user, language } from "./domEl.js";
 
 const currentUrl = window.location.href;
 const urlParts = currentUrl.split("?");
@@ -22,12 +23,12 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 let Info = (movieId) => {
-  fetch(`https://api.themoviedb.org/3/movie/${movieId}-expend4bles?language=ko`, options)
+  fetch(`https://api.themoviedb.org/3/movie/${movieId}-expend4bles?language=${language.setLanguage}`, options)
     .then((response) => response.json())
     .then((response) => {
       console.log(response);
       let movietilte = document.getElementById("movie-tilte");
-      movietilte.textContent = response.original_title;
+      movietilte.textContent = response.title;
       let movieinfo = document.getElementById("movie-info");
       movieinfo.textContent = response.overview;
     })
@@ -35,7 +36,7 @@ let Info = (movieId) => {
 };
 
 let ViewTrailer = (movieId) => {
-  fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`, options)
+  fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?language=${language.setLanguage}`, options)
     .then((response) => response.json())
     .then((response) => {
       // console.log(response);
@@ -48,13 +49,14 @@ let ViewTrailer = (movieId) => {
 };
 
 let InfoCast = (movieId) => {
-  fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?language=ko`, options)
+  fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?language=${language.setLanguage}`, options)
     .then((response) => response.json())
     .then((response) => {
       // console.log(response);
       let cst = response.cast;
       cst.forEach((element) => {
         createCastCard(element);
+        // console.log("뭐임", element);
       });
     })
     .catch((err) => console.error(err));
