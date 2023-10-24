@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Search</title>
+
+    <link rel="stylesheet" href="movie.css">
+</head>
+
+<body>
+    <!-- 네비게이션-->
+    <header class="navbar">
+        <div class="logo">
+            <img src="logo.png" alt="로고">
+            <!-- <img src="logo.png" alt="로고"> -->
+        </div>
+        <div>
+            <h1>영화 검색 페이지</h1>
+        </div>
+
+        <!-- 검색창 -->
+        <div class="search">
+            <span style="font-size: 20px;"> 영화 검색 &nbsp;</span>
+            <input type="text" id="search-input" placeholder="검색어를 입력하세요">
+            <button id="search-button">검색</button>
+            <!-- <div id="search-history"></div> -->
+        </div>
+    </header>
+
+    <!-- 페이지 넘기기 -->
+    <div class="pagination">
+        <button id="prev">이전</button>
+        <div class="page-numbers">
+            <!-- 페이지 번호가 동적으로 추가될 곳 -->
+        </div>
+        <button id="next">다음</button>
+    </div>
+
+    <!-- 영화 포스터 -->
+    <div id="movie-container">
+    </div>
+
+</body>
+<script src="movie.js"></script>
+
+</html>
