@@ -17,6 +17,9 @@ const searchButton = document.getElementById('search-button');
 const searchInput = document.getElementById("search-input");
 
 
+const loginButton = document.getElementById('login-button');
+
+
 document.addEventListener('DOMContentLoaded', function () {
     // 검색창에 자동으로 포커스를 주기
     searchInput.focus();
@@ -59,7 +62,7 @@ let NewPage = (index) => {
 }
 
 
-function updatePagination() {
+let updatePagination = () => {
     pageNumbers.innerHTML = '';
 
     for (let i = 0; i < itemsPerPage; i++) {
@@ -93,7 +96,7 @@ nextButton.addEventListener('click', () => {
 
 
 
-function createPage(pageData) {
+let createPage = (pageData) => {
     while (container.firstChild) {
         container.firstChild.remove();
     }
@@ -103,7 +106,7 @@ function createPage(pageData) {
     });
 }
 
-function createMovieCard(data) {
+let createMovieCard = (data) => {
     const card = document.createElement("div");
     card.classList.add("movie-card");
     container.appendChild(card);
@@ -137,7 +140,7 @@ function createMovieCard(data) {
 }
 
 
-function Search() {
+let Search = () => {
     searchText = searchInput.value;
     searchText
     currItemsIndex = 1;
@@ -162,3 +165,35 @@ searchInput.addEventListener('keyup', function (event) {
 //     // YouTube 비디오 멈추기
 //     youtubeVideo.src = '';
 // });
+
+
+loginButton.addEventListener('click', () => {
+    console.log( "login ");
+
+    let modal = document.createElement("div");
+    modal.classList.add("modal");
+
+    let content = document.createElement("div");
+    content.classList.add("login-container");
+    modal.appendChild(content);
+    
+    let form = document.createElement("form");
+    form.classList.add("login-form");
+    content.appendChild(form);
+
+    form.innerHTML = `
+    <input id = "login-id" type="text" placeholder="사용자 이름" />
+    <input id = "login-pw" type="password" placeholder="비밀번호" />
+    <button id = "login-btn" type="submit">로그인</button>
+    `
+
+    // 모달을 body에 추가
+    document.body.appendChild(modal);
+
+    // 모달을 닫기 위한 클릭 이벤트 추가
+    modal.addEventListener("click", (event) => {
+        if (event.target === modal) {
+            document.body.removeChild(modal);
+        }
+    });
+});

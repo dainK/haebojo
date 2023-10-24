@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
     InfoCast(movie_id);
 });
 
-function Info(movieId) {
+let Info = (movieId) => {
     fetch(`https://api.themoviedb.org/3/movie/${movieId}-expend4bles?language=ko`, options)
     .then(response => response.json())
     .then(response => {
@@ -34,7 +34,7 @@ function Info(movieId) {
     .catch(err => console.error(err));
 }
 
-function ViewTrailer(movieId) {
+let ViewTrailer = (movieId)  => {
     fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`, options)
         .then(response => response.json())
         .then(response => {
@@ -48,7 +48,7 @@ function ViewTrailer(movieId) {
         .catch(err => console.error(err));
 }
 
-function InfoCast(movieId) {
+let InfoCast = (movieId) => {
     fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?language=ko`, options)
     .then(response => response.json())
     .then(response => {
@@ -63,7 +63,7 @@ function InfoCast(movieId) {
 
 
 
-function createCastCard(data) {
+let createCastCard = (data) => {
     const card = document.createElement("div");
     card.classList.add("cast-card");
     castList.appendChild(card);
@@ -82,3 +82,5 @@ function createCastCard(data) {
     card.appendChild(image);
 
 }
+
+
