@@ -1,5 +1,6 @@
 import { options } from "../config/tmdbOption.js";
 import { page, search, user, language } from "./domEl.js";
+import { truncateText } from "./domEvent.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   // 검색창에 자동으로 포커스를 주기
@@ -101,10 +102,10 @@ let createMovieCard = (data) => {
     image.src = "https://image.tmdb.org/t/p/original/" + data.poster_path;
   }
   card.appendChild(image);
-
   const info = document.createElement("div");
   info.classList.add("movie-info");
-  info.innerText = data.overview;
+  const truncatedOverview = truncateText(data.overview, 35);
+  info.innerText = truncatedOverview;
   card.appendChild(info);
 
   const id = data.id;
@@ -113,6 +114,18 @@ let createMovieCard = (data) => {
     // Info(id);
     window.location.href = "./info.html?movie-id:" + id;
     // alert("영화 아이디 : " + id);
+  });
+
+  const overviewEl = card.querySelector(".movie-info"); // card 요소 내에서 클래스가 overview인 요소를 탐색
+
+  // 마우스 호버 이벤트 바깥 -> 안
+  overviewEl.addEventListener("mouseenter", () => {
+    overviewEl.innerText = data.overview;
+  });
+
+  // 마우스 호버 이벤트 안 -> 바깥
+  overviewEl.addEventListener("mouseleave", () => {
+    overviewEl.innerText = truncatedOverview;
   });
 };
 

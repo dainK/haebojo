@@ -135,24 +135,25 @@ button {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   width: 300px;
-  height: 600px;
+  height: auto;
   flex-wrap: wrap;
 
   /* margin: 20; */
   margin-bottom: 20px;
   margin-left: 10px;
   margin-right: 10px;
+  /* margin: 10px, 10px, 10px, 10px; */
 }
 .movie-title {
   font-size: 20px;
 }
 
 .movie-info {
-  height: 100px;
+  height: auto;
   width: 280px;
   white-space: pre-wrap;
 
-  overflow-y: auto;
+  /* overflow-y: auto; */
   border: 1px solid #ccc;
 }
 
