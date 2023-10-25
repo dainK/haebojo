@@ -62,10 +62,18 @@ function createPageButton(pageIndex) {
 // 로그인 모달 열기 함수
 function openLoginModal() {
   const modal = createModalElement();
-  const form = createLoginForm();
-
-  modal.appendChild(form);
   document.body.appendChild(modal);
+}
+
+// 모달 엘리먼트 생성 함수
+function createModalElement() {
+  const modal = document.createElement("div");
+  modal.classList.add("modal");
+
+  // login-container 엘리먼트 생성
+  const loginContainer = createLoginContainer();
+
+  modal.appendChild(loginContainer);
 
   // 모달을 닫기 위한 클릭 이벤트 추가
   modal.addEventListener("click", (event) => {
@@ -73,13 +81,21 @@ function openLoginModal() {
       document.body.removeChild(modal);
     }
   });
+
+  return modal;
 }
 
-// 모달 엘리먼트 생성 함수
-function createModalElement() {
-  const modal = document.createElement("div");
-  modal.classList.add("modal");
-  return modal;
+// login-container 엘리먼트 생성 함수
+function createLoginContainer() {
+  const loginContainer = document.createElement("div");
+  loginContainer.classList.add("login-container");
+
+  // 로그인 폼 엘리먼트 생성
+  const form = createLoginForm();
+
+  loginContainer.appendChild(form);
+
+  return loginContainer;
 }
 
 // 로그인 폼 엘리먼트 생성 함수
