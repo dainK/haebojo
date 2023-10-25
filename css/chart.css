@@ -9,6 +9,17 @@
   position: relative;
 }
 
+.canvas-main::before {
+  content: "";
+  position: absolute;
+  background-color: white;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
 #chartCanvas {
   width: 100%;
   height: 100%;
@@ -22,5 +33,12 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.chartSetMain {
+  position: absolute;
+  top: 0px;
+  left: 0px;
   z-index: 1;
 }

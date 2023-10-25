@@ -149,6 +149,8 @@ function createMovieCard(data) {
   // card.appendChild(chartSetMain);
 
   // 평점 차트 생성
+  const chartSetMain = document.createElement("div");
+  chartSetMain.classList.add("chartSetMain");
   const chartContainer = document.createElement("div");
   chartContainer.classList.add("canvas-main");
   const canvas = document.createElement("canvas");
@@ -156,12 +158,14 @@ function createMovieCard(data) {
   canvas.width = 50;
   canvas.height = 50;
   chartContainer.appendChild(canvas);
-  card.appendChild(chartContainer);
+  chartSetMain.appendChild(chartContainer);
 
   const chartCanvasNumber = document.createElement("span");
   chartCanvasNumber.classList.add("chartCanvasNumber");
-  chartCanvasNumber.innerText = `${data.vote_average}`;
+  chartCanvasNumber.innerText = `${data.vote_average.toFixed(1)}`;
   chartContainer.appendChild(chartCanvasNumber);
+
+  card.appendChild(chartSetMain);
 
   drawChart(canvas, data.vote_average * 10);
 
