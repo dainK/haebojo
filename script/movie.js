@@ -160,7 +160,7 @@ function createMovieCard(data) {
 
   const chartCanvasNumber = document.createElement("span");
   chartCanvasNumber.classList.add("chartCanvasNumber");
-  chartCanvasNumber.innerText = `${data.vote_average * 10}%`;
+  chartCanvasNumber.innerText = `${data.vote_average}`;
   chartContainer.appendChild(chartCanvasNumber);
 
   drawChart(canvas, data.vote_average * 10);
