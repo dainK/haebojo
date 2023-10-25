@@ -4,6 +4,10 @@
   font-family: "Gamja Flower", cursive;
 }
 
+header {
+  z-index: 999;
+}
+
 body {
   background-color: rgb(34, 34, 34);
   /* 배경색 설정 */
@@ -137,13 +141,18 @@ button {
   width: 300px;
   height: auto;
   flex-wrap: wrap;
-
   /* margin: 20; */
   margin-bottom: 20px;
   margin-left: 10px;
   margin-right: 10px;
   /* margin: 10px, 10px, 10px, 10px; */
+  position: relative;
 }
+
+.movie-card img {
+  border-radius: 10px;
+}
+
 .movie-title {
   font-size: 20px;
 }

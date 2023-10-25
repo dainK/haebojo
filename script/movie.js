@@ -1,6 +1,7 @@
 import { options } from "../config/tmdbOption.js";
 import { page, search, user, language } from "./domEl.js";
 import { truncateText } from "./domEvent.js";
+import { drawChart } from "./chart.js";
 
 // 페이지 로드가 완료된 후 실행할 함수
 document.addEventListener("DOMContentLoaded", function () {
@@ -30,7 +31,7 @@ function NewPage(index) {
   fetch(url, options)
     .then((response) => response.json())
     .then((response) => {
-      console.log(response);
+      // console.log(response);
       page.totalItems = response.total_pages;
       updatePagination();
       page.currentPage = index;
@@ -125,6 +126,7 @@ function clearContainer() {
 
 // 영화 카드 엘리먼트 생성 함수
 function createMovieCard(data) {
+  console.log(data.vote_average * 10, "데이따");
   const card = document.createElement("div");
   card.classList.add("movie-card");
   page.container.appendChild(card);
@@ -142,11 +144,38 @@ function createMovieCard(data) {
   }
   card.appendChild(image);
 
+  // const chartSetMain = document.createElement("div");
+  // chartSetMain.classList.add("chartSetMain");
+  // card.appendChild(chartSetMain);
+
+  // 평점 차트 생성
+  const chartContainer = document.createElement("div");
+  chartContainer.classList.add("canvas-main");
+  const canvas = document.createElement("canvas");
+  canvas.id = "chartCanvas";
+  canvas.width = 50;
+  canvas.height = 50;
+  chartContainer.appendChild(canvas);
+  card.appendChild(chartContainer);
+
+  const chartCanvasNumber = document.createElement("span");
+  chartCanvasNumber.classList.add("chartCanvasNumber");
+  chartCanvasNumber.innerText = `${data.vote_average * 10}%`;
+  chartContainer.appendChild(chartCanvasNumber);
+
+  drawChart(canvas, data.vote_average * 10);
+
   const info = document.createElement("div");
   info.classList.add("movie-info");
   const truncatedOverview = truncateText(data.overview, 35);
   info.innerText = truncatedOverview;
   card.appendChild(info);
+
+  // const canvas = document.createElement("canvas");
+  // canvas.id = "chartCanvas";
+  // canvas.width = 50;
+  // canvas.height = 50;
+  // card.appendChild(canvas);
 
   // 영화 정보 페이지로 이동
   const id = data.id;
