@@ -2,6 +2,18 @@ import { options } from "../config/tmdbOption.js";
 import { page, search, user, language } from "./domEl.js";
 import { truncateText } from "./domEvent.js";
 import { drawChart } from "./chart.js";
+import {
+  getFirestore,
+  getDocs,
+  deleteDoc,
+  doc,
+  setDoc,
+  getDoc,
+  updateDoc,
+  collection,
+  addDoc,
+} from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+import { app, db } from "../config/firebaseConfig.js";
 
 // 페이지 로드가 완료된 후 실행할 함수
 document.addEventListener("DOMContentLoaded", function () {
@@ -17,8 +29,26 @@ document.addEventListener("DOMContentLoaded", function () {
       Search();
     }
   });
+  user.signOutButton.addEventListener("click", createSignOutModal);
+
   // 로그인 버튼 클릭 시 로그인 모달 열기
-  user.loginButton.addEventListener("click", openLoginModal);
+  user.loginButton.addEventListener("click", () => {
+    if (!!sessionStorage.getItem("user")) {
+      alert("로그아웃 완료");
+      // 로그아웃 버튼 기능
+      sessionStorage.removeItem("user");
+      user.loginButton.innerText = "로그인";
+    } else {
+      openLoginModal();
+    }
+  });
+  if (!!sessionStorage.getItem("user")) {
+    user.loginButton.innerText = "로그아웃";
+    user.signOutButton.style.display = "block";
+  } else {
+    user.loginButton.innerText = "로그인";
+    user.signOutButton.style.display = "none";
+  }
 });
 
 // 새 페이지 로드 함수
@@ -61,19 +91,60 @@ function createPageButton(pageIndex) {
 }
 
 // 로그인 모달 열기 함수
-function openLoginModal() {
-  const modal = createModalElement();
+async function openLoginModal() {
+  const modal = await createModalElement();
   document.body.appendChild(modal);
+
+  // 로그인 함수
+  const login_btn = document.getElementById("login-btn");
+  login_btn.addEventListener("click", async () => {
+    // 로그인 버튼 기능
+    let login_id = document.getElementById("login-id").value;
+    let login_pw = document.getElementById("login-pw").value;
+
+    let docs = await getDocs(collection(db, "user"));
+    try {
+      let userName = "";
+      docs.forEach((doc) => {
+        let row = doc.data();
+        if (login_id === row.id && login_pw === row.pw) {
+          userName = row.name;
+        }
+      });
+
+      if (userName !== "") {
+        alert(`환영합니다. ${userName}님. `);
+        sessionStorage.setItem("user", login_id);
+        window.location.reload();
+      } else {
+        alert("아이디 또는 비밀번호가 틀렸습니다.");
+      }
+    } catch (error) {
+      throw error;
+    }
+  });
 }
 
 // 모달 엘리먼트 생성 함수
 function createModalElement() {
   const modal = document.createElement("div");
+
   modal.classList.add("modal");
 
   // login-container 엘리먼트 생성
-  const loginContainer = createLoginContainer();
+  const loginContainer = document.createElement("div");
+  loginContainer.classList.add("login-container");
 
+  // 로그인 폼 엘리먼트 생성
+  const form = document.createElement("div");
+  form.classList.add("login-form");
+  form.innerHTML = `
+    <input id="login-id" type="text" placeholder="사용자 이름" />
+    <input id="login-pw" type="password" placeholder="비밀번호" />
+    <button id="login-btn" type="submit">로그인</button>
+  `;
+
+  loginContainer.appendChild(form);
   modal.appendChild(loginContainer);
 
   // 모달을 닫기 위한 클릭 이벤트 추가
@@ -86,30 +157,204 @@ function createModalElement() {
   return modal;
 }
 
-// login-container 엘리먼트 생성 함수
-function createLoginContainer() {
-  const loginContainer = document.createElement("div");
-  loginContainer.classList.add("login-container");
+// 회원가입 모달 열기 함수
+function createSignModalElement() {
+  const sign_modal = document.createElement("div");
+  const sign_id = document.createElement("input");
+  sign_id.classList.add("sign_id");
+  sign_id.placeholder = "아이디를 작성해라";
+  const sign_pw = document.createElement("input");
+  sign_pw.classList.add("sign_pw");
+  sign_pw.placeholder = "비번도 작성해라";
+  const sign_name = document.createElement("input");
+  sign_name.classList.add("sign_name");
+  sign_name.placeholder = "이름도 작성하랭?";
+  const onSign_btn = document.createElement("button");
+  onSign_btn.classList.add("onSign_btn");
+  onSign_btn.innerText = "가입하기";
+  const sign_cancel = document.createElement("button");
+  sign_cancel.classList.add("sign_cancel");
+  sign_cancel.innerText = "취소하기";
 
-  // 로그인 폼 엘리먼트 생성
-  const form = createLoginForm();
+  sign_modal.classList.add("sign_modal");
 
-  loginContainer.appendChild(form);
+  // sign-container 엘리먼트 생성
+  const signContainer = document.createElement("div");
+  signContainer.classList.add("sign_container");
 
-  return loginContainer;
+  // 회원가입 폼 엘리먼트 생성
+  const form = document.createElement("div");
+  form.classList.add("sign_form");
+  form.append(sign_id, sign_pw, sign_name, onSign_btn, sign_cancel);
+
+  signContainer.appendChild(form);
+  sign_modal.appendChild(signContainer);
+
+  user.signupButton.addEventListener("click", () => {
+    document.body.appendChild(sign_modal);
+    sign_modal.style.display = "block";
+  });
+
+  // sign_id.addEventListener("keyup", function (e) {
+  //   console.log("key up", e.key, e.code);
+
+  //   const whiteList = ["ArrowLeft", "ArrowRight", "Backspace"];
+  //   const notEngExp = /[^A-Za-z]/g;
+  //   const allowedKey = whiteList.some((code) => e.code === code);
+  //   const isNotEng = notEngExp.test(e.key);
+  //   const koreanExp = /[ㄱ-ㅎㅏ-ㅣ가-힣]/g;
+
+  //   if (!allowedKey) {
+  //     console.log("not allowed");
+  //     e.preventDefault();
+  //     return;
+  //   }
+
+  //   if (e.code === "Backspace") {
+  //     e.preventDefault();
+  //     return;
+  //   }
+
+  //   if (isNotEng) {
+  //     console.log("not english");
+  //     e.preventDefault();
+  //     e.target.value = e.target.value.replace(koreanExp, "");
+  //     return;
+  //   }
+  // });
+
+  onSign_btn.addEventListener("click", async () => {
+    let id = sign_id.value;
+    let pw = sign_pw.value;
+    let name = sign_name.value;
+
+    let data = {
+      id: id,
+      pw: pw,
+      name: name,
+    };
+
+    if (id.length < 5 && id) {
+      alert("아이디가 짧습니다.");
+    } else if (pw.length < 1) {
+      alert("비밀번호가 짧아");
+    } else if (name.length < 3 || typeof name !== "string") {
+      alert("이름을 제대로 작성하세요.");
+    } else {
+      await setDoc(doc(db, "user", id), data);
+      alert("가입완료");
+      window.location.reload();
+    }
+  });
 }
 
-// 로그인 폼 엘리먼트 생성 함수
-function createLoginForm() {
-  const form = document.createElement("form");
-  form.classList.add("login-form");
-  form.innerHTML = `
-    <input id="login-id" type="text" placeholder="사용자 이름" />
-    <input id="login-pw" type="password" placeholder="비밀번호" />
-    <button id="login-btn" type="submit">로그인</button>
-  `;
-  return form;
+createSignModalElement();
+
+// 회원탈퇴
+async function createSignOutModal() {
+  let docs = await getDocs(collection(db, "user"));
+  let user = false;
+  docs.forEach(async (doc) => {
+    let row = doc.data();
+    if (row.id === sessionStorage.getItem("user")) {
+      await deleteDoc(collection(db, "user", id));
+      sessionStorage.removeItem("user");
+      alert("탈퇴완료");
+    }
+  });
+  try {
+    const docs = await getDocs(collection(db, "user"));
+    const userId = sessionStorage.getItem("user");
+
+    for (const doc of docs.docs) {
+      const row = doc.data();
+
+      if (row.id === userId) {
+        await deleteDoc(doc.ref);
+        sessionStorage.removeItem("user");
+        alert("탈퇴완료");
+        window.location.reload();
+      } else {
+        alert("사용자를 못 찾아");
+      }
+    }
+  } catch (error) {
+    alert(error);
+  }
 }
+// 비밀번호 변경
+const pwChange = () => {
+  const pwChangeBtn = document.createElement("button");
+  pwChangeBtn.innerText = "비밀번호변경";
+  document.body.appendChild(pwChangeBtn);
+
+  pwChangeBtn.addEventListener("click", () => {
+    const div = document.createElement("div");
+    const nowPw_input = document.createElement("input");
+    nowPw_input.placeholder = "현재 비밀번호를 입력하세요.";
+    const checkPw_input = document.createElement("input");
+    checkPw_input.placeholder = "새로운 비밀번호를 입력하세요.";
+    const changePw_input = document.createElement("input");
+    changePw_input.placeholder = "새로운 비밀번호를 입력하세요.";
+    const confirm_btn = document.createElement("button");
+    confirm_btn.innerText = "확인";
+    const cancel_btn = document.createElement("button");
+    cancel_btn.innerText = "취소";
+
+    document.body.appendChild(div);
+    div.append(
+      nowPw_input,
+      checkPw_input,
+      changePw_input,
+      confirm_btn,
+      cancel_btn
+    );
+
+    confirm_btn.addEventListener("click", async () => {
+      let nowPw = nowPw_input.value;
+      let changePw = changePw_input.value;
+      let checkPw = checkPw_input.value;
+
+      let docs = await getDocs(collection(db, "user"));
+
+      let data = {
+        id: "",
+        pw: "",
+        name: "",
+      };
+
+      let isPW = false;
+      let isChangePW = false;
+
+      docs.forEach((e) => {
+        let row = e.data();
+        if (row.pw === nowPw) {
+          isPW = true;
+          if (changePw === checkPw) {
+            isChangePW = true;
+            data.id = row.id;
+            data.pw = changePw;
+            data.name = row.name;
+            // await setDoc(doc(db, "user", data.id), data);
+          }
+        }
+      });
+
+      if (isPW) {
+        if (isChangePW) {
+          await setDoc(doc(db, "user", data.id), data);
+          alert("변경됐습니다.");
+        } else {
+          alert("새로운 비밀번호를 다시 입력하세요.");
+        }
+      } else {
+        alert("비밀번호가 틀렸습니다.");
+      }
+    });
+  });
+};
+
+pwChange();
 
 // 페이지에 영화 목록 생성 함수
 function createPage(pageData) {

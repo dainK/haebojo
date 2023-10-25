@@ -12,15 +12,16 @@ import {
 } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBvkQMypGDR1HHLoU_c4g-JEqIfb0NMw60",
-  authDomain: "sparta-eight.firebaseapp.com",
-  projectId: "sparta-eight",
-  storageBucket: "sparta-eight.appspot.com",
-  messagingSenderId: "1083363522950",
-  appId: "1:1083363522950:web:707cdbd5905fa43d839407",
-  measurementId: "G-STP1V2J94X",
+  apiKey: "AIzaSyBDAeGphZEQnYLkGBNgLYbqicQKJkYk9e8",
+  authDomain: "goqhwh.firebaseapp.com",
+  projectId: "goqhwh",
+  storageBucket: "goqhwh.appspot.com",
+  messagingSenderId: "469695505754",
+  appId: "1:469695505754:web:1515bc8ba77e52e6c27f63",
+  measurementId: "G-8RNJDHPPVP",
 };
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
-export const analytics = getAnalytics(app);
+// export const analytics = getAnalytics(app);
+export const db = getFirestore(app);
