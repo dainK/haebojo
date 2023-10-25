@@ -2,6 +2,7 @@ export const page = {
   pageNumbers: document.querySelector(".page-numbers"),
   prevButton: document.getElementById("prev"),
   nextButton: document.getElementById("next"),
+  container: document.getElementById("movie-container"),
   currentPage: 1,
   currItemsIndex: 1,
   itemsPerPage: 10, // 페이지당 항목 수

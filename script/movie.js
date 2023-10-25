@@ -2,93 +2,116 @@ import { options } from "../config/tmdbOption.js";
 import { page, search, user, language } from "./domEl.js";
 import { truncateText } from "./domEvent.js";
 
+// 페이지 로드가 완료된 후 실행할 함수
 document.addEventListener("DOMContentLoaded", function () {
   // 검색창에 자동으로 포커스를 주기
   search.searchInput.focus();
+  // 초기 페이지 로드
   NewPage(1);
+  // 검색 버튼 이벤트 리스너 추가
+  search.searchButton.addEventListener("click", Search);
+  // 검색 입력창에서 Enter 키 입력 시 검색 실행
+  search.searchInput.addEventListener("keyup", function (event) {
+    if (event.key === "Enter") {
+      Search();
+    }
+  });
+  // 로그인 버튼 클릭 시 로그인 모달 열기
+  user.loginButton.addEventListener("click", openLoginModal);
 });
 
-// movie
-const container = document.getElementById("movie-container");
+// 새 페이지 로드 함수
+function NewPage(index) {
+  const url =
+    search.searchText === ""
+      ? `https://api.themoviedb.org/3/movie/top_rated?language=${language.setLanguage}&page=${index}`
+      : `https://api.themoviedb.org/3/search/movie?query=${search.searchText}&include_adult=false&language=${language.setLanguage}&page=${index}`;
 
-// func
-let NewPage = (index) => {
-  if (search.searchText === "") {
-    fetch(`https://api.themoviedb.org/3/movie/top_rated?language=${language.setLanguage}&page=${index}`, options)
-      .then((response) => response.json())
-      .then((response) => {
-        console.log(response);
-        page.totalItems = response.total_pages;
-        updatePagination();
-        page.currentPage = index;
-        createPage(response);
-        // ToPageFunc = ToPage;
-      })
-      .catch((err) => console.error(err));
-  } else {
-    fetch(
-      `https://api.themoviedb.org/3/search/movie?query=${search.searchText}&include_adult=false&language=${language.setLanguage}&page=${index}`,
-      options
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        console.log(response);
-        page.totalItems = response.total_pages;
-        updatePagination();
-        page.currentPage = index;
-        createPage(response);
-        // ToPageFunc = ToSearch.bind(this, str);
-      })
-      .catch((err) => console.error(err));
-  }
-};
+  fetch(url, options)
+    .then((response) => response.json())
+    .then((response) => {
+      console.log(response);
+      page.totalItems = response.total_pages;
+      updatePagination();
+      page.currentPage = index;
+      createPage(response);
+    })
+    .catch((err) => console.error(err));
+}
 
-let updatePagination = () => {
+// 페이지 번호 업데이트 함수
+function updatePagination() {
   page.pageNumbers.innerHTML = "";
 
   for (let i = 0; i < page.itemsPerPage; i++) {
     if (page.currItemsIndex + i <= page.totalItems) {
-      const pagebtn = document.createElement("button");
-      pagebtn.textContent = `${page.currItemsIndex + i}`;
+      const pagebtn = createPageButton(page.currItemsIndex + i);
       page.pageNumbers.appendChild(pagebtn);
-
-      const pageindex = page.currItemsIndex + i;
-
-      pagebtn.addEventListener("click", () => {
-        NewPage(pageindex);
-      });
     }
   }
-};
+}
 
-page.prevButton.addEventListener("click", () => {
-  if (page.currItemsIndex > page.itemsPerPage) {
-    page.currItemsIndex -= page.itemsPerPage;
-    NewPage(page.currItemsIndex);
-  }
-});
+// 페이지 번호 버튼 생성 함수
+function createPageButton(pageIndex) {
+  const pagebtn = document.createElement("button");
+  pagebtn.textContent = pageIndex;
+  pagebtn.addEventListener("click", () => NewPage(pageIndex));
+  return pagebtn;
+}
 
-page.nextButton.addEventListener("click", () => {
-  if (page.currItemsIndex + page.itemsPerPage < page.totalItems) {
-    page.currItemsIndex += page.itemsPerPage;
-    NewPage(page.currItemsIndex);
-  }
-});
+// 로그인 모달 열기 함수
+function openLoginModal() {
+  const modal = createModalElement();
+  const form = createLoginForm();
 
-let createPage = (pageData) => {
-  while (container.firstChild) {
-    container.firstChild.remove();
-  }
+  modal.appendChild(form);
+  document.body.appendChild(modal);
 
-  pageData.results.forEach((element) => {
-    createMovieCard(element);
+  // 모달을 닫기 위한 클릭 이벤트 추가
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      document.body.removeChild(modal);
+    }
   });
-};
+}
 
-let createMovieCard = (data) => {
+// 모달 엘리먼트 생성 함수
+function createModalElement() {
+  const modal = document.createElement("div");
+  modal.classList.add("modal");
+  return modal;
+}
+
+// 로그인 폼 엘리먼트 생성 함수
+function createLoginForm() {
+  const form = document.createElement("form");
+  form.classList.add("login-form");
+  form.innerHTML = `
+    <input id="login-id" type="text" placeholder="사용자 이름" />
+    <input id="login-pw" type="password" placeholder="비밀번호" />
+    <button id="login-btn" type="submit">로그인</button>
+  `;
+  return form;
+}
+
+// 페이지에 영화 목록 생성 함수
+function createPage(pageData) {
+  clearContainer();
+  pageData.results.forEach((element) => createMovieCard(element));
+}
+
+// 컨테이너 비우기 함수
+function clearContainer() {
+  while (page.container.firstChild) {
+    page.container.firstChild.remove();
+  }
+}
+
+// 영화 카드 엘리먼트 생성 함수
+function createMovieCard(data) {
   const card = document.createElement("div");
   card.classList.add("movie-card");
-  container.appendChild(card);
+  page.container.appendChild(card);
 
   const title = document.createElement("div");
   title.classList.add("movie-title");
@@ -98,89 +121,37 @@ let createMovieCard = (data) => {
   const image = document.createElement("img");
   image.style.width = "280px";
   image.style.height = "400px";
-  if (data.poster_path != "null") {
+  if (data.poster_path !== null) {
     image.src = "https://image.tmdb.org/t/p/original/" + data.poster_path;
   }
   card.appendChild(image);
+
   const info = document.createElement("div");
   info.classList.add("movie-info");
   const truncatedOverview = truncateText(data.overview, 35);
   info.innerText = truncatedOverview;
   card.appendChild(info);
 
+  // 영화 정보 페이지로 이동
   const id = data.id;
   card.addEventListener("click", () => {
-    // ViewTrailer(id);
-    // Info(id);
     window.location.href = "./info.html?movie-id:" + id;
-    // alert("영화 아이디 : " + id);
   });
 
-  const overviewEl = card.querySelector(".movie-info"); // card 요소 내에서 클래스가 overview인 요소를 탐색
-
-  // 마우스 호버 이벤트 바깥 -> 안
+  // 마우스 호버 이벤트
+  const overviewEl = card.querySelector(".movie-info");
   overviewEl.addEventListener("mouseenter", () => {
     overviewEl.innerText = data.overview;
   });
-
-  // 마우스 호버 이벤트 안 -> 바깥
   overviewEl.addEventListener("mouseleave", () => {
     overviewEl.innerText = truncatedOverview;
   });
-};
+}
 
-let Search = () => {
+// 검색 함수
+function Search() {
   search.searchText = search.searchInput.value;
   search.searchText;
   page.currItemsIndex = 1;
   NewPage(1);
-};
-
-search.searchButton.addEventListener("click", () => {
-  Search();
-});
-
-search.searchInput.addEventListener("keyup", function (event) {
-  if (event.key === "enter") {
-    Search();
-  }
-});
-
-// // 모달 닫기 버튼 클릭 시 모달 닫기
-// closeModalButton.addEventListener('click', function () {
-//     modalContainer.style.display = 'none';
-
-//     // YouTube 비디오 멈추기
-//     youtubeVideo.src = '';
-// });
-
-user.loginButton.addEventListener("click", () => {
-  console.log("login ");
-
-  let modal = document.createElement("div");
-  modal.classList.add("modal");
-
-  let content = document.createElement("div");
-  content.classList.add("login-container");
-  modal.appendChild(content);
-
-  let form = document.createElement("form");
-  form.classList.add("login-form");
-  content.appendChild(form);
-
-  form.innerHTML = `
-    <input id = "login-id" type="text" placeholder="사용자 이름" />
-    <input id = "login-pw" type="password" placeholder="비밀번호" />
-    <button id = "login-btn" type="submit">로그인</button>
-    `;
-
-  // 모달을 body에 추가
-  document.body.appendChild(modal);
-
-  // 모달을 닫기 위한 클릭 이벤트 추가
-  modal.addEventListener("click", (event) => {
-    if (event.target === modal) {
-      document.body.removeChild(modal);
-    }
-  });
-});
+}
