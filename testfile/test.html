@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./test.css" />
+    <style>
+      .card {
+        display: inline-grid;
+        color: white;
+        transition: transform 0.3s;
+        transform: perspective(800px) rotateY(0deg);
+        transform-style: preserve-3d;
+      }
+
+      .card:hover {
+        transform: perspective(800px) rotateY(180deg);
+      }
+
+      .card > * {
+        grid-area: 1 / 1 / 1 / 1;
+        width: 180px;
+        height: 100px;
+        padding: 12px;
+        border-radius: 8px;
+        backface-visibility: hidden;
+      }
+
+      .card-front {
+        background: linear-gradient(rgb(80, 67, 52), rgb(111, 93, 73));
+      }
+
+      .card-back {
+        background: linear-gradient(rgb(127, 106, 83), rgb(156, 132, 104));
+        transform: rotateY(180deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrap">
+      <div class="card">
+        <div class="card-front">FRONT</div>
+        <div class="card-back">BACK</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-front">국민카드</div>
+      <div class="card-back">뒷면!!</div>
+    </div>
+  </body>
+</html>
+
+<head> </head>

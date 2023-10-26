@@ -151,7 +151,37 @@ body {
 }
 
 /* Pagination Styles */
+
 .pagination {
+  text-align: center;
+}
+
+.pagination button {
+  background-color: rgba(251, 175, 51, 1);
+  color: black;
+  border: none;
+  padding: 10px 15px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-bottom: 30px;
+}
+
+.pagination button:hover {
+  background-color: rgba(251, 125, 2, 1);
+}
+
+/* #prev,
+#next {
+  background-color: #333;
+} */
+
+.page-numbers {
+  display: inline-block;
+}
+
+/* .pagination {
   margin-top: 50px;
   margin-bottom: 50px;
   padding: 10px;
@@ -163,7 +193,7 @@ body {
 .page-numbers {
   display: flex;
   margin: 10px;
-}
+} */
 
 /* Movie Container Styles */
 #movie-container {
