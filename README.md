@@ -6,13 +6,13 @@ https://daink.github.io/haebojo/
 # TEAM haebojo
 ![logo](https://github.com/dainK/haebojo/assets/26786677/8eeb7c73-8468-4f23-b43c-84ebce6df90c)
 <br/>
-팀장 김민재
+### 팀장 김민재
 <br/>
-팀원 강다형
+#### 팀원 강다형
 <br/>
-팀원 배윤호
+#### 팀원 배윤호
 <br/>
-팀원 김영우
+#### 팀원 김영우
 <br/>
 <br/>
 
