@@ -1,12 +1,14 @@
 import { options } from "../config/tmdbOption.js";
 import { page, search, user, language } from "./domEl.js";
-import { truncateText } from "./domEvent.js";
+import { truncateText,setLogoByLanguage } from "./domEvent.js";
 import { drawChart } from "./chart.js";
 import { getDocs,deleteDoc,doc,setDoc,collection } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 import { db } from "../config/firebaseConfig.js";
 
 // 페이지 로드가 완료된 후 실행할 함수
 document.addEventListener("DOMContentLoaded", function () {
+
+  setLogoByLanguage();
   // 검색창에 자동으로 포커스를 주기
   search.searchInput.focus();
   // 초기 페이지 로드
