@@ -342,6 +342,17 @@ const pwChange = () => {
       let changePw = changePw_input.value;
       let checkPw = checkPw_input.value;
 
+      var key = CryptoJS.enc.Utf8.parse(nowPw); // 암호화
+      var base64 = CryptoJS.enc.Base64.stringify(key); // 암호화된 값
+      var decrypt = CryptoJS.enc.Base64.parse(base64); // 복호화
+      var hashData = decrypt.toString(CryptoJS.enc.Utf8); //복호화된 값
+      console.log(hashData);
+
+      var key2 = CryptoJS.enc.Utf8.parse(changePw); // 암호화
+      var base642 = CryptoJS.enc.Base64.stringify(key2); // 암호화된 값
+      var decrypt2 = CryptoJS.enc.Base64.parse(base642); // 복호화
+      var hashData2 = decrypt2.toString(CryptoJS.enc.Utf8); //복호화된 값
+      console.log(hashData2);
       let docs = await getDocs(collection(db, "user"));
 
       let data = {
@@ -355,12 +366,12 @@ const pwChange = () => {
 
       docs.forEach((e) => {
         let row = e.data();
-        if (row.pw === nowPw && row.id === id) {
+        if (row.pw === base64 && row.id === id) {
           isPW = true;
           if (changePw === checkPw) {
             isChangePW = true;
             data.id = row.id;
-            data.pw = changePw;
+            data.pw = base642;
             data.name = row.name;
             // await setDoc(doc(db, "user", data.id), data);
           }
