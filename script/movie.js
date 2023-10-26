@@ -52,7 +52,6 @@ document.addEventListener("DOMContentLoaded", function () {
     user.pwChangeButton.style.display = "none";
   }
 
-  
   // 이전 페이지 버튼 클릭 시 이전 페이지 로드
   page.prevButton.addEventListener("click", () => {
     if (page.currItemsIndex > page.itemsPerPage) {
@@ -293,14 +292,7 @@ const pwChange = () => {
 
     changePwModal.appendChild(changePwContainer);
     document.body.appendChild(changePwModal);
-    changePwContainer.append(
-      id_input,
-      nowPw_input,
-      checkPw_input,
-      changePw_input,
-      confirm_btn,
-      cancel_btn
-    );
+    changePwContainer.append(id_input, nowPw_input, checkPw_input, changePw_input, confirm_btn, cancel_btn);
 
     //비밀번호변경 함수
     confirm_btn.addEventListener("click", async () => {
