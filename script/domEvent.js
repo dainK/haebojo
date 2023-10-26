@@ -1,11 +1,32 @@
 import { language } from "./domEl.js";
 
+function setLogoByLanguage() {
+  const koreanLogo = document.getElementById("korean-logo");
+  const englishLogo = document.getElementById("english-logo");
+
+  const selectedLanguage = language.setLanguage;
+
+  if (selectedLanguage === "ko-KR") {
+    koreanLogo.src = "../img/logo.png";
+    englishLogo.style.display = "none";
+    koreanLogo.style.display = "block";
+  } else {
+    englishLogo.src = "../img/logo_en.png";
+    koreanLogo.style.display = "none";
+    englishLogo.style.display = "block";
+  }
+}
+
+setLogoByLanguage();
+
 language.koreanFlagButton.addEventListener("click", function () {
   switchLanguage("ko-KR");
+  setLogoByLanguage();
 });
 
 language.englishFlagButton.addEventListener("click", function () {
   switchLanguage("en-US");
+  setLogoByLanguage();
 });
 
 function switchLanguage(ISO) {
