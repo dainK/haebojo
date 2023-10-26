@@ -27,3 +27,9 @@ export const language = {
   koreanFlagButton: document.getElementById("korean-flag"),
   englishFlagButton: document.getElementById("english-flag"),
 };
+
+export const comment = {
+  commentButton : document.getElementById("comment-button"),
+  commentInput : document.getElementById("comment-input"),
+  commentContainer : document.getElementById("comment-list")
+};

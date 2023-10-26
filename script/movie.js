@@ -1,24 +1,12 @@
 import { options } from "../config/tmdbOption.js";
 import { page, search, user, language } from "./domEl.js";
-import { truncateText, setLogoByLanguage } from "./domEvent.js";
+import { truncateText } from "./domEvent.js";
 import { drawChart } from "./chart.js";
-import {
-  getFirestore,
-  getDocs,
-  deleteDoc,
-  doc,
-  setDoc,
-  getDoc,
-  updateDoc,
-  collection,
-  addDoc,
-} from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-import { app, db } from "../config/firebaseConfig.js";
+import { getDocs,deleteDoc,doc,setDoc,collection } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+import { db } from "../config/firebaseConfig.js";
 
 // 페이지 로드가 완료된 후 실행할 함수
 document.addEventListener("DOMContentLoaded", function () {
-  
-  setLogoByLanguage();
   // 검색창에 자동으로 포커스를 주기
   search.searchInput.focus();
   // 초기 페이지 로드
@@ -31,10 +19,8 @@ document.addEventListener("DOMContentLoaded", function () {
       Search();
     }
   });
-
   user.signOutButton.addEventListener("click", createSignOutModal);
-  user.signupButton.addEventListener("click", createSignModalElement);
-  user.signupButton.addEventListener("click", pwChange);
+
   // 로그인 버튼 클릭 시 로그인 모달 열기
   user.loginButton.addEventListener("click", () => {
     if (!!sessionStorage.getItem("user")) {
@@ -72,7 +58,6 @@ document.addEventListener("DOMContentLoaded", function () {
       NewPage(page.currItemsIndex);
     }
   });
-
 });
 
 // 새 페이지 로드 함수
@@ -114,7 +99,6 @@ function createPageButton(pageIndex) {
   return pagebtn;
 }
 
-
 // 로그인 모달 열기 함수
 async function openLoginModal() {
   const modal = await createModalElement();
@@ -126,13 +110,17 @@ async function openLoginModal() {
     // 로그인 버튼 기능
     let login_id = document.getElementById("login-id").value;
     let login_pw = document.getElementById("login-pw").value;
-
+    var key = CryptoJS.enc.Utf8.parse(login_pw); // 암호화
+    var base64 = CryptoJS.enc.Base64.stringify(key); // 암호화된 값
+    var decrypt = CryptoJS.enc.Base64.parse(base64); // 복호화
+    var hashData = decrypt.toString(CryptoJS.enc.Utf8); //복호화된 값
+    console.log(hashData);
     let docs = await getDocs(collection(db, "user"));
     try {
       let userName = "";
       docs.forEach((doc) => {
         let row = doc.data();
-        if (login_id === row.id && login_pw === row.pw) {
+        if (login_id === row.id && base64 === row.pw) {
           userName = row.name;
         }
       });
@@ -185,7 +173,6 @@ function createModalElement() {
 // 회원가입 모달 열기 함수
 function createSignModalElement() {
   const sign_modal = document.createElement("div");
-  // sign_modal.style.display = "block";
   const sign_id = document.createElement("input");
   sign_id.classList.add("sign_id");
   sign_id.placeholder = "아이디를 작성해라";
@@ -201,8 +188,8 @@ function createSignModalElement() {
   const sign_cancel = document.createElement("button");
   sign_cancel.classList.add("sign_cancel");
   sign_cancel.innerText = "취소하기";
+
   sign_modal.classList.add("sign_modal");
-  
 
   // sign-container 엘리먼트 생성
   const signContainer = document.createElement("div");
@@ -216,16 +203,34 @@ function createSignModalElement() {
   signContainer.appendChild(form);
   sign_modal.appendChild(signContainer);
 
-  document.body.appendChild(sign_modal);
+  user.signupButton.addEventListener("click", () => {
+    document.body.appendChild(sign_modal);
+    sign_modal.style.display = "block";
+  });
 
   onSign_btn.addEventListener("click", async () => {
     let id = sign_id.value;
     let pw = sign_pw.value;
     let name = sign_name.value;
 
+    var key = CryptoJS.enc.Utf8.parse(pw); // 암호화
+    var base64 = CryptoJS.enc.Base64.stringify(key); // 암호화된 값
+    var decrypt = CryptoJS.enc.Base64.parse(base64); // 복호화
+    var hashData = decrypt.toString(CryptoJS.enc.Utf8); //복호화된 값
+    console.log(hashData);
+
+    let docs = await getDocs(collection(db, "user"));
+    for (let a of docs.docs) {
+      let row = a.data();
+      if (row.id === id) {
+        alert("사용자가 존재합니다.");
+        return;
+      }
+    }
+
     let data = {
       id: id,
-      pw: pw,
+      pw: base64,
       name: name,
     };
 
@@ -243,11 +248,11 @@ function createSignModalElement() {
   });
 
   sign_cancel.addEventListener("click", () => {
-    // sign_modal.style.display = "none";
-    sign_modal.remove();
+    sign_modal.style.display = "none";
   });
 }
 
+createSignModalElement();
 
 // 회원탈퇴
 async function createSignOutModal() {
@@ -311,14 +316,7 @@ const pwChange = () => {
 
     changePwModal.appendChild(changePwContainer);
     document.body.appendChild(changePwModal);
-    changePwContainer.append(
-      id_input,
-      nowPw_input,
-      checkPw_input,
-      changePw_input,
-      confirm_btn,
-      cancel_btn
-    );
+    changePwContainer.append(id_input, nowPw_input, checkPw_input, changePw_input, confirm_btn, cancel_btn);
 
     //비밀번호변경 함수
     confirm_btn.addEventListener("click", async () => {
@@ -327,6 +325,17 @@ const pwChange = () => {
       let changePw = changePw_input.value;
       let checkPw = checkPw_input.value;
 
+      var key = CryptoJS.enc.Utf8.parse(nowPw); // 암호화
+      var base64 = CryptoJS.enc.Base64.stringify(key); // 암호화된 값
+      var decrypt = CryptoJS.enc.Base64.parse(base64); // 복호화
+      var hashData = decrypt.toString(CryptoJS.enc.Utf8); //복호화된 값
+      console.log(hashData);
+
+      var key2 = CryptoJS.enc.Utf8.parse(changePw); // 암호화
+      var base642 = CryptoJS.enc.Base64.stringify(key2); // 암호화된 값
+      var decrypt2 = CryptoJS.enc.Base64.parse(base642); // 복호화
+      var hashData2 = decrypt2.toString(CryptoJS.enc.Utf8); //복호화된 값
+      console.log(hashData2);
       let docs = await getDocs(collection(db, "user"));
 
       let data = {
@@ -340,12 +349,12 @@ const pwChange = () => {
 
       docs.forEach((e) => {
         let row = e.data();
-        if (row.pw === nowPw && row.id === id) {
+        if (row.pw === base64 && row.id === id) {
           isPW = true;
           if (changePw === checkPw) {
             isChangePW = true;
             data.id = row.id;
-            data.pw = changePw;
+            data.pw = base642;
             data.name = row.name;
             // await setDoc(doc(db, "user", data.id), data);
           }
@@ -365,12 +374,12 @@ const pwChange = () => {
       }
     });
     cancel_btn.addEventListener("click", () => {
-      // changePwModal.style.display = "none";
-      changePwModal.remove();
+      changePwModal.style.display = "none";
     });
   });
 };
 
+pwChange();
 
 // 페이지에 영화 목록 생성 함수
 function createPage(pageData) {
@@ -465,3 +474,15 @@ function Search() {
   page.currItemsIndex = 1;
   NewPage(1);
 }
+
+// 비밀번호 암호화
+// function hashPW(pw) {
+//   var key = CryptoJS.enc.Utf8.parse(pw); // 암호화
+//   var base64 = CryptoJS.enc.Base64.stringify(key); // 암호화된 값
+//   var decrypt = CryptoJS.enc.Base64.parse(base64); // 복호화
+//   var hashData = decrypt.toString(CryptoJS.enc.Utf8); //복호화된 값
+
+//   console.log(base64);
+//   console.log("------------");
+//   console.log(hashData);
+// }
