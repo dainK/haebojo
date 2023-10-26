@@ -475,14 +475,16 @@ body {
   }
 
   .search > #search-button {
+    position: absolute;
     font-size: 10px;
-    width: 50px;
+    width: 20%;
     height: 30px;
+    right: 0;
   }
 
   .search > #search-input {
     font-size: 10px;
-    width: 200px;
+    width: 70%;
     height: 10px;
   }
 }
