@@ -19,6 +19,21 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   // 로그인 버튼 클릭 시 로그인 모달 열기
   user.loginButton.addEventListener("click", openLoginModal);
+
+  // 이전 페이지 버튼 클릭 시 이전 페이지 로드
+  page.prevButton.addEventListener("click", () => {
+    if (page.currItemsIndex > page.itemsPerPage) {
+      page.currItemsIndex -= page.itemsPerPage;
+      NewPage(page.currItemsIndex);
+    }
+  });
+  // 다음 페이지 버튼 클릭 시 다음 페이지 로드
+  page.nextButton.addEventListener("click", () => {
+    if (page.currItemsIndex + page.itemsPerPage <= page.totalItems) {
+      page.currItemsIndex += page.itemsPerPage;
+      NewPage(page.currItemsIndex);
+    }
+  });
 });
 
 // 새 페이지 로드 함수
