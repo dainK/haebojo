@@ -1,6 +1,4 @@
-# PROJECT
-
-## URL
+# PROJECT URL
 https://daink.github.io/haebojo/
 ## Development environment
 vscode
