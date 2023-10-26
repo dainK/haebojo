@@ -1,13 +1,144 @@
-@import url("https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap");
+/* Global Font Style */
 
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@900&display=swap");
+
+/* Apply the global font to all elements */
 * {
-  font-family: "Gamja Flower", cursive;
+  font-family: "Noto Sans KR", sans-serif;
 }
 
+/* Header Styles */
 header {
   z-index: 999;
+  background-color: black;
+  top: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
 }
 
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar .logo {
+  display: flex;
+  /* align-items: center; */
+  justify-content: flex-start;
+}
+
+.logo img {
+  max-width: 200px;
+  max-height: 66.66px;
+  margin-left: 150px;
+}
+
+.navbar .movie-search-page {
+  margin-right: auto;
+}
+
+.movie-search-page h1 {
+  font-size: 32px;
+  color: #e1e8ed;
+}
+
+/* .navbar .search {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+} */
+
+.search-main {
+  margin: 150px 300px 50px 300px;
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.search input[type="text"] {
+  width: 100%;
+  height: 36px;
+  line-height: 36px;
+  font-size: 1.1em;
+  color: rgba(0, 0, 0, 0.5);
+  border: 0;
+  border-radius: 30px;
+  padding: 10px 20px;
+}
+
+#search-button {
+  position: absolute;
+  width: 100px;
+  height: 56px;
+  border-radius: 30px;
+  font-size: 1.1em;
+  right: 0;
+  border: none;
+  background: rgba(251, 175, 51, 1);
+  background: linear-gradient(0deg, rgba(255, 151, 0, 1) 0%, rgba(251, 125, 2, 1) 100%);
+  /* background: rgb(251, 33, 117);
+  background: linear-gradient(0deg, rgba(251, 33, 117, 1) 0%, rgba(234, 76, 137, 1) 100%); */
+
+  color: #fff;
+  overflow: hidden;
+}
+
+#search-button:hover {
+  text-decoration: none;
+  color: #fff;
+}
+#search-button:before {
+  position: absolute;
+  content: "";
+  display: inline-block;
+  top: -180px;
+  left: 0;
+  width: 30px;
+  height: 100%;
+  background-color: #fff;
+  animation: shiny-btn1 3s ease-in-out infinite;
+}
+#search-button:hover {
+  opacity: 0.7;
+}
+#search-button:active {
+  box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.3), -4px -4px 6px 0 rgba(116, 125, 136, 0.2),
+    inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2), inset 4px 4px 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+@keyframes shiny-btn1 {
+  0% {
+    -webkit-transform: scale(0) rotate(45deg);
+    opacity: 0;
+  }
+  80% {
+    -webkit-transform: scale(0) rotate(45deg);
+    opacity: 0.5;
+  }
+  81% {
+    -webkit-transform: scale(4) rotate(45deg);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(50) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+.navbar .searchText {
+  margin-right: 10px;
+}
+
+/* .navbar .search input */
+
+/* Body Styles */
 body {
   background-color: rgb(34, 34, 34);
   /* 배경색 설정 */
@@ -15,97 +146,14 @@ body {
   /* flex-direction: column; */
   align-items: center;
   justify-content: center;
-  /* height: 100vh;  */
+  /* height: 100vh; */
   /* margin-top: 100px; */
 }
 
-button {
-  background-color: #fcb65b;
-  /* 검색 버튼 배경색 설정 */
-  color: #000000;
-  /* 검색 버튼 텍스트 색상 설정 */
-  /* border: none; */
-  /* 검색 버튼 테두리 제거 */
-  padding: 5px 10px;
-  /* 검색 버튼 내부의 안쪽 여백 설정 */
-  margin-left: 5px;
-  /* 검색 버튼과 검색창 간 간격 설정 */
-  border: 2px solid #000000;
-  border-radius: 5px;
-  font-size: 15px;
-}
-
-/* 전체 바 스타일 */
-.navbar {
-  background-color: #000000;
-  /* 바 배경색 설정 */
-  color: #fff;
-  /* 바 내부 텍스트 색상 설정 */
-  display: flex;
-  /* 내부 요소를 가로로 정렬하기 위해 flex 사용 */
-  /* justify-content: space-between; */
-  justify-content: center;
-  align-items: center;
-  /* 내부 요소를 세로 가운데 정렬 */
-  /* padding: 10px; */
-  /* 바 주위의 안쪽 여백 설정 */
-  /* padding-bottom: 10px; */
-  background-size: cover;
-  width: 100%;
-  max-height: 100px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  flex: 1; /* 화면 크기에 따라 동일한 크기로 조절 */
-}
-
-/* 로고 스타일 */
-.logo-img {
-  height: 40px;
-  /* 로고 이미지 높이 설정 */
-  margin-right: 10px;
-  /* 로고와 텍스트 간 간격 설정 */
-}
-
-/* 검색창 및 버튼 스타일 */
-.search {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* justify-content: space-between; */
-  /* 내부 요소를 가로로 균등하게 배치 */
-  /* display: flex; */
-  /* 검색창과 버튼을 가로로 정렬하기 위해 flex 사용 */
-  padding: 10px;
-  margin-right: 10px;
-  margin-left: 50px;
-}
-
-.search-input {
-  padding: 5px;
-  /* 검색창 내부의 안쪽 여백 설정 */
-  border: 1px solid #ccc;
-  /* 검색창 테두리 설정 */
-  border-radius: 5px;
-  /* 검색창 테두리를 둥글게 만듭니다. */
-}
-
-.search-button {
-  background-color: #f1a10c;
-  /* 검색 버튼 배경색 설정 */
-  color: #fff;
-  /* 검색 버튼 텍스트 색상 설정 */
-  border: none;
-  /* 검색 버튼 테두리 제거 */
-  padding: 5px 10px;
-  /* 검색 버튼 내부의 안쪽 여백 설정 */
-  margin-left: 5px;
-  /* 검색 버튼과 검색창 간 간격 설정 */
-  border: 1px solid #000000;
-}
-
+/* Pagination Styles */
 .pagination {
-  margin-top: 120px;
+  margin-top: 50px;
+  margin-bottom: 50px;
   padding: 10px;
   display: flex;
   align-items: center;
@@ -117,31 +165,29 @@ button {
   margin: 10px;
 }
 
+/* Movie Container Styles */
 #movie-container {
   margin-top: 10px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-
-  /* padding:20;  */
-  /* margin: 20; */
 }
 
+/* Movie Card Styles */
 .movie-card {
-  padding-top: 20px;
+  padding-top: 12px;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
-  background-color: white;
+  /* background-color: white; */
   /* color: white; */
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); */
   border-radius: 10px;
   width: 300px;
   height: auto;
   flex-wrap: wrap;
-  /* margin: 20; */
   margin-bottom: 20px;
   margin-left: 10px;
   margin-right: 10px;
@@ -154,18 +200,19 @@ button {
 }
 
 .movie-title {
+  display: none;
   font-size: 20px;
+  /* text-align: center; */
 }
 
 .movie-info {
   height: auto;
   width: 280px;
   white-space: pre-wrap;
-
-  /* overflow-y: auto; */
   border: 1px solid #ccc;
 }
 
+/* Modal Styles */
 .modal {
   display: flex;
   justify-content: center;
@@ -186,7 +233,7 @@ button {
   border-radius: 5px;
   padding: 20px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  text-align: center;
+  /* text-align: center; */
 }
 
 .login-container h1 {
@@ -215,6 +262,12 @@ button {
   border-radius: 3px;
   cursor: pointer;
 }
+
+/* #chartCanvas {
+  width: 20px;
+  height: 20px;
+} */
+
 
 .sign_modal {
   position: fixed;
@@ -282,8 +335,3 @@ button {
 #signOut-button {
   display: none;
 }
-
-/* #chartCanvas {
-  width: 20px;
-  height: 20px;
-} */

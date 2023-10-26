@@ -1,79 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Movie Search</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
-    <link rel="stylesheet" href="./css/movie.css" />
-    <link rel="stylesheet" href="./css/language.css" />
-    <link rel="stylesheet" href="./css/chart.css" />
-    <script type="module" defer src="./script/movie.js"></script>
-    <!-- <script type="module" defer src="./script/domEvent.js"></script> -->
-    <!-- <script type="module" defer src="./script/chart.js"></script> -->
-  </head>
 
-  <body>
-    <!-- 네비게이션-->
-    <header class="navbar">
-      <div class="logo">
-        <img src="./img/logo.png" alt="로고" />
-      </div>
-      <div>
-        <h1>영화 검색 페이지</h1>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movie Search</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+  <link rel="stylesheet" href="./css/movie.css" />
+  <link rel="stylesheet" href="./css/language.css" />
+  <link rel="stylesheet" href="./css/chart.css" />
+  <script type="module" defer src="./script/movie.js"></script>
+  <!-- <script type="module" defer src="./script/domEvent.js"></script> -->
+  <!-- <script type="module" defer src="./script/chart.js"></script> -->
+</head>
 
-      <!-- 검색창 -->
-      <div class="search">
-        <span style="font-size: 20px"> 영화 검색 &nbsp;</span>
-        <input
-          type="text"
-          id="search-input"
-          placeholder="검색어를 입력하세요"
-        />
-        <button id="search-button">검색</button>
-      </div>
-
-      <!-- 언어 변경 -->
-      <div class="dropdown" id="language-switcher">
-        <button class="dropbtn">언어 선택</button>
-        <div class="dropdown-content">
-          <button id="korean-flag">
-            <img src="img/korean-flag-icon.png" alt="한국 국기" />
-          </button>
-          <button id="english-flag">
-            <img src="img/us-flag-icon.png" alt="미국 국기" />
-          </button>
-        </div>
-      </div>
-
-      <button id="login-button">로그인</button>
-      <button id="sign-button">회원가입</button>
-      <button id="pwChange-button">비밀번호변경</button>
-      <button id="signOut-button">회원탈퇴</button>
-    </header>
-
-    <!-- 페이지 넘기기 -->
-    <div class="pagination">
-      <button id="prev">이전</button>
-      <div class="page-numbers">
-        <!-- 페이지 번호가 동적으로 추가될 곳 -->
-      </div>
-      <button id="next">다음</button>
+<body>
+  <!-- 네비게이션-->
+  <header class="navbar">
+    <div class="logo">
+      <img src="./img/logo.png" alt="로고" />
+    </div>
+    <div class="movie-search-page">
+      <h1>영화 검색 페이지</h1>
     </div>
 
-    <!-- 영화 포스터 -->
-    <div id="movie-container"></div>
-  </body>
-</html>
+    <!-- 언어 변경 -->
+    <div class="dropdown" id="language-switcher">
+      <button class="dropbtn">언어 선택</button>
+      <div class="dropdown-content">
+        <button id="korean-flag">
+          <img src="img/korean-flag-icon.png" alt="한국 국기" />
+        </button>
+        <button id="english-flag">
+          <img src="img/us-flag-icon.png" alt="미국 국기" />
+        </button>
+      </div>
+    </div>
+  </header>
 
-<!-- <div class="canvas-main">
-  <canvas
-    id="chartCanvas"
-    width="50"
-    height="50"
-    style="display: block; box-sizing: border-box; height: 50px; width: 50px"
-  ></canvas>
-  <span class="chartCanvasNumber"></span>
-</div> -->
+
+
+  <!-- 검색창 -->
+  <div class="search-main">
+    <div class="search">
+      <!-- <span class="searchText"> 영화 검색 &nbsp;</span> -->
+      <input type="text" id="search-input" placeholder="영화 제목을 입력하세요" />
+      <button id="search-button">검색</button>
+    </div>
+  </div>
+
+  <div>
+    <button id="login-button">로그인</button>
+    <button id="sign-button">회원가입</button>
+    <button id="pwChange-button">비밀번호변경</button>
+    <button id="signOut-button">회원탈퇴</button>
+  </div>
+  
+  <!-- 페이지 넘기기 -->
+  <div class="pagination">
+    <button id="prev">이전</button>
+    <div class="page-numbers">
+      <!-- 페이지 번호가 동적으로 추가될 곳 -->
+    </div>
+    <button id="next">다음</button>
+  </div>
+  <!-- 영화 포스터 -->
+  <div id="movie-container"></div>
+</body>
+
+</html>

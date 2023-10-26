@@ -6,7 +6,7 @@ export function drawChart(canvas, voteAverage) {
     datasets: [
       {
         data: [voteAverage, 100 - voteAverage],
-        backgroundColor: ["#FF5733", "rgba(229, 229, 229, 0)"],
+        backgroundColor: ["#ff9833", "rgba(229, 229, 229, 0)"],
       },
     ],
   };

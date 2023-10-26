@@ -51,6 +51,22 @@ document.addEventListener("DOMContentLoaded", function () {
     user.signOutButton.style.display = "none";
     user.pwChangeButton.style.display = "none";
   }
+
+  
+  // 이전 페이지 버튼 클릭 시 이전 페이지 로드
+  page.prevButton.addEventListener("click", () => {
+    if (page.currItemsIndex > page.itemsPerPage) {
+      page.currItemsIndex -= page.itemsPerPage;
+      NewPage(page.currItemsIndex);
+    }
+  });
+  // 다음 페이지 버튼 클릭 시 다음 페이지 로드
+  page.nextButton.addEventListener("click", () => {
+    if (page.currItemsIndex + page.itemsPerPage <= page.totalItems) {
+      page.currItemsIndex += page.itemsPerPage;
+      NewPage(page.currItemsIndex);
+    }
+  });
 });
 
 // 새 페이지 로드 함수
@@ -376,6 +392,8 @@ function createMovieCard(data) {
   // card.appendChild(chartSetMain);
 
   // 평점 차트 생성
+  const chartSetMain = document.createElement("div");
+  chartSetMain.classList.add("chartSetMain");
   const chartContainer = document.createElement("div");
   chartContainer.classList.add("canvas-main");
   const canvas = document.createElement("canvas");
@@ -383,12 +401,14 @@ function createMovieCard(data) {
   canvas.width = 50;
   canvas.height = 50;
   chartContainer.appendChild(canvas);
-  card.appendChild(chartContainer);
+  chartSetMain.appendChild(chartContainer);
 
   const chartCanvasNumber = document.createElement("span");
   chartCanvasNumber.classList.add("chartCanvasNumber");
-  chartCanvasNumber.innerText = `${data.vote_average}`;
+  chartCanvasNumber.innerText = `${data.vote_average.toFixed(1)}`;
   chartContainer.appendChild(chartCanvasNumber);
+
+  card.appendChild(chartSetMain);
 
   drawChart(canvas, data.vote_average * 10);
 
