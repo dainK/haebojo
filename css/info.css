@@ -137,6 +137,7 @@ iframe {
   /* 부모 컨테이너 가로 전체 폭 사용 */
   /* max-height: 500px; */
   justify-content: center;
+  flex-direction: column;
 }
 
 #comment-list {
@@ -146,12 +147,12 @@ iframe {
   /* 텍스트 줄 바꿈 제거 */
   /* align-items: center; */
   width: 100%;
-  height: 300px;
+  height: auto;
   align-items: flex-start;
   flex-direction: column;
 }
 
-#comment {
+.comment-box {
   background-color: #ffffff;
   color: #000000;
   border: 1px solid #000000;
@@ -172,3 +173,4 @@ iframe {
   justify-content: space-between;
   /* padding: 10px; */
 }
+

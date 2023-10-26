@@ -1,5 +1,17 @@
 import { options } from "../config/tmdbOption.js";
-import { page, search, user, language } from "./domEl.js";
+import { page, search, user, language,comment } from "./domEl.js";
+import {
+  getFirestore,
+  getDocs,
+  deleteDoc,
+  doc,
+  setDoc,
+  getDoc,
+  updateDoc,
+  collection,
+  addDoc,
+} from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+import { db } from "../config/firebaseConfig.js";
 
 // 현재 페이지 URL에서 영화 ID 파싱
 const currentUrl = window.location.href;
@@ -21,6 +33,10 @@ document.addEventListener("DOMContentLoaded", function () {
   ViewTrailer(movie_id);
   Info(movie_id);
   InfoCast(movie_id);
+  CreateComments(movie_id);
+  comment.commentButton.addEventListener("click", ()=>{
+    AddComment(comment.commentInput.value);
+  });
 });
 
 // 영화 정보 가져오기
@@ -56,14 +72,14 @@ function InfoCast(movieId) {
     .then((response) => {
       let cst = response.cast;
       cst.forEach((element) => {
-        createCastCard(element); // 각 배우 카드 생성
+        CreateCastCard(element); // 각 배우 카드 생성
       });
     })
     .catch((err) => console.error(err)); // 오류 처리
 }
 
 // 배우 카드 생성
-function createCastCard(data) {
+function CreateCastCard(data) {
   console.log(data.profile_path, "언놈이야");
   const card = document.createElement("div");
   card.classList.add("cast-card");
@@ -83,4 +99,96 @@ function createCastCard(data) {
   image.style.width = "130px";
   image.style.height = "180px";
   card.appendChild(image);
+}
+
+
+async function CreateComments(movieid) {
+  let commentDoc = await getDoc(doc(db, "movie", movieid));
+
+  let commnets = commentDoc.data().comments;
+  if (!!commnets && commnets.length > 0) {
+    commnets.forEach(e => {
+      const commentbox = document.createElement("div");
+      commentbox.classList.add("comment-box");
+      comment.commentContainer.appendChild(commentbox);
+
+      const commentContent = document.createElement("div");
+      commentContent.classList.add("comment-content");
+      commentContent.innerHTML = `
+      <p>${e.comment}</p>
+      <p>   ${e.user} ${e.date}</p>`;
+      commentbox.appendChild(commentContent);
+
+      commentbox.addEventListener("click", DeleteComment);
+    });
+  }
+ 
+}
+
+async function AddComment(text) {
+  if (!!sessionStorage.getItem("user")) {
+    let commentDoc = await getDoc(doc(db, "movie", movie_id));
+    let data = commentDoc.data();
+
+    let user = sessionStorage.getItem("user");
+
+    let currentDate = new Date();
+    let year = currentDate.getFullYear();
+    let month = currentDate.getMonth() + 1; // 월은 0부터 시작하므로 1을 더해줍니다.
+    let day = currentDate.getDate();
+    let date = `${year}-${month}-${day}`;
+
+    let newcomment = {
+      comment: text,
+      user: user,
+      date: date
+    }
+
+    if (!!data.comments) {
+      data.comments.push(newcomment);
+      await setDoc(doc(db, 'movie', movie_id), data);
+    }
+    else {
+      let newdata = { comments: [] };
+      newdata.comments.push(newcomment);
+      await setDoc(doc(db, 'movie', movie_id), newdata);
+    }
+    window.location.reload();
+  }
+  else {
+    alert("로그인을 해주세요.");
+  }
+}
+
+async function DeleteComment() {
+  console.log("코멘트삭제하기");
+  // const modal = document.createElement("div");
+  // const inputpw = document.createElement("input");
+  // // inputpw.classList.add("\");
+  // inputpw.placeholder = "비밀번호를 입력하세요.";
+  // const deletebtn = document.createElement("button");
+  // // deletebtn.classList.add("\");
+  // deletebtn.innerText = "삭제하기";
+  // const cancelbtn = document.createElement("button");
+  // // cancelbtn.classList.add("\");
+  // cancelbtn.innerText = "취소하기";
+
+  // // sign-container 엘리먼트 생성
+  // const container = document.createElement("div");
+  // // container.classList.add("/");
+  // const form = document.createElement("div");
+  // // form.classList.add("/");
+  // form.append(inputpw, deletebtn, cancelbtn);
+  // container.appendChild(form);
+  // modal.appendChild(container);
+  // document.body.appendChild(modal);
+
+  // deletebtn.addEventListener("click", () => {
+    
+  // });
+
+  // cancelbtn.addEventListener("click", () => {
+  //   modal.remove();
+  // });
+
 }
