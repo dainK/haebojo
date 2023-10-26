@@ -1,5 +1,5 @@
 import { options } from "../config/tmdbOption.js";
-import { page, search, user, language,comment } from "./domEl.js";
+import { page, search, user, language, comment } from "./domEl.js";
 import {
   getFirestore,
   getDocs,
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
   Info(movie_id);
   InfoCast(movie_id);
   CreateComments(movie_id);
-  comment.commentButton.addEventListener("click", ()=>{
+  comment.commentButton.addEventListener("click", () => {
     AddComment(comment.commentInput.value);
   });
 });
@@ -105,7 +105,17 @@ function CreateCastCard(data) {
 async function CreateComments(movieid) {
   let commentDoc = await getDoc(doc(db, "movie", movieid));
 
+  if (typeof commentDoc.data() === "undefined") {
+    let newdata = { comments: [] };
+    await setDoc(doc(db, 'movie', movie_id), newdata);
+    return;
+  }
+
+  console.log(commentDoc.data());
+
   let commnets = commentDoc.data().comments;
+
+  // console.log(commnets);
   if (!!commnets && commnets.length > 0) {
     commnets.forEach(e => {
       const commentbox = document.createElement("div");
@@ -115,14 +125,14 @@ async function CreateComments(movieid) {
       const commentContent = document.createElement("div");
       commentContent.classList.add("comment-content");
       commentContent.innerHTML = `
-      <p>${e.comment}</p>
-      <p>   ${e.user} ${e.date}</p>`;
+        <p>${e.comment}</p>
+        <p>   ${e.user} ${e.date}</p>`;
       commentbox.appendChild(commentContent);
 
       commentbox.addEventListener("click", DeleteComment);
     });
   }
- 
+
 }
 
 async function AddComment(text) {
@@ -184,7 +194,7 @@ async function DeleteComment() {
   // document.body.appendChild(modal);
 
   // deletebtn.addEventListener("click", () => {
-    
+
   // });
 
   // cancelbtn.addEventListener("click", () => {
