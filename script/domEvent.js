@@ -7,11 +7,11 @@ function setLogoByLanguage() {
   const selectedLanguage = language.setLanguage;
 
   if (selectedLanguage === "ko-KR") {
-    koreanLogo.src = "../img/logo.png";
+    koreanLogo.src = "./img/logo.png";
     englishLogo.style.display = "none";
     koreanLogo.style.display = "block";
   } else {
-    englishLogo.src = "../img/logo_en.png";
+    englishLogo.src = "./img/logo_en.png";
     koreanLogo.style.display = "none";
     englishLogo.style.display = "block";
   }
