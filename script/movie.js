@@ -45,9 +45,11 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!!sessionStorage.getItem("user")) {
     user.loginButton.innerText = "로그아웃";
     user.signOutButton.style.display = "block";
+    user.pwChangeButton.style.display = "block";
   } else {
     user.loginButton.innerText = "로그인";
     user.signOutButton.style.display = "none";
+    user.pwChangeButton.style.display = "none";
   }
 });
 
@@ -195,34 +197,6 @@ function createSignModalElement() {
     sign_modal.style.display = "block";
   });
 
-  // sign_id.addEventListener("keyup", function (e) {
-  //   console.log("key up", e.key, e.code);
-
-  //   const whiteList = ["ArrowLeft", "ArrowRight", "Backspace"];
-  //   const notEngExp = /[^A-Za-z]/g;
-  //   const allowedKey = whiteList.some((code) => e.code === code);
-  //   const isNotEng = notEngExp.test(e.key);
-  //   const koreanExp = /[ㄱ-ㅎㅏ-ㅣ가-힣]/g;
-
-  //   if (!allowedKey) {
-  //     console.log("not allowed");
-  //     e.preventDefault();
-  //     return;
-  //   }
-
-  //   if (e.code === "Backspace") {
-  //     e.preventDefault();
-  //     return;
-  //   }
-
-  //   if (isNotEng) {
-  //     console.log("not english");
-  //     e.preventDefault();
-  //     e.target.value = e.target.value.replace(koreanExp, "");
-  //     return;
-  //   }
-  // });
-
   onSign_btn.addEventListener("click", async () => {
     let id = sign_id.value;
     let pw = sign_pw.value;
@@ -253,43 +227,43 @@ createSignModalElement();
 // 회원탈퇴
 async function createSignOutModal() {
   let docs = await getDocs(collection(db, "user"));
-  let user = false;
-  docs.forEach(async (doc) => {
-    let row = doc.data();
+  for (let a of docs.docs) {
+    let row = a.data();
     if (row.id === sessionStorage.getItem("user")) {
-      await deleteDoc(collection(db, "user", id));
+      const user = doc(db, "user", row.id);
+      await deleteDoc(user);
+      // await deleteDoc(doc(db, "user", row.id));
       sessionStorage.removeItem("user");
       alert("탈퇴완료");
+      window.location.reload();
+      return;
+    } else {
+      alert("사용자없어요.");
     }
-  });
-  try {
-    const docs = await getDocs(collection(db, "user"));
-    const userId = sessionStorage.getItem("user");
-
-    for (const doc of docs.docs) {
-      const row = doc.data();
-
-      if (row.id === userId) {
-        await deleteDoc(doc.ref);
-        sessionStorage.removeItem("user");
-        alert("탈퇴완료");
-        window.location.reload();
-      } else {
-        alert("사용자를 못 찾아");
-      }
-    }
-  } catch (error) {
-    alert(error);
   }
+  // docs.forEach(async (a) => {
+  //   let row = a.data();
+  //   if (row.id === sessionStorage.getItem("user")) {
+  //     const user = doc(db, "user", row.id);
+  //     await deleteDoc(user);
+  //     // deleteDoc(doc(db, "user", row.id));
+  //     sessionStorage.removeItem("user");
+  //     alert("탈퇴완료");
+  //     window.location.reload();
+  //   } else {
+  //     alert("사용자없ㄷ");
+  //   }
+  // });
 }
 // 비밀번호 변경
 const pwChange = () => {
-  const pwChangeBtn = document.createElement("button");
-  pwChangeBtn.innerText = "비밀번호변경";
-  document.body.appendChild(pwChangeBtn);
-
-  pwChangeBtn.addEventListener("click", () => {
-    const div = document.createElement("div");
+  user.pwChangeButton.addEventListener("click", () => {
+    const changePwModal = document.createElement("div");
+    changePwModal.classList.add("changePwModal");
+    const changePwContainer = document.createElement("div");
+    changePwContainer.classList.add("changePwContainer");
+    const id_input = document.createElement("input");
+    id_input.placeholder = "아이디를 입력하세요.";
     const nowPw_input = document.createElement("input");
     nowPw_input.placeholder = "현재 비밀번호를 입력하세요.";
     const checkPw_input = document.createElement("input");
@@ -301,8 +275,10 @@ const pwChange = () => {
     const cancel_btn = document.createElement("button");
     cancel_btn.innerText = "취소";
 
-    document.body.appendChild(div);
-    div.append(
+    changePwModal.appendChild(changePwContainer);
+    document.body.appendChild(changePwModal);
+    changePwContainer.append(
+      id_input,
       nowPw_input,
       checkPw_input,
       changePw_input,
@@ -310,7 +286,9 @@ const pwChange = () => {
       cancel_btn
     );
 
+    //비밀번호변경 함수
     confirm_btn.addEventListener("click", async () => {
+      let id = id_input.value;
       let nowPw = nowPw_input.value;
       let changePw = changePw_input.value;
       let checkPw = checkPw_input.value;
@@ -328,7 +306,7 @@ const pwChange = () => {
 
       docs.forEach((e) => {
         let row = e.data();
-        if (row.pw === nowPw) {
+        if (row.pw === nowPw && row.id === id) {
           isPW = true;
           if (changePw === checkPw) {
             isChangePW = true;
@@ -344,12 +322,16 @@ const pwChange = () => {
         if (isChangePW) {
           await setDoc(doc(db, "user", data.id), data);
           alert("변경됐습니다.");
+          window.location.reload();
         } else {
           alert("새로운 비밀번호를 다시 입력하세요.");
         }
       } else {
-        alert("비밀번호가 틀렸습니다.");
+        alert("아이디 또는 비밀번호가 틀렸습니다.");
       }
+    });
+    cancel_btn.addEventListener("click", () => {
+      changePwModal.style.display = "none";
     });
   });
 };
