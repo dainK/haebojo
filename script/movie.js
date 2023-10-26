@@ -2,18 +2,8 @@ import { options } from "../config/tmdbOption.js";
 import { page, search, user, language } from "./domEl.js";
 import { truncateText, setLogoByLanguage } from "./domEvent.js";
 import { drawChart } from "./chart.js";
-import {
-  getFirestore,
-  getDocs,
-  deleteDoc,
-  doc,
-  setDoc,
-  getDoc,
-  updateDoc,
-  collection,
-  addDoc,
-} from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-import { app, db } from "../config/firebaseConfig.js";
+import { getDocs,deleteDoc,doc,setDoc,collection } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+import { db } from "../config/firebaseConfig.js";
 
 // 페이지 로드가 완료된 후 실행할 함수
 document.addEventListener("DOMContentLoaded", function () {

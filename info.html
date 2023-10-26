@@ -1,69 +1,64 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>영화 정보 페이지</title>
-    <link rel="stylesheet" href="./css/info.css" />
-    <!-- CSS 파일 연결 -->
-    <script defer src="./script/info.js" type="module"></script>
-    <script defer src="./script/domEvent.js" type="module"></script>
-  </head>
 
-  <body>
-    <header class="navbar">
-      <a href="index.html">
-        <div class="logo">
-          <img src="img/logo.png" alt="로고" />
-        </div>
-      </a>
-      <div>
-        <h1>영화 검색 페이지</h1>
+<head>
+  <meta charset="UTF-8" />
+  <title>영화 정보 페이지</title>
+  <link rel="stylesheet" href="./css/info.css" />
+  <!-- CSS 파일 연결 -->
+  <script defer src="./script/info.js" type="module"></script>
+  <script defer src="./script/domEvent.js" type="module"></script>
+</head>
+
+<body>
+  <header class="navbar">
+    <a href="index.html">
+      <div class="logo">
+        <img src="img/logo.png" alt="로고" />
       </div>
-    </header>
-
-    <div id="movie-tilte-box">
-      <h2 id="movie-tilte"></h2>
+    </a>
+    <div>
+      <h1>영화 검색 페이지</h1>
     </div>
+  </header>
 
-    <!--비디오 부분-->
-    <div class="video-box">
-      <div class="video-content">
-        <iframe id="youtubeVideo" src="" frameborder="0"></iframe>
-      </div>
-    </div>
+  <div id="movie-tilte-box">
+    <h2 id="movie-tilte"></h2>
+  </div>
 
-    <h2>영화 내용</h2>
-    <div id="movie-info-box">
-      <h3 id="movie-info"></h3>
+  <!--비디오 부분-->
+  <div class="video-box">
+    <div class="video-content">
+      <iframe id="youtubeVideo" src="" frameborder="0"></iframe>
     </div>
+  </div>
 
-    <h2>출연진</h2>
-    <div class="cast-container">
-      <div id="cast-list"></div>
-    </div>
+  <h2>영화 내용</h2>
+  <div id="movie-info-box">
+    <h3 id="movie-info"></h3>
+  </div>
 
-    <h2>평가</h2>
-    <div class="comment-container">
-      <div id="comment-list">
-        <div id="comment">
-          <div class="comment-content">
-            <p id="comment-text">내용: 이것은 댓글 내용입니다. 댓글 내용은 길어질 수 있습니다.</p>
-            <p id="comment-info">이름: John Doe 날짜: 2023-10-25</p>
-          </div>
-        </div>
-        <!-- <div id="comment">
-          <div class="comment-content">
-            <p id="comment-text">내용: 이것은 댓글 내용입니다. 댓글 내용은 길어질 수 있습니다.</p>
-            <p id="comment-info">이름: John Doe 날짜: 2023-10-25</p>
-          </div> -->
-      </div>
+  <h2>출연진</h2>
+  <div class="cast-container">
+    <div id="cast-list"></div>
+  </div>
+
+  <h2>평가</h2>
+  <div class="comment-container">
+    <div id="comment-list">
     </div>
-    <!-- </div> -->
 
     <div>
-      <footer>
-        <p>&copy; 2023 영화 정보 페이지</p>
-      </footer>
+      <input type="text" id="comment-input" style="width: auto;" placeholder="평가를 입력하세요." />
+      <button id="comment-button">검색</button>
     </div>
-  </body>
+  </div>
+
+  <div>
+    <footer>
+      <p>&copy; 2023 영화 정보 페이지</p>
+    </footer>
+  </div>
+</body>
+
 </html>
