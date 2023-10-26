@@ -348,10 +348,10 @@ const pwChange = () => {
       var hashData = decrypt.toString(CryptoJS.enc.Utf8); //복호화된 값
       console.log(hashData);
 
-      var key2 = CryptoJS.enc.Utf8.parse(changePw); // 암호화
-      var base642 = CryptoJS.enc.Base64.stringify(key2); // 암호화된 값
-      var decrypt2 = CryptoJS.enc.Base64.parse(base642); // 복호화
-      var hashData2 = decrypt2.toString(CryptoJS.enc.Utf8); //복호화된 값
+      var key2 = CryptoJS.enc.Utf8.parse(changePw); // 변경 암호화
+      var base642 = CryptoJS.enc.Base64.stringify(key2); // 변경 암호화된 값
+      var decrypt2 = CryptoJS.enc.Base64.parse(base642); // 변경 복호화
+      var hashData2 = decrypt2.toString(CryptoJS.enc.Utf8); //변경 복호화된 값
       console.log(hashData2);
       let docs = await getDocs(collection(db, "user"));
 
