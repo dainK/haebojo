@@ -64,6 +64,7 @@ function InfoCast(movieId) {
 
 // 배우 카드 생성
 function createCastCard(data) {
+  console.log(data.profile_path, "언놈이야");
   const card = document.createElement("div");
   card.classList.add("cast-card");
   castList.appendChild(card);
@@ -74,8 +75,10 @@ function createCastCard(data) {
   card.appendChild(name);
 
   const image = document.createElement("img");
-  if (data.poster_path !== null) {
+  if (data.profile_path !== null) {
     image.src = "https://image.tmdb.org/t/p/w300_and_h450_bestv2/" + data.profile_path; // 배우 포스터 이미지 URL 설정
+  } else {
+    image.src = "../img/null.png";
   }
   image.style.width = "130px";
   image.style.height = "180px";
