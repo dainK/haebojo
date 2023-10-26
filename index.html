@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="./css/language.css" />
     <link rel="stylesheet" href="./css/chart.css" />
     <script type="module" defer src="./script/movie.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+    <!-- 암호화 CryptoJS cdn -->
     <!-- <script type="module" defer src="./script/domEvent.js"></script> -->
     <!-- <script type="module" defer src="./script/chart.js"></script> -->
   </head>
@@ -17,9 +19,13 @@
   <body>
     <!-- 네비게이션-->
     <header class="navbar">
+      <div>
+        <input type="password" id="pwe" placeholder="haha" />
+        <button type="submit" class="b">asd</button>
+      </div>
       <div class="logo">
-        <img src="img/logo.png" id="korean-logo" style="display: none;"/>
-        <img src="img/logo_en.png" id="english-logo" style="display: none;" />
+        <img src="img/logo.png" id="korean-logo" style="display: block" />
+        <img src="img/logo_en.png" id="english-logo" style="display: none" />
       </div>
       <div class="movie-search-page">
         <h1>영화 검색 페이지</h1>
