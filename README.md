@@ -1,5 +1,11 @@
-# PROJECT URL
+# PROJECT
+## URL
 https://daink.github.io/haebojo/
+## Development environment
+vscode
+## API
+TMDB <br/>
+Firebase <br/>
 <br/>
 <br/>
 
