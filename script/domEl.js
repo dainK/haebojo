@@ -17,6 +17,9 @@ export const search = {
 
 export const user = {
   loginButton: document.getElementById("login-button"),
+  signupButton: document.getElementById("sign-button"),
+  signOutButton: document.getElementById("signOut-button"),
+  pwChangeButton: document.getElementById("pwChange-button"),
 };
 
 export const language = {
