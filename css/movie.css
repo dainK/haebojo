@@ -1,60 +1,57 @@
-/* Global Font Style */
-
+/* 글로벌 폰트 스타일 */
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@900&display=swap");
 
-/* Apply the global font to all elements */
+/* 모든 요소에 글로벌 폰트 적용 */
 * {
   font-family: "Noto Sans KR", sans-serif;
 }
 
-/* Header Styles */
+/* 헤더 스타일 */
 header {
-  z-index: 999;
-  background-color: black;
+  z-index: 999; /* 상위 레이어 지정 */
+  background-color: black; /* 배경색 - 검정 */
   top: 0;
   left: 0;
   right: 0;
-  position: fixed;
+  position: fixed; /* 고정 위치 */
 }
 
+/* 네비게이션 바 스타일 */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+/* 로고 스타일 */
 .navbar .logo {
   display: flex;
-  /* align-items: center; */
-  justify-content: flex-start;
 }
 
+/* 로고 이미지 스타일 */
 .logo img {
   max-width: 200px;
   max-height: 66.66px;
   margin-left: 150px;
 }
 
+/* 영화 검색 페이지 스타일 */
 .navbar .movie-search-page {
   margin-right: auto;
 }
 
+/* 영화 검색 페이지 제목 스타일 */
 .movie-search-page h1 {
   font-size: 32px;
   color: #e1e8ed;
 }
 
-/* .navbar .search {
-  display: flex;
-  align-items: center;
-  margin-left: auto;
-  margin-right: auto;
-} */
-
+/* 검색 메인 스타일 */
 .search-main {
   margin: 150px 300px 50px 300px;
 }
 
+/* 검색 스타일 */
 .search {
   display: flex;
   justify-content: center;
@@ -62,6 +59,7 @@ header {
   position: relative;
 }
 
+/* 검색 입력 필드 스타일 */
 .search input[type="text"] {
   width: 100%;
   height: 36px;
@@ -73,6 +71,7 @@ header {
   padding: 10px 20px;
 }
 
+/* 검색 버튼 스타일 */
 #search-button {
   position: absolute;
   width: 100px;
@@ -81,19 +80,18 @@ header {
   font-size: 1.1em;
   right: 0;
   border: none;
-  background: rgba(251, 175, 51, 1);
   background: linear-gradient(0deg, rgba(255, 151, 0, 1) 0%, rgba(251, 125, 2, 1) 100%);
-  /* background: rgb(251, 33, 117);
-  background: linear-gradient(0deg, rgba(251, 33, 117, 1) 0%, rgba(234, 76, 137, 1) 100%); */
-
   color: #fff;
   overflow: hidden;
 }
 
+/* 검색 버튼 호버 스타일 */
 #search-button:hover {
   text-decoration: none;
   color: #fff;
 }
+
+/* 검색 버튼 애니메이션 스타일 */
 #search-button:before {
   position: absolute;
   content: "";
@@ -105,57 +103,56 @@ header {
   background-color: #fff;
   animation: shiny-btn1 3s ease-in-out infinite;
 }
+
+/* 검색 버튼 호버 시 투명도 스타일 */
 #search-button:hover {
   opacity: 0.7;
 }
+
+/* 검색 버튼 액티브 스타일 */
 #search-button:active {
   box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.3), -4px -4px 6px 0 rgba(116, 125, 136, 0.2),
     inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2), inset 4px 4px 6px 0 rgba(0, 0, 0, 0.2);
 }
 
+/* 검색 버튼 애니메이션 스타일 */
 @keyframes shiny-btn1 {
   0% {
-    -webkit-transform: scale(0) rotate(45deg);
+    transform: scale(0) rotate(45deg);
     opacity: 0;
   }
   80% {
-    -webkit-transform: scale(0) rotate(45deg);
+    transform: scale(0) rotate(45deg);
     opacity: 0.5;
   }
   81% {
-    -webkit-transform: scale(4) rotate(45deg);
+    transform: scale(4) rotate(45deg);
     opacity: 1;
   }
   100% {
-    -webkit-transform: scale(50) rotate(45deg);
+    transform: scale(50) rotate(45deg);
     opacity: 0;
   }
 }
 
+/* 검색 텍스트 스타일 */
 .navbar .searchText {
   margin-right: 10px;
 }
 
-/* .navbar .search input */
-
-/* Body Styles */
+/* 본문 스타일 */
 body {
-  background-color: rgb(34, 34, 34);
-  /* 배경색 설정 */
-  /* display: flex; */
-  /* flex-direction: column; */
+  background-color: rgb(34, 34, 34); /* 배경색 - 어두운 회색 */
   align-items: center;
   justify-content: center;
-  /* height: 100vh; */
-  /* margin-top: 100px; */
 }
 
-/* Pagination Styles */
-
+/* 페이지네이션 스타일 */
 .pagination {
   text-align: center;
 }
 
+/* 페이지네이션 버튼 스타일 */
 .pagination button {
   background-color: rgba(251, 175, 51, 1);
   color: black;
@@ -168,34 +165,17 @@ body {
   margin-bottom: 30px;
 }
 
+/* 페이지네이션 버튼 호버 스타일 */
 .pagination button:hover {
   background-color: rgba(251, 125, 2, 1);
 }
 
-/* #prev,
-#next {
-  background-color: #333;
-} */
-
+/* 페이지 번호 스타일 */
 .page-numbers {
   display: inline-block;
 }
 
-/* .pagination {
-  margin-top: 50px;
-  margin-bottom: 50px;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.page-numbers {
-  display: flex;
-  margin: 10px;
-} */
-
-/* Movie Container Styles */
+/* 영화 컨테이너 스타일 */
 #movie-container {
   margin-top: 10px;
   display: flex;
@@ -204,16 +184,13 @@ body {
   align-items: center;
 }
 
-/* Movie Card Styles */
+/* 영화 카드 스타일 */
 .movie-card {
   padding-top: 12px;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
-  /* background-color: white; */
-  /* color: white; */
-  /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); */
   border-radius: 10px;
   width: 300px;
   height: auto;
@@ -221,20 +198,20 @@ body {
   margin-bottom: 20px;
   margin-left: 10px;
   margin-right: 10px;
-  /* margin: 10px, 10px, 10px, 10px; */
-  position: relative;
 }
 
+/* 영화 카드 이미지 스타일 */
 .movie-card img {
   border-radius: 10px;
 }
 
+/* 영화 제목 스타일 */
 .movie-title {
   display: none;
   font-size: 20px;
-  /* text-align: center; */
 }
 
+/* 영화 정보 스타일 */
 .movie-info {
   height: auto;
   width: 280px;
@@ -242,7 +219,7 @@ body {
   border: 1px solid #ccc;
 }
 
-/* Modal Styles */
+/* 모달 스타일 */
 .modal {
   display: flex;
   justify-content: center;
@@ -254,28 +231,30 @@ body {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 100;
-  border-radius: 10px;
 }
 
+/* 로그인 컨테이너 스타일 */
 .login-container {
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 20px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  /* text-align: center; */
 }
 
+/* 로그인 제목 스타일 */
 .login-container h1 {
   margin: 0 0 20px;
   color: #333;
 }
 
+/* 로그인 폼 스타일 */
 .login-form {
   display: flex;
   flex-direction: column;
 }
 
+/* 로그인 입력 필드 스타일 */
 .login-form input {
   padding: 10px;
   margin: 5px 0;
@@ -283,6 +262,7 @@ body {
   border-radius: 3px;
 }
 
+/* 로그인 버튼 스타일 */
 .login-form button {
   padding: 10px;
   margin: 10px 0;
@@ -291,4 +271,259 @@ body {
   border: none;
   border-radius: 3px;
   cursor: pointer;
+}
+
+/* 회원 가입 모달 스타일 */
+.sign_modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  border-radius: 10px;
+}
+
+/* 회원 가입 컨테이너 스타일 */
+.sign_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+  height: 35%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* 회원 가입 폼 스타일 */
+.sign_form {
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 회원 가입 아이디 입력 필드 스타일 */
+.sign_id {
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+/* 회원 가입 비밀번호 입력 필드 스타일 */
+.sign_pw {
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+/* 회원 가입 이름 입력 필드 스타일 */
+.sign_name {
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+/* 회원 가입 버튼 스타일 */
+.onSign_btn {
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+/* 회원 가입 취소 버튼 스타일 */
+.sign_cancel {
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+/* 비밀번호 변경 모달 스타일 */
+.changePwModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  border-radius: 10px;
+}
+
+/* 비밀번호 변경 컨테이너 스타일 */
+.changePwContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 50%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* 비밀번호 변경 아이디 입력 필드 스타일 */
+.changePwIdInput {
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+/* 비밀번호 변경 버튼 스타일 */
+.changeBtn {
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+/* 로그아웃 버튼 */
+#signOut-button {
+  display: none;
+}
+
+/* 로그인 및 회원 가입 버튼 컨테이너 */
+.loginAndSign-button {
+  display: flex;
+  flex-direction: row;
+  margin-right: 20px;
+}
+
+/* 화면 너비 1200px 이하일 때 스타일 변경 */
+@media (max-width: 1200px) {
+  .loginAndSign-button > button {
+    font-size: 10px;
+  }
+  .dropbtn {
+    font-size: 10px;
+    margin-left: 20px;
+  }
+
+  .movie-search-page > h1 {
+    font-size: 20px;
+    margin-left: 20px;
+  }
+
+  .logo img {
+    margin-left: 20px;
+  }
+}
+
+/* 화면 너비 900px 이하일 때 스타일 변경 */
+@media (max-width: 900px) {
+  .loginAndSign-button > button {
+    font-size: 8px;
+  }
+  .dropbtn {
+    font-size: 8px;
+    margin-left: 20px;
+  }
+
+  .movie-search-page > h1 {
+    display: none;
+  }
+
+  .logo img {
+    margin-left: 20px;
+  }
+
+  .search > #search-button {
+    position: absolute;
+    font-size: 10px;
+    width: 20%;
+    height: 30px;
+    right: 0;
+  }
+
+  .search > #search-input {
+    font-size: 10px;
+    width: 70%;
+    height: 10px;
+  }
+}
+
+/* 화면 너비 500px 이하일 때 스타일 변경 */
+@media (max-width: 500px) {
+  #language-switcher {
+    width: 50px;
+  }
+
+  .movie-search-page {
+    display: none;
+  }
+  .search-main {
+    margin: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .search > #search-button {
+    font-size: 10px;
+    width: 50px;
+    height: 30px;
+  }
+
+  .search > #search-input {
+    font-size: 10px;
+    width: 200px;
+    height: 10px;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .pagination > button {
+    display: flex;
+    padding: 10px;
+  }
+
+  .page-numbers > button {
+    font-size: 10px;
+    padding: 8px;
+  }
+
+  .loginAndSign-button > button {
+    font-size: 8px;
+    margin-right: auto;
+    height: 50px;
+  }
+
+  .loginAndSign-button > #pwChange-button {
+    font-size: 5px;
+  }
 }

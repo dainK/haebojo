@@ -1,6 +1,6 @@
 import { options } from "../config/tmdbOption.js";
 import { page, search, user, language } from "./domEl.js";
-import { truncateText } from "./domEvent.js";
+import { truncateText, setLogoByLanguage } from "./domEvent.js";
 import { drawChart } from "./chart.js";
 import {
   getFirestore,
@@ -17,6 +17,8 @@ import { app, db } from "../config/firebaseConfig.js";
 
 // 페이지 로드가 완료된 후 실행할 함수
 document.addEventListener("DOMContentLoaded", function () {
+  
+  setLogoByLanguage();
   // 검색창에 자동으로 포커스를 주기
   search.searchInput.focus();
   // 초기 페이지 로드
@@ -29,8 +31,10 @@ document.addEventListener("DOMContentLoaded", function () {
       Search();
     }
   });
-  user.signOutButton.addEventListener("click", createSignOutModal);
 
+  user.signOutButton.addEventListener("click", createSignOutModal);
+  user.signupButton.addEventListener("click", createSignModalElement);
+  user.signupButton.addEventListener("click", pwChange);
   // 로그인 버튼 클릭 시 로그인 모달 열기
   user.loginButton.addEventListener("click", () => {
     if (!!sessionStorage.getItem("user")) {
@@ -38,6 +42,8 @@ document.addEventListener("DOMContentLoaded", function () {
       // 로그아웃 버튼 기능
       sessionStorage.removeItem("user");
       user.loginButton.innerText = "로그인";
+      user.signOutButton.style.display = "none";
+      user.pwChangeButton.style.display = "none";
     } else {
       openLoginModal();
     }
@@ -66,6 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
       NewPage(page.currItemsIndex);
     }
   });
+
 });
 
 // 새 페이지 로드 함수
@@ -106,6 +113,7 @@ function createPageButton(pageIndex) {
   pagebtn.addEventListener("click", () => NewPage(pageIndex));
   return pagebtn;
 }
+
 
 // 로그인 모달 열기 함수
 async function openLoginModal() {
@@ -177,6 +185,7 @@ function createModalElement() {
 // 회원가입 모달 열기 함수
 function createSignModalElement() {
   const sign_modal = document.createElement("div");
+  // sign_modal.style.display = "block";
   const sign_id = document.createElement("input");
   sign_id.classList.add("sign_id");
   sign_id.placeholder = "아이디를 작성해라";
@@ -192,8 +201,8 @@ function createSignModalElement() {
   const sign_cancel = document.createElement("button");
   sign_cancel.classList.add("sign_cancel");
   sign_cancel.innerText = "취소하기";
-
   sign_modal.classList.add("sign_modal");
+  
 
   // sign-container 엘리먼트 생성
   const signContainer = document.createElement("div");
@@ -207,10 +216,7 @@ function createSignModalElement() {
   signContainer.appendChild(form);
   sign_modal.appendChild(signContainer);
 
-  user.signupButton.addEventListener("click", () => {
-    document.body.appendChild(sign_modal);
-    sign_modal.style.display = "block";
-  });
+  document.body.appendChild(sign_modal);
 
   onSign_btn.addEventListener("click", async () => {
     let id = sign_id.value;
@@ -235,25 +241,32 @@ function createSignModalElement() {
       window.location.reload();
     }
   });
+
+  sign_cancel.addEventListener("click", () => {
+    // sign_modal.style.display = "none";
+    sign_modal.remove();
+  });
 }
 
-createSignModalElement();
 
 // 회원탈퇴
 async function createSignOutModal() {
   let docs = await getDocs(collection(db, "user"));
+  const ok = confirm("삭제하시겠습니까?");
   for (let a of docs.docs) {
     let row = a.data();
-    if (row.id === sessionStorage.getItem("user")) {
-      const user = doc(db, "user", row.id);
-      await deleteDoc(user);
-      // await deleteDoc(doc(db, "user", row.id));
-      sessionStorage.removeItem("user");
-      alert("탈퇴완료");
-      window.location.reload();
-      return;
-    } else {
-      alert("사용자없어요.");
+    if (ok) {
+      if (row.id === sessionStorage.getItem("user")) {
+        const user = doc(db, "user", row.id);
+        await deleteDoc(user);
+        // await deleteDoc(doc(db, "user", row.id));
+        sessionStorage.removeItem("user");
+        alert("탈퇴완료");
+        window.location.reload();
+        return;
+      } else {
+        alert("사용자없어요.");
+      }
     }
   }
   // docs.forEach(async (a) => {
@@ -278,17 +291,23 @@ const pwChange = () => {
     const changePwContainer = document.createElement("div");
     changePwContainer.classList.add("changePwContainer");
     const id_input = document.createElement("input");
+    id_input.classList.add("changePwIdInput");
     id_input.placeholder = "아이디를 입력하세요.";
     const nowPw_input = document.createElement("input");
     nowPw_input.placeholder = "현재 비밀번호를 입력하세요.";
+    nowPw_input.classList.add("changePwIdInput");
     const checkPw_input = document.createElement("input");
     checkPw_input.placeholder = "새로운 비밀번호를 입력하세요.";
+    checkPw_input.classList.add("changePwIdInput");
     const changePw_input = document.createElement("input");
     changePw_input.placeholder = "새로운 비밀번호를 입력하세요.";
+    changePw_input.classList.add("changePwIdInput");
     const confirm_btn = document.createElement("button");
     confirm_btn.innerText = "확인";
+    confirm_btn.classList.add("changeBtn");
     const cancel_btn = document.createElement("button");
     cancel_btn.innerText = "취소";
+    cancel_btn.classList.add("changeBtn");
 
     changePwModal.appendChild(changePwContainer);
     document.body.appendChild(changePwModal);
@@ -339,12 +358,12 @@ const pwChange = () => {
       }
     });
     cancel_btn.addEventListener("click", () => {
-      changePwModal.style.display = "none";
+      // changePwModal.style.display = "none";
+      changePwModal.remove();
     });
   });
 };
 
-pwChange();
 
 // 페이지에 영화 목록 생성 함수
 function createPage(pageData) {
