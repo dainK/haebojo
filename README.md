@@ -23,19 +23,13 @@ Firebase <br/>
 - [X] 영화 평점 게이지 ui action
 - [X] 검색 창 ui action과 검색 기능
 - [X] 마우스 오버시 내용이 적힌 뒷면이 보이게 뒤집어 주기
-- [X] 마우스 호버로 영화 줄여진 영화 정보 펼쳐 주기
-<br/>
-<img src="https://user-images.githubusercontent.com/26786677/278603519-cf8147c6-7ed3-44b4-9769-088629f0857a.gif" width = "600px"/>
-<br/>
+- [X] 마우스 호버로 영화 줄여진 영화 정보 펼쳐 주기<br/>
+<img src="https://user-images.githubusercontent.com/26786677/278603519-cf8147c6-7ed3-44b4-9769-088629f0857a.gif" width = "600px"/><br/>
 - [X] 영화 검색 기능
-- [X] 페이지 네이션
-<br/>
-<img src="https://user-images.githubusercontent.com/26786677/278605298-fadf57a4-d165-4142-a5e9-6ae1a5844d5c.gif" width = "600px"/>
-<br/>
-- [X] 언어 선택 기능
-<br/>
-<img src="https://user-images.githubusercontent.com/26786677/278606615-ffe02be4-7a82-49c0-842b-79f07bcbe042.gif" width = "600px"/>
-<br/>
+- [X] 페이지 네이션<br/>
+<img src="https://user-images.githubusercontent.com/26786677/278605298-fadf57a4-d165-4142-a5e9-6ae1a5844d5c.gif" width = "600px"/><br/>
+- [X] 언어 선택 기능<br/>
+<img src="https://user-images.githubusercontent.com/26786677/278606615-ffe02be4-7a82-49c0-842b-79f07bcbe042.gif" width = "600px"/><br/>
 - [X] 로그인
 - [x] 로그아웃
 - [x] 회원등록
