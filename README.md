@@ -43,7 +43,6 @@ Firebase <br/>
 <br/>
 
 # LOAD MAP
-![image](https://github.com/dainK/haebojo/assets/26786677/65a51f17-b0e3-444e-b400-3c9bacc77203)
-
+<img src="https://user-images.githubusercontent.com/26786677/278608428-65a51f17-b0e3-444e-b400-3c9bacc77203.png" width = "600px">
 <br/>
 <br/>
