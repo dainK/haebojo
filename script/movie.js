@@ -27,7 +27,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
   user.signOutButton.addEventListener("click", createSignOutModal);
-
+  user.signupButton.addEventListener("click", createSignModalElement);
+  user.pwChangeButton.addEventListener("click", pwChange);
   // 로그인 버튼 클릭 시 로그인 모달 열기
   user.loginButton.addEventListener("click", () => {
     if (!!sessionStorage.getItem("user")) {
@@ -143,6 +144,12 @@ async function openLoginModal() {
       throw error;
     }
   });
+
+  const cancel_btn = document.getElementById("login-cancel-btn");
+  cancel_btn.addEventListener("click", () => {
+    // sign_modal.style.display = "none";
+    modal.remove();
+  });
 }
 
 // 모달 엘리먼트 생성 함수
@@ -162,17 +169,18 @@ function createModalElement() {
     <input id="login-id" type="text" placeholder="사용자 이름" />
     <input id="login-pw" type="password" placeholder="비밀번호" />
     <button id="login-btn" type="submit">로그인</button>
+    <button id="login-cancel-btn" type="submit">취소하기</button>
   `;
 
   loginContainer.appendChild(form);
   modal.appendChild(loginContainer);
 
   // 모달을 닫기 위한 클릭 이벤트 추가
-  modal.addEventListener("click", (event) => {
-    if (event.target === modal) {
-      document.body.removeChild(modal);
-    }
-  });
+  // modal.addEventListener("click", (event) => {
+  //   if (event.target === modal) {
+  //     document.body.removeChild(modal);
+  //   }
+  // });
 
   return modal;
 }
@@ -255,46 +263,73 @@ function createSignModalElement() {
   });
 
   sign_cancel.addEventListener("click", () => {
-    sign_modal.style.display = "none";
+    // sign_modal.style.display = "none";
+    sign_modal.remove();
   });
 }
 
-createSignModalElement();
-
 // 회원탈퇴
 async function createSignOutModal() {
-  let docs = await getDocs(collection(db, "user"));
-  const ok = confirm("삭제하시겠습니까?");
-  for (let a of docs.docs) {
-    let row = a.data();
-    if (ok) {
-      if (row.id === sessionStorage.getItem("user")) {
-        const user = doc(db, "user", row.id);
-        await deleteDoc(user);
-        // await deleteDoc(doc(db, "user", row.id));
-        sessionStorage.removeItem("user");
-        alert("탈퇴완료");
-        window.location.reload();
-        return;
-      } else {
-        alert("사용자없어요.");
+  const signout_modal = document.createElement("div");
+  const signout_id = document.createElement("input");
+  signout_id.classList.add("sign_id");
+  signout_id.placeholder = "아이디를 입력하세요";
+  const signout_pw = document.createElement("input");
+  signout_pw.classList.add("sign_pw");
+  signout_pw.placeholder = "비밀번호를 입력하세요";
+  const delete_btn = document.createElement("button");
+  delete_btn.classList.add("onSign_btn");
+  delete_btn.innerText = "회원삭제";
+  const cancel_btn = document.createElement("button");
+  cancel_btn.classList.add("sign_cancel");
+  cancel_btn.innerText = "취소하기";
+
+  signout_modal.classList.add("sign_modal");
+
+  // sign-container 엘리먼트 생성
+  const signoutContainer = document.createElement("div");
+  signoutContainer.classList.add("sign_container");
+
+  // 회원가입 폼 엘리먼트 생성
+  const form = document.createElement("div");
+  form.classList.add("sign_form");
+  form.append(signout_id, signout_pw, delete_btn, cancel_btn);
+
+  signoutContainer.appendChild(form);
+  signout_modal.appendChild(signoutContainer);
+  document.body.appendChild(signout_modal);
+
+  delete_btn.addEventListener("click", async () => {
+    // 삭제버튼
+    let docs = await getDocs(collection(db, "user"));
+    for (let u of docs.docs) {
+      let id = signout_id.value;
+      if (id === u.data().id) {
+        let pw = signout_pw.value;
+        var key = CryptoJS.enc.Utf8.parse(pw); // 암호화
+        var base64 = CryptoJS.enc.Base64.stringify(key); // 암호화된 값
+        var decrypt = CryptoJS.enc.Base64.parse(base64); // 복호화
+        var hashData = decrypt.toString(CryptoJS.enc.Utf8); //복호화된 값
+        console.log(hashData);
+
+        if (u.data().pw === base64) {
+          sessionStorage.removeItem("user");
+          const user = doc(db, "user", id);
+          await deleteDoc(user);
+          alert("탈퇴완료");
+          window.location.reload();
+          return;
+        }
       }
     }
-  }
-  // docs.forEach(async (a) => {
-  //   let row = a.data();
-  //   if (row.id === sessionStorage.getItem("user")) {
-  //     const user = doc(db, "user", row.id);
-  //     await deleteDoc(user);
-  //     // deleteDoc(doc(db, "user", row.id));
-  //     sessionStorage.removeItem("user");
-  //     alert("탈퇴완료");
-  //     window.location.reload();
-  //   } else {
-  //     alert("사용자없ㄷ");
-  //   }
-  // });
+    alert("사용자없어요.");
+  });
+
+  cancel_btn.addEventListener("click", async () => {
+    sign_modal.remove();
+  });
 }
+
 // 비밀번호 변경
 const pwChange = () => {
   user.pwChangeButton.addEventListener("click", () => {
@@ -338,10 +373,10 @@ const pwChange = () => {
       var hashData = decrypt.toString(CryptoJS.enc.Utf8); //복호화된 값
       console.log(hashData);
 
-      var key2 = CryptoJS.enc.Utf8.parse(changePw); // 암호화
-      var base642 = CryptoJS.enc.Base64.stringify(key2); // 암호화된 값
-      var decrypt2 = CryptoJS.enc.Base64.parse(base642); // 복호화
-      var hashData2 = decrypt2.toString(CryptoJS.enc.Utf8); //복호화된 값
+      var key2 = CryptoJS.enc.Utf8.parse(changePw); // 변경 암호화
+      var base642 = CryptoJS.enc.Base64.stringify(key2); // 변경 암호화된 값
+      var decrypt2 = CryptoJS.enc.Base64.parse(base642); // 변경 복호화
+      var hashData2 = decrypt2.toString(CryptoJS.enc.Utf8); //변경 복호화된 값
       console.log(hashData2);
       let docs = await getDocs(collection(db, "user"));
 
@@ -380,13 +415,13 @@ const pwChange = () => {
         alert("아이디 또는 비밀번호가 틀렸습니다.");
       }
     });
+
     cancel_btn.addEventListener("click", () => {
-      changePwModal.style.display = "none";
+      // changePwModal.style.display = "none";
+      changePwModal.remove();
     });
   });
 };
-
-pwChange();
 
 // 페이지에 영화 목록 생성 함수
 function createPage(pageData) {
@@ -485,6 +520,7 @@ function createMovieCard(data) {
   overviewEl.addEventListener("mouseenter", () => {
     overviewEl.innerText = data.overview;
   });
+
   overviewEl.addEventListener("mouseleave", () => {
     overviewEl.innerText = truncatedOverview;
   });
