@@ -29,7 +29,12 @@ export const language = {
 };
 
 export const comment = {
-  commentButton : document.getElementById("comment-button"),
-  commentInput : document.getElementById("comment-input"),
-  commentContainer : document.getElementById("comment-list")
+  commentButton: document.getElementById("comment-button"),
+  commentInput: document.getElementById("comment-input"),
+  commentContainer: document.getElementById("comment-list"),
+};
+
+export const chartCss = {
+  onChart: document.querySelector(".movie-card"),
+  offChart: document.getElementById("chartCanvas"),
 };
