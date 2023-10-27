@@ -28,7 +28,9 @@ Firebase <br/>
 - [X] 영화 검색 기능
 - [X] 페이지 네이션<br/>
 ![녹화_2023_10_27_18_45_38_454](https://github.com/dainK/haebojo/assets/26786677/fadf57a4-d165-4142-a5e9-6ae1a5844d5c)
-- [X] 언어 선택 기능
+- [X] 언어 선택 기능<br/>
+![녹화_2023_10_27_18_51_25_130](https://github.com/dainK/haebojo/assets/26786677/ffe02be4-7a82-49c0-842b-79f07bcbe042)
+
 
 # TODO LIST
 ![image](https://github.com/dainK/haebojo/assets/26786677/a8c2e8d4-897f-4401-9fed-e88294c85729)
