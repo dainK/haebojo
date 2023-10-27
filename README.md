@@ -23,10 +23,11 @@ Firebase <br/>
 - [X] 영화 평점 게이지 ui action
 - [X] 검색 창 ui action과 검색 기능
 - [X] 마우스 오버시 내용이 적힌 뒷면이 보이게 뒤집어 주기
-- [X] 마우스 호버로 영화 줄여진 영화 정보 펼쳐 주기
+- [X] 마우스 호버로 영화 줄여진 영화 정보 펼쳐 주기<br/>
 ![녹화_2023_10_27_18_37_01_523](https://github.com/dainK/haebojo/assets/26786677/cf8147c6-7ed3-44b4-9769-088629f0857a)
 - [X] 영화 검색 기능
-- [X] 페이지 네이션
+- [X] 페이지 네이션<br/>
+![녹화_2023_10_27_18_45_38_454](https://github.com/dainK/haebojo/assets/26786677/fadf57a4-d165-4142-a5e9-6ae1a5844d5c)
 - [X] 언어 선택 기능
 
 # TODO LIST
