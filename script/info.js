@@ -129,7 +129,9 @@ async function CreateComments(movieid) {
         <p>   ${e.user} ${e.date}</p>`;
       commentbox.appendChild(commentContent);
 
-      commentbox.addEventListener("click", DeleteComment);
+      commentbox.addEventListener("click", () => {
+        DeleteComment(e, commentbox);
+      });
     });
   }
 
@@ -146,7 +148,10 @@ async function AddComment(text) {
     let year = currentDate.getFullYear();
     let month = currentDate.getMonth() + 1; // 월은 0부터 시작하므로 1을 더해줍니다.
     let day = currentDate.getDate();
-    let date = `${year}-${month}-${day}`;
+    var hours = currentDate.getHours();	// 시간
+    var minutes = currentDate.getMinutes();	// 분
+    var seconds = currentDate.getSeconds();	// 초
+    let date = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
     let newcomment = {
       comment: text,
@@ -170,35 +175,75 @@ async function AddComment(text) {
   }
 }
 
-async function DeleteComment() {
-  console.log("코멘트삭제하기");
-  // const modal = document.createElement("div");
-  // const inputpw = document.createElement("input");
-  // // inputpw.classList.add("\");
-  // inputpw.placeholder = "비밀번호를 입력하세요.";
-  // const deletebtn = document.createElement("button");
-  // // deletebtn.classList.add("\");
-  // deletebtn.innerText = "삭제하기";
-  // const cancelbtn = document.createElement("button");
-  // // cancelbtn.classList.add("\");
-  // cancelbtn.innerText = "취소하기";
+async function DeleteComment(data, commentbox) {
+  // console.log("코멘트삭제하기");
 
-  // // sign-container 엘리먼트 생성
-  // const container = document.createElement("div");
-  // // container.classList.add("/");
-  // const form = document.createElement("div");
-  // // form.classList.add("/");
-  // form.append(inputpw, deletebtn, cancelbtn);
-  // container.appendChild(form);
-  // modal.appendChild(container);
-  // document.body.appendChild(modal);
+  const modal = document.createElement("div");
+  modal.classList.add("comment_modal");
+  document.body.appendChild(modal);
 
-  // deletebtn.addEventListener("click", () => {
+  const container = document.createElement("div");
+  container.classList.add("comment-modal-container");
+  modal.appendChild(container);
 
-  // });
+  const inputpw = document.createElement("input");
+  inputpw.classList.add("comment-modal-pw");
+  inputpw.placeholder = "비밀번호를 입력하세요.";
 
-  // cancelbtn.addEventListener("click", () => {
-  //   modal.remove();
-  // });
+  const deletebtn = document.createElement("button");
+  deletebtn.classList.add("comment-modal-delete-button");
+  deletebtn.innerText = "삭제하기";
+
+  const cancelbtn = document.createElement("button");
+  cancelbtn.classList.add("comment-modal-cancel-button");
+  cancelbtn.innerText = "취소하기";
+
+  const form = document.createElement("div");
+  form.classList.add("comment-modal_form");
+  form.append(inputpw, deletebtn, cancelbtn);
+  container.appendChild(form);
+
+  deletebtn.addEventListener("click", async () => {
+    let docs = await getDocs(collection(db, "user"));
+    for (let u of docs.docs) {
+      if (u.data().id === data.user) {
+        const user = doc(db, "user", u.id);
+        // await deleteDoc(user);
+        let pw = inputpw.value;
+        var key = CryptoJS.enc.Utf8.parse(pw); // 암호화
+        var base64 = CryptoJS.enc.Base64.stringify(key); // 암호화된 값
+        var decrypt = CryptoJS.enc.Base64.parse(base64); // 복호화
+        var hashData = decrypt.toString(CryptoJS.enc.Utf8); //복호화된 값
+        console.log(hashData);
+
+        if (u.data().pw === base64) {
+          // alert("비밀번호 같음");
+          commentbox.remove();
+          modal.style.display = "none";
+
+          let commentDoc = await getDoc(doc(db, "movie", movie_id));
+          let dommentdata = commentDoc.data();
+          console.log(data);
+
+          let newdata = { comments: [] };
+          // let deletcommet;
+          for (let c of dommentdata.comments) {
+            if (c.comment !== data.comment || c.user !== data.user || c.date !== data.date) {
+              newdata.comments.push(c);
+            }
+          }
+          console.log(newdata);
+          await setDoc(doc(db, 'movie', movie_id), newdata);
+          window.location.reload();
+          return;
+        }
+      }
+    }
+    alert("비밀번호를 잘못 입력 하셨습니다.");
+  });
+
+  cancelbtn.addEventListener("click", () => {
+    modal.remove();
+  });
 
 }
