@@ -155,6 +155,21 @@ body {
   justify-content: center;
 }
 
+body::-webkit-scrollbar {
+  width: 12px;
+  background-color: black;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: linear-gradient(transparent, #30ff00);
+  border-radius: 6px;
+  border-radius: 20px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(transparent, #00c6ff, transparent);
+}
+
 /* 페이지네이션 스타일 */
 .pagination {
   text-align: center;
@@ -233,7 +248,7 @@ body {
   height: 330px;
   width: 280px;
   white-space: pre-wrap;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   overflow: auto;
   /* z-index: 12; */
 }
@@ -243,7 +258,8 @@ body {
 }
 
 .movie-info::-webkit-scrollbar-thumb {
-  background-color: white;
+  /* background-color: white; */
+  background: linear-gradient(transparent, #fff, transparent);
   border-radius: 10px;
 }
 
@@ -298,7 +314,8 @@ body {
 }
 
 #card-wrap .card-set .card-back {
-  background-color: #ccc;
+  /* background-color: #ccc; */
+  background: linear-gradient(0deg, rgba(207, 205, 204, 1) 0%, rgba(161, 154, 148, 1) 100%);
   z-index: 1;
   transform: rotateY(180deg);
 }
@@ -498,27 +515,101 @@ body {
   cursor: pointer;
 }
 
-/* 로그아웃 버튼 */
-#signOut-button {
-  display: none;
-}
-
-/* 로그인 및 회원 가입 버튼 컨테이너 */
 .loginAndSign-button {
   display: flex;
   flex-direction: row;
   margin-right: 20px;
 }
+/* ================================== */
+/* 로그인 및 회원 가입 버튼 컨테이너 */
+
+#profile-img {
+  right: 50px;
+  position: relative;
+  display: inline-block;
+  /* height: ; */
+  height: auto;
+}
+
+#profile-image {
+  width: 50px;
+  height: 50px;
+}
+
+.image-buttons {
+  height: 150px;
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+/* 로그인 버튼 */
+#login-button {
+  width: 100px;
+}
+
+/* 회원가입 버튼 */
+#sign-button {
+  width: 100px;
+}
+/* 패스워드 변경버튼 */
+#pwChange-button {
+  width: 100px;
+}
+
+/* 로그아웃 버튼 */
+#signOut-button {
+  width: 100px;
+  display: none;
+}
+
+#profile-img:hover .image-buttons {
+  display: flex;
+}
+
+#login-button,
+#sign-button,
+#pwChange-button,
+#signOut-button {
+  height: 1000px;
+  color: white;
+  background: rgb(34, 34, 34);
+  background: linear-gradient(0deg, rgba(34, 34, 34, 1) 0%, rgba(66, 66, 66, 1) 100%);
+  border: none;
+}
+
+#login-button:before,
+#sign-button:before,
+#pwChange-button:before,
+#signOut-button:before {
+  height: 0%;
+  width: 2px;
+}
+
+#login-button:hover,
+#sign-button:hover,
+#pwChange-button:hover,
+#signOut-button:hover {
+  box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.5), -4px -4px 6px 0 rgba(116, 125, 136, 0.5),
+    inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2), inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
+}
+
+/* ================================== */
 
 /* 화면 너비 1200px 이하일 때 스타일 변경 */
 @media (max-width: 1200px) {
   .loginAndSign-button > button {
     font-size: 10px;
   }
-  .dropbtn {
+  /* .dropbtn {
     font-size: 10px;
     margin-left: 20px;
-  }
+  } */
 
   .movie-search-page > h1 {
     font-size: 20px;
@@ -535,10 +626,10 @@ body {
   .loginAndSign-button > button {
     font-size: 8px;
   }
-  .dropbtn {
+  /* .dropbtn {
     font-size: 8px;
     margin-left: 20px;
-  }
+  } */
 
   .movie-search-page > h1 {
     display: none;
@@ -565,9 +656,9 @@ body {
 
 /* 화면 너비 500px 이하일 때 스타일 변경 */
 @media (max-width: 500px) {
-  #language-switcher {
+  /* #language-switcher {
     width: 50px;
-  }
+  } */
 
   .movie-search-page {
     display: none;
