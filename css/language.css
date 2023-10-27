@@ -1,7 +1,6 @@
 #language-switcher {
-  display: flex;
-  align-items: flex-start;
-  margin-right: 10px;
+  display: inline-block;
+  position: relative;
 }
 
 .dropbtn {
@@ -10,7 +9,7 @@
   padding: 5px 15px;
   border: none;
   cursor: pointer;
-  margin-right: 150px;
+  width: 100px;
 }
 
 .dropdown-content {
@@ -20,6 +19,7 @@
   min-width: 100px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   z-index: 1;
+  right: 0;
 }
 
 .dropdown-content button {
@@ -35,7 +35,7 @@
   background-color: #666;
 }
 
-.dropdown:hover .dropdown-content {
+#language-switcher:hover .dropdown-content {
   display: block;
 }
 
