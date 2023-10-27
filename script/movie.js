@@ -22,7 +22,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
   user.signOutButton.addEventListener("click", createSignOutModal);
-
+  user.signupButton.addEventListener("click", createSignModalElement);
+  user.pwChangeButton.addEventListener("click", pwChange);
   // 로그인 버튼 클릭 시 로그인 모달 열기
   user.loginButton.addEventListener("click", () => {
     if (!!sessionStorage.getItem("user")) {
@@ -250,11 +251,10 @@ function createSignModalElement() {
   });
 
   sign_cancel.addEventListener("click", () => {
-    sign_modal.style.display = "none";
+    // sign_modal.style.display = "none";
+    sign_modal.remove();
   });
 }
-
-createSignModalElement();
 
 // 회원탈퇴
 async function createSignOutModal() {
@@ -333,10 +333,10 @@ const pwChange = () => {
       var hashData = decrypt.toString(CryptoJS.enc.Utf8); //복호화된 값
       console.log(hashData);
 
-      var key2 = CryptoJS.enc.Utf8.parse(changePw); // 암호화
-      var base642 = CryptoJS.enc.Base64.stringify(key2); // 암호화된 값
-      var decrypt2 = CryptoJS.enc.Base64.parse(base642); // 복호화
-      var hashData2 = decrypt2.toString(CryptoJS.enc.Utf8); //복호화된 값
+      var key2 = CryptoJS.enc.Utf8.parse(changePw); // 변경 암호화
+      var base642 = CryptoJS.enc.Base64.stringify(key2); // 변경 암호화된 값
+      var decrypt2 = CryptoJS.enc.Base64.parse(base642); // 변경 복호화
+      var hashData2 = decrypt2.toString(CryptoJS.enc.Utf8); //변경 복호화된 값
       console.log(hashData2);
       let docs = await getDocs(collection(db, "user"));
 
@@ -375,13 +375,14 @@ const pwChange = () => {
         alert("아이디 또는 비밀번호가 틀렸습니다.");
       }
     });
+
     cancel_btn.addEventListener("click", () => {
-      changePwModal.style.display = "none";
+      // changePwModal.style.display = "none";
+      changePwModal.remove();
     });
   });
 };
 
-pwChange();
 
 // 페이지에 영화 목록 생성 함수
 function createPage(pageData) {
@@ -464,6 +465,7 @@ function createMovieCard(data) {
   overviewEl.addEventListener("mouseenter", () => {
     overviewEl.innerText = data.overview;
   });
+  
   overviewEl.addEventListener("mouseleave", () => {
     overviewEl.innerText = truncatedOverview;
   });
