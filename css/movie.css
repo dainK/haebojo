@@ -537,7 +537,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .image-buttons {
-  height: 150px;
+  height: 60px;
   position: absolute;
   display: none;
   flex-direction: column;
@@ -570,13 +570,14 @@ body::-webkit-scrollbar-thumb:hover {
 
 #profile-img:hover .image-buttons {
   display: flex;
+  /* height: 100px; */
 }
 
 #login-button,
 #sign-button,
 #pwChange-button,
 #signOut-button {
-  height: 1000px;
+  height: 50px;
   color: white;
   background: rgb(34, 34, 34);
   background: linear-gradient(0deg, rgba(34, 34, 34, 1) 0%, rgba(66, 66, 66, 1) 100%);
