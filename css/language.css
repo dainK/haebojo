@@ -1,6 +1,7 @@
 #language-switcher {
   display: inline-block;
   position: relative;
+  right: 100px;
 }
 
 .dropbtn {
