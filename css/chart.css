@@ -41,4 +41,16 @@
   top: 0px;
   left: 0px;
   z-index: 1;
+  /* display: none; */
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+/* .movie-card .chartSetMain {
+  display: block;
+} */
+
+.movie-card:hover .chartSetMain {
+  opacity: 0;
+  /* display: none; */
 }

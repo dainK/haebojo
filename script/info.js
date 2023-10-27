@@ -80,7 +80,7 @@ function InfoCast(movieId) {
 
 // 배우 카드 생성
 function CreateCastCard(data) {
-  console.log(data.profile_path, "언놈이야");
+  // console.log(data.profile_path, "언놈이야");
   const card = document.createElement("div");
   card.classList.add("cast-card");
   castList.appendChild(card);
@@ -101,13 +101,12 @@ function CreateCastCard(data) {
   card.appendChild(image);
 }
 
-
 async function CreateComments(movieid) {
   let commentDoc = await getDoc(doc(db, "movie", movieid));
 
   if (typeof commentDoc.data() === "undefined") {
     let newdata = { comments: [] };
-    await setDoc(doc(db, 'movie', movie_id), newdata);
+    await setDoc(doc(db, "movie", movie_id), newdata);
     return;
   }
 
@@ -117,7 +116,7 @@ async function CreateComments(movieid) {
 
   // console.log(commnets);
   if (!!commnets && commnets.length > 0) {
-    commnets.forEach(e => {
+    commnets.forEach((e) => {
       const commentbox = document.createElement("div");
       commentbox.classList.add("comment-box");
       comment.commentContainer.appendChild(commentbox);
@@ -134,7 +133,6 @@ async function CreateComments(movieid) {
       });
     });
   }
-
 }
 
 async function AddComment(text) {
@@ -148,29 +146,27 @@ async function AddComment(text) {
     let year = currentDate.getFullYear();
     let month = currentDate.getMonth() + 1; // 월은 0부터 시작하므로 1을 더해줍니다.
     let day = currentDate.getDate();
-    var hours = currentDate.getHours();	// 시간
-    var minutes = currentDate.getMinutes();	// 분
-    var seconds = currentDate.getSeconds();	// 초
+    var hours = currentDate.getHours(); // 시간
+    var minutes = currentDate.getMinutes(); // 분
+    var seconds = currentDate.getSeconds(); // 초
     let date = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
     let newcomment = {
       comment: text,
       user: user,
-      date: date
-    }
+      date: date,
+    };
 
     if (!!data.comments) {
       data.comments.push(newcomment);
-      await setDoc(doc(db, 'movie', movie_id), data);
-    }
-    else {
+      await setDoc(doc(db, "movie", movie_id), data);
+    } else {
       let newdata = { comments: [] };
       newdata.comments.push(newcomment);
-      await setDoc(doc(db, 'movie', movie_id), newdata);
+      await setDoc(doc(db, "movie", movie_id), newdata);
     }
     window.location.reload();
-  }
-  else {
+  } else {
     alert("로그인을 해주세요.");
   }
 }
@@ -233,7 +229,7 @@ async function DeleteComment(data, commentbox) {
             }
           }
           console.log(newdata);
-          await setDoc(doc(db, 'movie', movie_id), newdata);
+          await setDoc(doc(db, "movie", movie_id), newdata);
           window.location.reload();
           return;
         }
@@ -245,5 +241,4 @@ async function DeleteComment(data, commentbox) {
   cancelbtn.addEventListener("click", () => {
     modal.remove();
   });
-
 }
