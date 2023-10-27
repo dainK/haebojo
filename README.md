@@ -30,6 +30,10 @@ Firebase <br/>
 ![녹화_2023_10_27_18_45_38_454](https://github.com/dainK/haebojo/assets/26786677/fadf57a4-d165-4142-a5e9-6ae1a5844d5c)
 - [X] 언어 선택 기능<br/>
 ![녹화_2023_10_27_18_51_25_130](https://github.com/dainK/haebojo/assets/26786677/ffe02be4-7a82-49c0-842b-79f07bcbe042)
+- [X] 로그인
+- [x] 로그아웃
+- [x] 회원등록
+- [x] 회원탈퇴
 
 
 # TODO LIST
@@ -39,7 +43,7 @@ Firebase <br/>
 <br/>
 
 # LOAD MAP
-![image](https://github.com/dainK/haebojo/assets/26786677/bd26903e-cd78-4a41-aeca-af62640127df)
+![image](https://github.com/dainK/haebojo/assets/26786677/65a51f17-b0e3-444e-b400-3c9bacc77203)
 
 <br/>
 <br/>
