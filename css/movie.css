@@ -190,6 +190,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  /* z-index: 10; */
 }
 
 /* 영화 카드 스타일 */
@@ -211,23 +212,103 @@ body {
 
 /* 영화 카드 이미지 스타일 */
 .movie-card img {
+  position: relative;
   border-radius: 10px;
 }
 
 /* 영화 제목 스타일 */
 .movie-title {
-  display: none;
+  position: relative;
+  top: 10px;
+  /* bottom: 10px; */
+  /* display: none; */
+  margin: 10px 0, 10px 0;
   font-size: 20px;
 }
 
 /* 영화 정보 스타일 */
 .movie-info {
-  height: auto;
+  position: relative;
+  top: 20px;
+  height: 330px;
   width: 280px;
   white-space: pre-wrap;
   border: 1px solid #ccc;
+  overflow: auto;
+  /* z-index: 12; */
 }
 
+.movie-info::-webkit-scrollbar {
+  width: 12px;
+}
+
+.movie-info::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 10px;
+}
+
+.movie-info {
+  scrollbar-width: thin;
+  scrollbar-color: white transparent;
+}
+
+/* --------------------------------- */
+/* * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+} */
+
+#card-wrap {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  /* margin: 50px auto; */
+  border-radius: 20px;
+  perspective: 500px;
+  cursor: pointer;
+}
+
+#card-wrap .card-set {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+}
+
+#card-wrap .card-set .card-front,
+#card-wrap .card-set .card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 20px;
+  border-radius: 20px;
+  backface-visibility: hidden;
+}
+
+#card-wrap .card-set .card-front {
+  /* background-color: #f54; */
+  z-index: 2;
+}
+
+#card-wrap .card-set .card-back {
+  background-color: #ccc;
+  z-index: 1;
+  transform: rotateY(180deg);
+}
+
+/* 마우스가 들어올 때 카드를 뒤집을 스타일 */
+#card-wrap:hover .card-set {
+  transform: rotateY(180deg);
+}
+
+/* --------------------------------- */
 /* 모달 스타일 */
 .modal {
   display: flex;

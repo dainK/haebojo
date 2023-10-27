@@ -1,13 +1,18 @@
 import { options } from "../config/tmdbOption.js";
 import { page, search, user, language } from "./domEl.js";
-import { truncateText,setLogoByLanguage } from "./domEvent.js";
+import { truncateText, setLogoByLanguage } from "./domEvent.js";
 import { drawChart } from "./chart.js";
-import { getDocs,deleteDoc,doc,setDoc,collection } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+import {
+  getDocs,
+  deleteDoc,
+  doc,
+  setDoc,
+  collection,
+} from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 import { db } from "../config/firebaseConfig.js";
 
 // 페이지 로드가 완료된 후 실행할 함수
 document.addEventListener("DOMContentLoaded", function () {
-
   setLogoByLanguage();
   // 검색창에 자동으로 포커스를 주기
   search.searchInput.focus();
@@ -398,15 +403,22 @@ function clearContainer() {
 
 // 영화 카드 엘리먼트 생성 함수
 function createMovieCard(data) {
-  console.log(data.vote_average * 10, "데이따");
+  // console.log(data.vote_average * 10, "데이따");
   const card = document.createElement("div");
   card.classList.add("movie-card");
   page.container.appendChild(card);
 
-  const title = document.createElement("div");
-  title.classList.add("movie-title");
-  title.innerText = data.title;
-  card.appendChild(title);
+  const card_wrap = document.createElement("div");
+  card_wrap.id = "card-wrap";
+  card.appendChild(card_wrap);
+
+  const card_set = document.createElement("div");
+  card_set.classList.add("card-set");
+  card_wrap.appendChild(card_set);
+
+  const card_front = document.createElement("div");
+  card_front.classList.add("card-front");
+  card_set.appendChild(card_front);
 
   const image = document.createElement("img");
   image.style.width = "280px";
@@ -414,7 +426,22 @@ function createMovieCard(data) {
   if (data.poster_path !== null) {
     image.src = "https://image.tmdb.org/t/p/original/" + data.poster_path;
   }
-  card.appendChild(image);
+  card_front.appendChild(image);
+
+  const card_back = document.createElement("div");
+  card_back.classList.add("card-back");
+  card_set.appendChild(card_back);
+
+  const title = document.createElement("div");
+  title.classList.add("movie-title");
+  title.innerText = data.title;
+  card_back.appendChild(title);
+
+  const info = document.createElement("div");
+  info.classList.add("movie-info");
+  const truncatedOverview = truncateText(data.overview, 70);
+  info.innerText = truncatedOverview;
+  card_back.appendChild(info);
 
   // const chartSetMain = document.createElement("div");
   // chartSetMain.classList.add("chartSetMain");
@@ -440,12 +467,6 @@ function createMovieCard(data) {
   card.appendChild(chartSetMain);
 
   drawChart(canvas, data.vote_average * 10);
-
-  const info = document.createElement("div");
-  info.classList.add("movie-info");
-  const truncatedOverview = truncateText(data.overview, 35);
-  info.innerText = truncatedOverview;
-  card.appendChild(info);
 
   // const canvas = document.createElement("canvas");
   // canvas.id = "chartCanvas";
