@@ -26,6 +26,7 @@ header {
 /* 로고 스타일 */
 .navbar .logo {
   display: flex;
+  /* justify-content: flex-start; */
 }
 
 /* 로고 이미지 스타일 */
@@ -45,6 +46,13 @@ header {
   font-size: 32px;
   color: #e1e8ed;
 }
+
+/* .navbar .search {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+} */
 
 /* 검색 메인 스타일 */
 .search-main {
@@ -198,6 +206,7 @@ body {
   margin-bottom: 20px;
   margin-left: 10px;
   margin-right: 10px;
+  position: relative;
 }
 
 /* 영화 카드 이미지 스타일 */
@@ -231,6 +240,7 @@ body {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 100;
+  /* border-radius: 10px; */
 }
 
 /* 로그인 컨테이너 스타일 */

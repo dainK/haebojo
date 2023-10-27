@@ -1,5 +1,5 @@
 import { options } from "../config/tmdbOption.js";
-import { page, search, user, language,comment } from "./domEl.js";
+import { page, search, user, language, comment } from "./domEl.js";
 import {
   getFirestore,
   getDocs,
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
   Info(movie_id);
   InfoCast(movie_id);
   CreateComments(movie_id);
-  comment.commentButton.addEventListener("click", ()=>{
+  comment.commentButton.addEventListener("click", () => {
     AddComment(comment.commentInput.value);
   });
 });
@@ -101,13 +101,12 @@ function CreateCastCard(data) {
   card.appendChild(image);
 }
 
-
 async function CreateComments(movieid) {
   let commentDoc = await getDoc(doc(db, "movie", movieid));
 
   let commnets = commentDoc.data().comments;
   if (!!commnets && commnets.length > 0) {
-    commnets.forEach(e => {
+    commnets.forEach((e) => {
       const commentbox = document.createElement("div");
       commentbox.classList.add("comment-box");
       comment.commentContainer.appendChild(commentbox);
@@ -122,7 +121,6 @@ async function CreateComments(movieid) {
       commentbox.addEventListener("click", DeleteComment);
     });
   }
- 
 }
 
 async function AddComment(text) {
@@ -141,21 +139,19 @@ async function AddComment(text) {
     let newcomment = {
       comment: text,
       user: user,
-      date: date
-    }
+      date: date,
+    };
 
     if (!!data.comments) {
       data.comments.push(newcomment);
-      await setDoc(doc(db, 'movie', movie_id), data);
-    }
-    else {
+      await setDoc(doc(db, "movie", movie_id), data);
+    } else {
       let newdata = { comments: [] };
       newdata.comments.push(newcomment);
-      await setDoc(doc(db, 'movie', movie_id), newdata);
+      await setDoc(doc(db, "movie", movie_id), newdata);
     }
     window.location.reload();
-  }
-  else {
+  } else {
     alert("로그인을 해주세요.");
   }
 }
@@ -184,11 +180,10 @@ async function DeleteComment() {
   // document.body.appendChild(modal);
 
   // deletebtn.addEventListener("click", () => {
-    
+
   // });
 
   // cancelbtn.addEventListener("click", () => {
   //   modal.remove();
   // });
-
 }
