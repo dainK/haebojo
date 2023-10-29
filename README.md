@@ -80,5 +80,5 @@ Firebase <br/>
 
 # LOAD MAP
 
-<img src="https://user-images.githubusercontent.com/26786677/278854172-48aa3aad-39ab-4b09-8657-d123f4f9dedf.png" width = "600px"><br/>
+<img src="https://user-images.githubusercontent.com/26786677/278854172-48aa3aad-39ab-4b09-8657-d123f4f9dedf.png"><br/>
 <br/>
