@@ -1,9 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap");
+/* 글로벌 폰트 스타일 */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@900&display=swap");
 
+/* 모든 요소에 글로벌 폰트 적용 */
 * {
-  font-family: "Gamja Flower", cursive;
+  font-family: "Noto Sans KR", sans-serif;
 }
 
+/* 본문 스타일 */
 body {
   background-color: rgb(34, 34, 34);
   align-items: center;
@@ -13,7 +16,22 @@ body {
   color: #ffffff;
 }
 
-/* 전체 바 스타일 */
+body::-webkit-scrollbar {
+  width: 12px;
+  background-color: black;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: linear-gradient(transparent, #fca22c);
+  border-radius: 6px;
+  border-radius: 20px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(transparent, #ffa500, transparent);
+}
+
+/* 네비게이션 바 스타일 */
 .navbar {
   background-color: #000000;
   color: #fff;
@@ -29,49 +47,59 @@ body {
   flex: 1;
 }
 
-/* 로고 스타일 */
-.logo-img {
-  height: 40px;
-  margin-right: 10px;
+/* 로고 이미지 스타일 */
+.logo img {
+  max-width: 200px;
+  max-height: 66.66px;
 }
 
+/* 영화 제목 박스 스타일 */
 #movie-tilte-box {
-  margin-top: 110px;
-  /* background-color: #000000; */
+  margin-top: 100px;
+  /* 배경색: #000000; */
 }
 
+/* 비디오 박스 스타일 */
 .video-box {
   margin-top: 10px;
   background-color: #000000;
   border-radius: 5px;
   padding: 10px;
   height: 400px;
-  /* width: 600px; */
-
-  /* left: 50%; */
-  /* right: 50% */
+  /* 가로 크기: 600px; */
   display: flex;
   align-items: center;
-  /* 세로 중앙 정렬 */
   width: 90%;
-  /* 부모 컨테이너 가로 전체 폭 사용 */
-  /* height: 90hv;  */
   max-width: 600px;
 }
 
+/* 비디오 컨텐츠 스타일 */
 .video-content {
   width: 100%;
   height: 100%;
-  /* position: relative; */
+  /* 위치: 상대적; */
 }
 
 /* iframe 스타일 */
 iframe {
   width: 100%;
   height: 100%;
-  /* display: inline-block; */
+  /* 표시: 인라인 블록; */
 }
 
+#changeLanguage-info {
+  margin-top: 50px;
+}
+
+#changeLanguage-cast {
+  margin-top: 50px;
+}
+
+#changeLanguage-coment {
+  margin-top: 50px;
+}
+
+/* 영화 정보 박스 스타일 */
 #movie-info-box {
   display: flex;
   width: 80%;
@@ -83,26 +111,42 @@ iframe {
   height: auto;
 }
 
+#movie-info {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* 출연진 컨테이너 스타일 */
 .cast-container {
   display: flex;
   align-items: center;
-  /* 세로 중앙 정렬 */
   overflow-x: auto;
-  /* 가로 스크롤 추가 */
   white-space: nowrap;
-  /* 텍스트 줄 바꿈 제거 */
   width: 80%;
-  /* 부모 컨테이너 가로 전체 폭 사용 */
-  /* max-height: 500px; */
 }
 
+.cast-container::-webkit-scrollbar {
+  width: 12px;
+}
+
+.cast-container::-webkit-scrollbar-thumb {
+  /* background-color: white; */
+  background: linear-gradient(to right, transparent, #fff, transparent);
+  border-radius: 10px;
+}
+
+.cast-container {
+  scrollbar-width: thin;
+  scrollbar-color: white transparent;
+}
+
+/* 출연진 목록 스타일 */
 #cast-list {
   display: flex;
-  /* 아이템들이 가로로 배치되도록 설정 */
   white-space: nowrap;
-  /* 텍스트 줄 바꿈 제거 */
 }
 
+/* 출연진 카드 스타일 */
 .cast-card {
   color: #000000;
   padding-top: 20px;
@@ -110,7 +154,7 @@ iframe {
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
-  background-color: white;
+  background-color: #ececec;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   width: 150px;
@@ -121,126 +165,143 @@ iframe {
   margin-right: 10px;
 }
 
+/* 출연진 제목 스타일 */
 .cast-title {
-  font-size: 20px;
+  font-size: 14px;
 }
 
+/* 댓글 컨테이너 스타일 */
 .comment-container {
   display: flex;
   align-items: center;
-  /* 세로 중앙 정렬 */
-  overflow-y: auto;
-  /* 가로 스크롤 추가 */
-  white-space: nowrap;
-  /* 텍스트 줄 바꿈 제거 */
+  /* overflow-y: auto; */
+  /* white-space: nowrap; */
   width: 80%;
-  /* 부모 컨테이너 가로 전체 폭 사용 */
-  /* max-height: 500px; */
   justify-content: center;
   flex-direction: column;
 }
 
+/* 댓글 목록 스타일 */
 #comment-list {
   display: flex;
-  /* 아이템들이 가로로 배치되도록 설정 */
-  /* white-space: nowrap; */
-  /* 텍스트 줄 바꿈 제거 */
-  /* align-items: center; */
   width: 100%;
   height: auto;
   align-items: flex-start;
   flex-direction: column;
 }
 
+/* 댓글 박스 스타일 */
 .comment-box {
   background-color: #ffffff;
   color: #000000;
   border: 1px solid #000000;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
-  width: 99%;
-  height: 50px;
+  width: 100%;
+  height: auto;
   flex-direction: column;
   justify-content: space-between;
-  /* padding: 10px; */
-  /* margin: 10px; */
   margin-bottom: 5px;
 }
 
-.comment-content {
+/* 댓글 컨텐츠 스타일 */
+.userComm1 {
   display: flex;
-  /* 댓글 내용 스타일 */
   justify-content: space-between;
-  /* padding: 10px; */
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
+.userComm2 {
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: -15px;
+}
 
-/* 회원 가입 모달 스타일 */
-.comment_modal {
+#comment-input[type="text"] {
+  width: 100%;
+  height: 20px;
+  line-height: 36px;
+  font-size: 1.1em;
+  color: rgba(0, 0, 0, 0.5);
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 30px;
+}
+
+.comment-input-top {
+  position: relative;
+  margin-top: 30px;
+}
+
+#comment-button {
+  position: absolute;
+  width: 70px;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 1.1em;
+  /* right: 1000px; */
+  border: none;
+  background: linear-gradient(0deg, rgba(255, 151, 0, 1) 0%, rgba(251, 125, 2, 1) 100%);
+  color: #fff;
+  overflow: hidden;
+}
+
+/* --------------------------------- */
+/* 모달 스타일 */
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
-  z-index: 1000;
-  border-radius: 10px;
+  z-index: 100;
+  /* border-radius: 10px; */
 }
 
-.comment-modal-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 30%;
-  height: 35%;
+/* 모달 컨테이너 스타일 */
+.login-container {
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 20px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  text-align: center;
 }
 
-.comment-modal_form {
-  padding: 50px;
+/* 모달 제목 스타일 */
+.login-container h1 {
+  margin: 0 0 20px;
+  color: #333;
+}
+
+/* 모달 폼 스타일 */
+.modal-form {
   display: flex;
   flex-direction: column;
 }
 
-/* .comment-modal-id {
-  padding: 10px;
-  margin: 5px 0;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-} */
-
-.comment-modal-pw {
+/* 모달 입력 필드 스타일 */
+.modal-form input {
   padding: 10px;
   margin: 5px 0;
   border: 1px solid #ccc;
   border-radius: 3px;
 }
 
-.comment-modal-delete-button {
+/* 모달 버튼 스타일 */
+.modal-form button {
   padding: 10px;
   margin: 10px 0;
-  background-color: #007bff;
+  background-color: #ffae00;
   color: #fff;
   border: none;
   border-radius: 3px;
   cursor: pointer;
 }
 
-.comment-modal-cancel-button {
-  padding: 10px;
-  margin: 10px 0;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-}
+/* ================================== */
+/* 모달 버튼 컨테이너 */
