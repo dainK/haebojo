@@ -56,13 +56,17 @@ Firebase <br/>
 - [x] 덧글 등록
 - [x] 덧글 삭제<br/>
       <img src="https://user-images.githubusercontent.com/26786677/278879801-8b3279d0-4339-4456-b8d3-cd914ee59661.gif" width = "600px"/><br/>
+<br/>
+<br/>
 
 # TODO LIST
 
 <img src="https://user-images.githubusercontent.com/26786677/278869097-38246736-d8a4-43ac-9c4e-e90d1923d940.png"><br/>
 <br/>
+<br/>
 
 # LOAD MAP
 
 <img src="https://user-images.githubusercontent.com/26786677/278869065-1177368e-f6d9-4547-8b92-ced35d6a5de8.png"><br/>
+<br/>
 <br/>
