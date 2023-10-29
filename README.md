@@ -33,16 +33,20 @@ Firebase <br/>
 - [x] 검색 창 ui action과 검색 기능
 - [x] 마우스 오버시 내용이 적힌 뒷면이 보이게 뒤집어 주기
 - [x] 마우스 호버로 영화 줄여진 영화 정보 펼쳐 주기<br/>
-      <img src="https://user-images.githubusercontent.com/26786677/278603519-cf8147c6-7ed3-44b4-9769-088629f0857a.gif" width = "600px"/><br/>
+      <img src="https://user-images.githubusercontent.com/26786677/278878647-1785a39f-9c65-45e6-8ce5-badcbb01841e.gif" width = "600px"/><br/>
 - [x] 영화 검색 기능
+- [x] 영화 이미지 null check
 - [x] 페이지 네이션<br/>
-      <img src="https://user-images.githubusercontent.com/26786677/278605298-fadf57a4-d165-4142-a5e9-6ae1a5844d5c.gif" width = "600px"/><br/>
+      <img src="https://user-images.githubusercontent.com/26786677/278878660-d9a627dc-1dd0-4602-8a7f-35d0d1f6ef58.gif" width = "600px"/><br/>
 - [x] 언어 선택 기능<br/>
-      <img src="https://user-images.githubusercontent.com/26786677/278606615-ffe02be4-7a82-49c0-842b-79f07bcbe042.gif" width = "600px"/><br/>
+      <img src="https://user-images.githubusercontent.com/26786677/278878688-2d6021fc-2f34-4afc-978f-d9279d0a0a1a.gif" width = "600px"/><br/>
 - [x] 로그인
 - [x] 로그아웃
-- [x] 회원등록
-- [x] 회원탈퇴
+- [x] 회원등록<br/>
+      <img src="https://user-images.githubusercontent.com/26786677/278878905-e022f5ba-66a2-401c-befc-955b70d208e0.gif" width = "600px"/><br/>
+- [x] 비밀번호 변경
+- [x] 회원삭제<br/>
+      <img src="https://user-images.githubusercontent.com/26786677/278878939-a867cc0a-202a-4a83-b8a1-6733717b2d25.gif" width = "600px"/><br/>
 
 ## 상세 페이지
 
