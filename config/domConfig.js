@@ -25,7 +25,7 @@ export const user = {
 export const language = {
   setLanguage: localStorage.getItem("language") || "ko-KR",
   koreanFlagButton: document.getElementById("korean-flag"),
-  englishFlagButton: document.getElementById("english-flag"),
+  englishFlagButton: document.getElementById("english-flag")
 };
 
 export const comment = {
