@@ -79,10 +79,10 @@ Firebase <br/>
 
 # TODO LIST
 
-<img src="https://user-images.githubusercontent.com/26786677/278854198-f4121b12-97b0-42d9-ab9b-304bc2c00b2b.png" width = "600px"><br/>
+<img src="https://user-images.githubusercontent.com/26786677/278869097-38246736-d8a4-43ac-9c4e-e90d1923d940.png"><br/>
 <br/>
 
 # LOAD MAP
 
-<img src="https://user-images.githubusercontent.com/26786677/278854172-48aa3aad-39ab-4b09-8657-d123f4f9dedf.png"><br/>
+<img src="https://user-images.githubusercontent.com/26786677/278869065-1177368e-f6d9-4547-8b92-ced35d6a5de8.png"><br/>
 <br/>
