@@ -18,7 +18,7 @@ export function setLogoByLanguage() {
 }
 
 
-function switchLanguage(ISO) {
+export function switchLanguage(ISO) {
   localStorage.setItem("language", ISO);
   location.reload();
 }

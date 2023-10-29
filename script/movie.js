@@ -1,6 +1,6 @@
 import { options } from "../config/tmdbOption.js";
 import { page, search, user, language } from "./domEl.js";
-import { truncateText, setLogoByLanguage } from "./domEvent.js";
+import { switchLanguage, truncateText, setLogoByLanguage } from "./domEvent.js";
 import { drawChart } from "./chart.js";
 import {
   getDocs,

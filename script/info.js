@@ -12,6 +12,7 @@ import {
   addDoc,
 } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 import { db } from "../config/firebaseConfig.js";
+import {setLogoByLanguage } from "./domEvent.js";
 
 // 현재 페이지 URL에서 영화 ID 파싱
 const currentUrl = window.location.href;
@@ -30,6 +31,7 @@ const castList = document.getElementById("cast-list");
 
 // 페이지가 완전히 로드된 후 실행
 document.addEventListener("DOMContentLoaded", function () {
+  setLogoByLanguage();
   ViewTrailer(movie_id);
   Info(movie_id);
   InfoCast(movie_id);
