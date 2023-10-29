@@ -341,8 +341,8 @@ body::-webkit-scrollbar-thumb:hover {
   /* border-radius: 10px; */
 }
 
-/* 로그인 컨테이너 스타일 */
-.login-container {
+/* 모달 컨테이너 스타일 */
+.modal-container {
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -350,178 +350,39 @@ body::-webkit-scrollbar-thumb:hover {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* 로그인 제목 스타일 */
-.login-container h1 {
+/* 모달 제목 스타일 */
+.modal-container h1 {
   margin: 0 0 20px;
   color: #333;
 }
 
-/* 로그인 폼 스타일 */
-.login-form {
+/* 모달 폼 스타일 */
+.modal-form {
   display: flex;
   flex-direction: column;
 }
 
-/* 로그인 입력 필드 스타일 */
-.login-form input {
+/* 모달 입력 필드 스타일 */
+.modal-form input {
   padding: 10px;
   margin: 5px 0;
   border: 1px solid #ccc;
   border-radius: 3px;
 }
 
-/* 로그인 버튼 스타일 */
-.login-form button {
+/* 모달 버튼 스타일 */
+.modal-form button {
   padding: 10px;
   margin: 10px 0;
-  background-color: #007bff;
+  background-color: #ffae00;
   color: #fff;
   border: none;
   border-radius: 3px;
   cursor: pointer;
 }
 
-/* 회원 가입 모달 스타일 */
-.sign_modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 1000;
-  border-radius: 10px;
-}
-
-/* 회원 가입 컨테이너 스타일 */
-.sign_container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 30%;
-  height: 35%;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 20px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  text-align: center;
-}
-
-/* 회원 가입 폼 스타일 */
-.sign_form {
-  padding: 50px;
-  display: flex;
-  flex-direction: column;
-}
-
-/* 회원 가입 아이디 입력 필드 스타일 */
-.sign_id {
-  padding: 10px;
-  margin: 5px 0;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-}
-
-/* 회원 가입 비밀번호 입력 필드 스타일 */
-.sign_pw {
-  padding: 10px;
-  margin: 5px 0;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-}
-
-/* 회원 가입 이름 입력 필드 스타일 */
-.sign_name {
-  padding: 10px;
-  margin: 5px 0;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-}
-
-/* 회원 가입 버튼 스타일 */
-.onSign_btn {
-  padding: 10px;
-  margin: 10px 0;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-/* 회원 가입 취소 버튼 스타일 */
-.sign_cancel {
-  padding: 10px;
-  margin: 10px 0;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-/* 비밀번호 변경 모달 스타일 */
-.changePwModal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 1000;
-  border-radius: 10px;
-}
-
-/* 비밀번호 변경 컨테이너 스타일 */
-.changePwContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 50%;
-  height: 50%;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 20px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  text-align: center;
-}
-
-/* 비밀번호 변경 아이디 입력 필드 스타일 */
-.changePwIdInput {
-  padding: 10px;
-  margin: 5px 0;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-}
-
-/* 비밀번호 변경 버튼 스타일 */
-.changeBtn {
-  padding: 10px;
-  margin: 10px 0;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-.loginAndSign-button {
-  display: flex;
-  flex-direction: row;
-  margin-right: 20px;
-}
 /* ================================== */
-/* 로그인 및 회원 가입 버튼 컨테이너 */
+/* 모달 버튼 컨테이너 */
 
 #profile-img {
   right: 50px;
@@ -549,23 +410,15 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 /* 로그인 버튼 */
-#login-button {
-  width: 100px;
-}
-
+#login-button,
 /* 회원가입 버튼 */
-#sign-button {
-  width: 100px;
-}
+#sign-button,
 /* 패스워드 변경버튼 */
-#pwChange-button {
-  width: 100px;
-}
-
+#pwChange-button ,
 /* 로그아웃 버튼 */
 #signOut-button {
   width: 100px;
-  display: none;
+  /* display: none; */
 }
 
 #profile-img:hover .image-buttons {
@@ -604,9 +457,7 @@ body::-webkit-scrollbar-thumb:hover {
 
 /* 화면 너비 1200px 이하일 때 스타일 변경 */
 @media (max-width: 1200px) {
-  .loginAndSign-button > button {
-    font-size: 10px;
-  }
+
   /* .dropbtn {
     font-size: 10px;
     margin-left: 20px;
@@ -624,9 +475,7 @@ body::-webkit-scrollbar-thumb:hover {
 
 /* 화면 너비 900px 이하일 때 스타일 변경 */
 @media (max-width: 900px) {
-  .loginAndSign-button > button {
-    font-size: 8px;
-  }
+ 
   /* .dropbtn {
     font-size: 8px;
     margin-left: 20px;
@@ -700,13 +549,4 @@ body::-webkit-scrollbar-thumb:hover {
     padding: 8px;
   }
 
-  .loginAndSign-button > button {
-    font-size: 8px;
-    margin-right: auto;
-    height: 50px;
-  }
-
-  .loginAndSign-button > #pwChange-button {
-    font-size: 5px;
-  }
 }

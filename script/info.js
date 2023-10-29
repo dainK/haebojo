@@ -175,27 +175,24 @@ async function DeleteComment(data, commentbox) {
   // console.log("코멘트삭제하기");
 
   const modal = document.createElement("div");
-  modal.classList.add("comment_modal");
+  modal.classList.add("modal");
   document.body.appendChild(modal);
 
   const container = document.createElement("div");
-  container.classList.add("comment-modal-container");
+  container.classList.add("modal-container");
   modal.appendChild(container);
 
   const inputpw = document.createElement("input");
-  inputpw.classList.add("comment-modal-pw");
   inputpw.placeholder = "비밀번호를 입력하세요.";
 
   const deletebtn = document.createElement("button");
-  deletebtn.classList.add("comment-modal-delete-button");
   deletebtn.innerText = "삭제하기";
 
   const cancelbtn = document.createElement("button");
-  cancelbtn.classList.add("comment-modal-cancel-button");
   cancelbtn.innerText = "취소하기";
 
   const form = document.createElement("div");
-  form.classList.add("comment-modal_form");
+  form.classList.add("modal-form");
   form.append(inputpw, deletebtn, cancelbtn);
   container.appendChild(form);
 

@@ -34,29 +34,3 @@ document.addEventListener("DOMContentLoaded", function () {
     user.signupButton.style.display = "block";
   }
 });
-
-// 모달 엘리먼트 생성 함수
-export function createModalElement() {
-  const modal = document.createElement("div");
-
-  modal.classList.add("modal");
-
-  // login-container 엘리먼트 생성
-  const loginContainer = document.createElement("div");
-  loginContainer.classList.add("login-container");
-
-  // 로그인 폼 엘리먼트 생성
-  const form = document.createElement("div");
-  form.classList.add("login-form");
-  form.innerHTML = `
-    <input id="login-id" type="text" placeholder="사용자 이름" />
-    <input id="login-pw" type="password" placeholder="비밀번호" />
-    <button id="login-btn" type="submit">로그인</button>
-    <button id="login-cancel-btn" type="submit">취소하기</button>
-  `;
-
-  loginContainer.appendChild(form);
-  modal.appendChild(loginContainer);
-
-  return modal;
-}

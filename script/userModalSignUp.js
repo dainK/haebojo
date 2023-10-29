@@ -4,30 +4,25 @@ import { db } from "../config/firebaseConfig.js";
 // 회원가입 모달 열기 함수
 export function createSignModalElement() {
   const sign_modal = document.createElement("div");
-  sign_modal.classList.add("sign_modal");
+  sign_modal.classList.add("modal");
   const sign_id = document.createElement("input");
-  sign_id.classList.add("sign_id");
-  sign_id.placeholder = "아이디를 작성해라";
+  sign_id.placeholder = "아이디를 입력하세요.";
   const sign_pw = document.createElement("input");
-  sign_pw.classList.add("sign_pw");
-  sign_pw.placeholder = "비번도 작성해라";
+  sign_pw.placeholder = "비밀번호를 입력하세요.";
   const sign_name = document.createElement("input");
-  sign_name.classList.add("sign_name");
-  sign_name.placeholder = "이름도 작성하랭?";
+  sign_name.placeholder = "이름을 입력하세요.";
   const onSign_btn = document.createElement("button");
-  onSign_btn.classList.add("onSign_btn");
   onSign_btn.innerText = "가입하기";
   const sign_cancel = document.createElement("button");
-  sign_cancel.classList.add("sign_cancel");
   sign_cancel.innerText = "취소하기";
 
   // sign-container 엘리먼트 생성
   const signContainer = document.createElement("div");
-  signContainer.classList.add("sign_container");
+  signContainer.classList.add("modal-container");
 
   // 회원가입 폼 엘리먼트 생성
   const form = document.createElement("div");
-  form.classList.add("sign_form");
+  form.classList.add("modal-form");
   form.append(sign_id, sign_pw, sign_name, onSign_btn, sign_cancel);
 
   signContainer.appendChild(form);

@@ -1,10 +1,28 @@
-import { createModalElement } from "./userModalController.js";
 import { getDocs, collection } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 import { db } from "../config/firebaseConfig.js";
 
 // 로그인 모달 열기 함수
 export async function openLoginModal() {
-  const modal = await createModalElement();
+  const modal = document.createElement("div");
+
+  modal.classList.add("modal");
+
+  // login-container 엘리먼트 생성
+  const loginContainer = document.createElement("div");
+  loginContainer.classList.add("modal-container");
+
+  // 로그인 폼 엘리먼트 생성
+  const form = document.createElement("div");
+  form.classList.add("modal-form");
+  form.innerHTML = `
+    <input id="login-id" type="text" placeholder="사용자 이름" />
+    <input id="login-pw" type="password" placeholder="비밀번호" />
+    <button id="login-btn" type="submit">로그인</button>
+    <button id="login-cancel-btn" type="submit">취소하기</button>
+  `;
+
+  loginContainer.appendChild(form);
+  modal.appendChild(loginContainer);
   document.body.appendChild(modal);
 
   // 로그인 함수

@@ -4,31 +4,29 @@ import { db } from "../config/firebaseConfig.js";
 // 비밀번호 변경
 export const pwChange = () => {
   const changePwModal = document.createElement("div");
-  changePwModal.classList.add("changePwModal");
+  changePwModal.classList.add("modal");
   const changePwContainer = document.createElement("div");
-  changePwContainer.classList.add("changePwContainer");
+  changePwContainer.classList.add("modal-container");
   const id_input = document.createElement("input");
-  id_input.classList.add("changePwIdInput");
   id_input.placeholder = "아이디를 입력하세요.";
   const nowPw_input = document.createElement("input");
   nowPw_input.placeholder = "현재 비밀번호를 입력하세요.";
-  nowPw_input.classList.add("changePwIdInput");
   const checkPw_input = document.createElement("input");
   checkPw_input.placeholder = "새로운 비밀번호를 입력하세요.";
-  checkPw_input.classList.add("changePwIdInput");
   const changePw_input = document.createElement("input");
   changePw_input.placeholder = "새로운 비밀번호를 입력하세요.";
-  changePw_input.classList.add("changePwIdInput");
   const confirm_btn = document.createElement("button");
   confirm_btn.innerText = "확인";
-  confirm_btn.classList.add("changeBtn");
   const cancel_btn = document.createElement("button");
   cancel_btn.innerText = "취소";
-  cancel_btn.classList.add("changeBtn");
+  
+  const form = document.createElement("div");
+  form.classList.add("modal-form");
+  form.append(id_input, nowPw_input, checkPw_input, changePw_input, confirm_btn, cancel_btn);
 
   changePwModal.appendChild(changePwContainer);
   document.body.appendChild(changePwModal);
-  changePwContainer.append(id_input, nowPw_input, checkPw_input, changePw_input, confirm_btn, cancel_btn);
+  changePwContainer.append(form);
 
   //비밀번호변경 함수
   confirm_btn.addEventListener("click", async () => {
