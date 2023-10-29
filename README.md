@@ -4,7 +4,11 @@ https://daink.github.io/haebojo/
 
 ## Development environment
 
-vscode
+VSCode
+
+## Programming language
+
+javascript
 
 ## API
 
