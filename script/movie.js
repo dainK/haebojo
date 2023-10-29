@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // 초기 페이지 로드
   NewPage(1);
 
+  // 언어설정 버튼
   language.koreanFlagButton.addEventListener("click", function () {
     switchLanguage("ko-KR");
     setLogoByLanguage();
@@ -203,6 +204,7 @@ function createModalElement() {
 // 회원가입 모달 열기 함수
 function createSignModalElement() {
   const sign_modal = document.createElement("div");
+  sign_modal.classList.add("sign_modal");
   const sign_id = document.createElement("input");
   sign_id.classList.add("sign_id");
   sign_id.placeholder = "아이디를 작성해라";
@@ -219,8 +221,6 @@ function createSignModalElement() {
   sign_cancel.classList.add("sign_cancel");
   sign_cancel.innerText = "취소하기";
 
-  sign_modal.classList.add("sign_modal");
-
   // sign-container 엘리먼트 생성
   const signContainer = document.createElement("div");
   signContainer.classList.add("sign_container");
@@ -232,11 +232,12 @@ function createSignModalElement() {
 
   signContainer.appendChild(form);
   sign_modal.appendChild(signContainer);
+  document.body.appendChild(sign_modal);
 
-  user.signupButton.addEventListener("click", () => {
-    document.body.appendChild(sign_modal);
-    // sign_modal.style.display = "block";
-  });
+  // user.signupButton.addEventListener("click", () => {
+  //   document.body.appendChild(sign_modal);
+  //   sign_modal.style.display = "block";
+  // });
 
   onSign_btn.addEventListener("click", async () => {
     let id = sign_id.value;
@@ -278,7 +279,6 @@ function createSignModalElement() {
   });
 
   sign_cancel.addEventListener("click", () => {
-    // sign_modal.style.display = "none";
     sign_modal.remove();
   });
 }
@@ -475,10 +475,10 @@ function createMovieCard(data) {
   image.style.height = "400px";
   if (data.poster_path !== null) {
     image.src = "https://image.tmdb.org/t/p/original/" + data.poster_path;
-  } else {
+  }
+  else {
     image.src = "img/null.png";
   }
-
   card_front.appendChild(image);
 
   const card_back = document.createElement("div");
