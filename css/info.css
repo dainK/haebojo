@@ -225,7 +225,7 @@ iframe {
   font-size: 1.1em;
   color: rgba(0, 0, 0, 0.5);
   border: 0;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 10px 30px;
 }
 
@@ -236,9 +236,9 @@ iframe {
 
 #comment-button {
   position: absolute;
-  width: 70px;
+  width: auto;
   height: 40px;
-  border-radius: 10px;
+  border-radius: 5px;
   font-size: 1.1em;
   /* right: 1000px; */
   border: none;
