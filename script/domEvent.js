@@ -16,15 +16,7 @@ export function setLogoByLanguage() {
     englishLogo.style.display = "block";
   }
 }
-language.koreanFlagButton.addEventListener("click", function () {
-  switchLanguage("ko-KR");
-  setLogoByLanguage();
-});
 
-language.englishFlagButton.addEventListener("click", function () {
-  switchLanguage("en-US");
-  setLogoByLanguage();
-});
 
 function switchLanguage(ISO) {
   localStorage.setItem("language", ISO);

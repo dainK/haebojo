@@ -18,6 +18,18 @@ document.addEventListener("DOMContentLoaded", function () {
   search.searchInput.focus();
   // 초기 페이지 로드
   NewPage(1);
+
+  language.koreanFlagButton.addEventListener("click", function () {
+    switchLanguage("ko-KR");
+    setLogoByLanguage();
+  });
+  
+  language.englishFlagButton.addEventListener("click", function () {
+    switchLanguage("en-US");
+    setLogoByLanguage();
+  });
+  
+
   // 검색 버튼 이벤트 리스너 추가
   search.searchButton.addEventListener("click", Search);
   // 검색 입력창에서 Enter 키 입력 시 검색 실행
