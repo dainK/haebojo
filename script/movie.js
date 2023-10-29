@@ -475,7 +475,10 @@ function createMovieCard(data) {
   image.style.height = "400px";
   if (data.poster_path !== null) {
     image.src = "https://image.tmdb.org/t/p/original/" + data.poster_path;
+  } else {
+    image.src = "img/null.png";
   }
+
   card_front.appendChild(image);
 
   const card_back = document.createElement("div");
