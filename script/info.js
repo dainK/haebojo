@@ -2,7 +2,7 @@ import { options } from "../config/tmdbOption.js";
 import { language, comment } from "../config/domConfig.js";
 import { setLogoByLanguage } from "./language.js";
 import { infoChangeLanguage } from "./language.js";
-import { doc, setDoc, getDoc, collection } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+import { doc, setDoc, getDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 import { db } from "../config/firebaseConfig.js";
 
 // 현재 페이지 URL에서 영화 ID 파싱
