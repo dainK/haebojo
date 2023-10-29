@@ -268,7 +268,7 @@ iframe {
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
-  padding: 20px;
+  padding: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -287,7 +287,7 @@ iframe {
 /* 모달 입력 필드 스타일 */
 .modal-form input {
   padding: 10px;
-  margin: 5px 0;
+  /* margin: 5px 0; */
   border: 1px solid #ccc;
   border-radius: 3px;
 }
@@ -295,7 +295,7 @@ iframe {
 /* 모달 버튼 스타일 */
 .modal-form button {
   padding: 10px;
-  margin: 10px 0;
+  margin: 10px 0px 0px 0px;
   background-color: #ffae00;
   color: #fff;
   border: none;
