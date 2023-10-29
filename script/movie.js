@@ -50,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
       user.loginButton.innerText = "로그인";
       user.signOutButton.style.display = "none";
       user.pwChangeButton.style.display = "none";
+      user.signupButton.style.display = "block";
     } else {
       openLoginModal();
     }
@@ -58,10 +59,12 @@ document.addEventListener("DOMContentLoaded", function () {
     user.loginButton.innerText = "로그아웃";
     user.signOutButton.style.display = "block";
     user.pwChangeButton.style.display = "block";
+    user.signupButton.style.display = "none";
   } else {
     user.loginButton.innerText = "로그인";
     user.signOutButton.style.display = "none";
     user.pwChangeButton.style.display = "none";
+    user.signupButton.style.display = "block";
   }
 
   // 이전 페이지 버튼 클릭 시 이전 페이지 로드
@@ -232,7 +235,7 @@ function createSignModalElement() {
 
   user.signupButton.addEventListener("click", () => {
     document.body.appendChild(sign_modal);
-    sign_modal.style.display = "block";
+    // sign_modal.style.display = "block";
   });
 
   onSign_btn.addEventListener("click", async () => {
@@ -338,7 +341,7 @@ async function createSignOutModal() {
   });
 
   cancel_btn.addEventListener("click", async () => {
-    sign_modal.remove();
+    signout_modal.remove();
   });
 }
 
