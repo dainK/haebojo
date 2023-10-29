@@ -1,4 +1,4 @@
-import { user } from "../config/domConfig.js";
+import { user, language } from "../config/domConfig.js";
 import { openLoginModal } from "./userModalLogin.js";
 import { createSignModalElement } from "./userModalSignUp.js";
 import { createSignOutModal } from "./userModelSignOut.js";
@@ -23,12 +23,22 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
   if (!!sessionStorage.getItem("user")) {
+    if (language.setLanguage === "ko-KR") {
     user.loginButton.innerText = "로그아웃";
+    }
+    else {
+      user.loginButton.innerText = "Log out";
+    }
     user.signOutButton.style.display = "block";
     user.pwChangeButton.style.display = "block";
     user.signupButton.style.display = "none";
   } else {
+    if (language.setLanguage === "ko-KR") {
     user.loginButton.innerText = "로그인";
+    }
+    else{
+      user.loginButton.innerText = "Log in";
+    }
     user.signOutButton.style.display = "none";
     user.pwChangeButton.style.display = "none";
     user.signupButton.style.display = "block";

@@ -1,27 +1,12 @@
 import { options } from "../config/tmdbOption.js";
 import { page, search, language } from "../config/domConfig.js";
-import { switchLanguage, truncateText, setLogoByLanguage } from "./language.js";
+import { mainChangeLanguage, switchLanguage, truncateText, setLogoByLanguage } from "./language.js";
 import { drawChart } from "./chart.js";
 
 // 페이지 로드가 완료된 후 실행할 함수
 document.addEventListener("DOMContentLoaded", function () {
-  setLogoByLanguage();
   // 검색창에 자동으로 포커스를 주기
   search.searchInput.focus();
-  // 초기 페이지 로드
-  NewPage(1);
-
-  // 언어설정 버튼
-  language.koreanFlagButton.addEventListener("click", function () {
-    switchLanguage("ko-KR");
-    setLogoByLanguage();
-  });
-
-  language.englishFlagButton.addEventListener("click", function () {
-    switchLanguage("en-US");
-    setLogoByLanguage();
-  });
-
   // 검색 버튼 이벤트 리스너 추가
   search.searchButton.addEventListener("click", Search);
   // 검색 입력창에서 Enter 키 입력 시 검색 실행
@@ -31,6 +16,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  // 초기 페이지 로드
+  NewPage(1);
   // 이전 페이지 버튼 클릭 시 이전 페이지 로드
   page.prevButton.addEventListener("click", () => {
     if (page.currItemsIndex > page.itemsPerPage) {
@@ -45,6 +32,20 @@ document.addEventListener("DOMContentLoaded", function () {
       NewPage(page.currItemsIndex);
     }
   });
+
+  mainChangeLanguage();
+  setLogoByLanguage();
+  // 언어설정 버튼
+  language.koreanFlagButton.addEventListener("click", function () {
+    switchLanguage("ko-KR");
+    setLogoByLanguage();
+  });
+
+  language.englishFlagButton.addEventListener("click", function () {
+    switchLanguage("en-US");
+    setLogoByLanguage();
+  });
+
 });
 
 // 새 페이지 로드 함수

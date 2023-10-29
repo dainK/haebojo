@@ -17,6 +17,44 @@ export function setLogoByLanguage() {
   }
 }
 
+
+export function mainChangeLanguage() {
+  let maintitle = document.getElementById("language-title");
+  let maindropbtn = document.getElementById("language-drop");
+  let mainlogin = document.getElementById("login-button");
+  let mainsign = document.getElementById("sign-button");
+  let mainpw = document.getElementById("pwChange-button");
+  let mainsignout = document.getElementById("signOut-button");
+  let maininput = document.getElementById("search-input");
+  let mainbutton = document.getElementById("search-button");
+  let mainprev = document.getElementById("prev");
+  let mainnext = document.getElementById("next");
+
+  if (language.setLanguage === "ko-KR") {
+    maintitle.textContent = "영화 검색 페이지";
+    maindropbtn.textContent = "언어 선택";
+    mainlogin.textContent = "로그인";
+    mainsign.textContent = "회원가입";
+    mainpw.textContent = "비밀번호변경";
+    mainsignout.textContent = "회원탈퇴";
+    maininput.placeholder = "영화 제목을 입력하세요";
+    mainbutton.textContent = "검색";
+    mainprev.textContent = "이전";
+    mainnext.textContent = "다음";
+  } else {
+    maintitle.textContent = "movie search";
+    maindropbtn.textContent = "Language";
+    mainlogin.textContent = "Sign in";
+    mainsign.textContent = "Sign up";
+    mainpw.textContent = "Account";
+    mainsignout.textContent = "Sign out";
+    maininput.placeholder = "Enter movie title";
+    mainbutton.textContent = "Search";
+    mainprev.textContent = "prev";
+    mainnext.textContent = "next";
+  }
+}
+
 export function infoChangeLanguage() {
   const page = document.getElementById("changeLanguage-page");
   const info = document.getElementById("changeLanguage-info");
