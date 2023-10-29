@@ -12,6 +12,7 @@ import {
   addDoc,
 } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 import { db } from "../config/firebaseConfig.js";
+import {setLogoByLanguage } from "./domEvent.js";
 
 // 현재 페이지 URL에서 영화 ID 파싱
 const currentUrl = window.location.href;
@@ -30,6 +31,8 @@ const castList = document.getElementById("cast-list");
 
 // 페이지가 완전히 로드된 후 실행
 document.addEventListener("DOMContentLoaded", function () {
+  setLogoByLanguage();
+  changeLanguage();
   ViewTrailer(movie_id);
   Info(movie_id);
   InfoCast(movie_id);
@@ -94,7 +97,7 @@ function CreateCastCard(data) {
   if (data.profile_path !== null) {
     image.src = "https://image.tmdb.org/t/p/w300_and_h450_bestv2/" + data.profile_path; // 배우 포스터 이미지 URL 설정
   } else {
-    image.src = "../img/null.png";
+    image.src = "img/null.png";
   }
   image.style.width = "130px";
   image.style.height = "180px";
@@ -241,4 +244,34 @@ async function DeleteComment(data, commentbox) {
   cancelbtn.addEventListener("click", () => {
     modal.remove();
   });
+}
+
+function changeLanguage() {
+  const page = document.getElementById("changeLanguage-page");
+  const info = document.getElementById("changeLanguage-info");
+  const cast = document.getElementById("changeLanguage-cast");
+  const comment = document.getElementById("changeLanguage-coment");
+
+  const input = document.getElementById("comment-input");
+  const button = document.getElementById("comment-button");
+  const team = document.getElementById("changeLanguage-team");
+
+  if (language.setLanguage === 'ko-KR') {
+    page.textContent = '영화 검색 페이지';
+    info.textContent = '영화 내용';
+    cast.textContent = '출연진';
+    comment.textContent = '평가';
+    input.placeholder = '평가를 입력하세요.';
+    button.textContent = '덧글 쓰기';
+    team.textContent = '&copy; 해보조';
+
+  } else {
+    page.textContent = 'movie search';
+    info.textContent = 'movie overview';
+    cast.textContent = 'castmates';
+    comment.textContent = 'comments';
+    input.placeholder = '.';
+    button.textContent = '..';
+    team.textContent ='haebojo';
+  }
 }

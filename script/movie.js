@@ -1,6 +1,6 @@
 import { options } from "../config/tmdbOption.js";
 import { page, search, user, language } from "./domEl.js";
-import { truncateText, setLogoByLanguage } from "./domEvent.js";
+import { switchLanguage, truncateText, setLogoByLanguage } from "./domEvent.js";
 import { drawChart } from "./chart.js";
 import {
   getDocs,
@@ -18,6 +18,18 @@ document.addEventListener("DOMContentLoaded", function () {
   search.searchInput.focus();
   // 초기 페이지 로드
   NewPage(1);
+
+  language.koreanFlagButton.addEventListener("click", function () {
+    switchLanguage("ko-KR");
+    setLogoByLanguage();
+  });
+  
+  language.englishFlagButton.addEventListener("click", function () {
+    switchLanguage("en-US");
+    setLogoByLanguage();
+  });
+  
+
   // 검색 버튼 이벤트 리스너 추가
   search.searchButton.addEventListener("click", Search);
   // 검색 입력창에서 Enter 키 입력 시 검색 실행
@@ -38,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
       user.loginButton.innerText = "로그인";
       user.signOutButton.style.display = "none";
       user.pwChangeButton.style.display = "none";
+      user.signupButton.style.display = "block";
     } else {
       openLoginModal();
     }
@@ -46,10 +59,12 @@ document.addEventListener("DOMContentLoaded", function () {
     user.loginButton.innerText = "로그아웃";
     user.signOutButton.style.display = "block";
     user.pwChangeButton.style.display = "block";
+    user.signupButton.style.display = "none";
   } else {
     user.loginButton.innerText = "로그인";
     user.signOutButton.style.display = "none";
     user.pwChangeButton.style.display = "none";
+    user.signupButton.style.display = "block";
   }
 
   // 이전 페이지 버튼 클릭 시 이전 페이지 로드
@@ -220,7 +235,7 @@ function createSignModalElement() {
 
   user.signupButton.addEventListener("click", () => {
     document.body.appendChild(sign_modal);
-    sign_modal.style.display = "block";
+    // sign_modal.style.display = "block";
   });
 
   onSign_btn.addEventListener("click", async () => {
@@ -326,7 +341,7 @@ async function createSignOutModal() {
   });
 
   cancel_btn.addEventListener("click", async () => {
-    sign_modal.remove();
+    signout_modal.remove();
   });
 }
 
@@ -460,7 +475,10 @@ function createMovieCard(data) {
   image.style.height = "400px";
   if (data.poster_path !== null) {
     image.src = "https://image.tmdb.org/t/p/original/" + data.poster_path;
+  } else {
+    image.src = "img/null.png";
   }
+
   card_front.appendChild(image);
 
   const card_back = document.createElement("div");
