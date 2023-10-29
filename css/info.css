@@ -236,7 +236,7 @@ iframe {
 
 #comment-button {
   position: absolute;
-  width: auto;
+  width: 80px;
   height: 40px;
   border-radius: 5px;
   font-size: 1.1em;
