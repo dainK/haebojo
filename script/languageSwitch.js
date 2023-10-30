@@ -3,89 +3,68 @@ import { language } from "../config/domConfig.js"; // 언어 설정을 가져옴
 
 // 언어에 따라 로고 설정
 export function setLogoByLanguage() {
-  const koreanLogo = document.getElementById("korean-logo");
-  const englishLogo = document.getElementById("english-logo");
-
   const selectedLanguage = language.setLanguage;
 
   if (selectedLanguage === "ko-KR") {
     // 한국어 설정
-    koreanLogo.src = "img/logo.png";
-    englishLogo.style.display = "none";
-    koreanLogo.style.display = "block";
+    language.koreanLogo.src = "img/logo.png";
+    language.englishLogo.style.display = "none";
+    language.koreanLogo.style.display = "block";
   } else {
     // 영어 설정
-    englishLogo.src = "img/logo_en.png";
-    koreanLogo.style.display = "none";
-    englishLogo.style.display = "block";
+    language.englishLogo.src = "img/logo_en.png";
+    language.koreanLogo.style.display = "none";
+    language.englishLogo.style.display = "block";
   }
 }
 
 // 메인 페이지 언어 변경
 export function mainChangeLanguage() {
-  let maintitle = document.getElementById("language-title");
-  let maindropbtn = document.getElementById("language-drop");
-  let mainlogin = document.getElementById("login-button");
-  let mainsign = document.getElementById("sign-button");
-  let mainpw = document.getElementById("pwChange-button");
-  let mainsignout = document.getElementById("signOut-button");
-  let maininput = document.getElementById("search-input");
-  let mainbutton = document.getElementById("search-button");
-  let mainprev = document.getElementById("prev");
-  let mainnext = document.getElementById("next");
-
   if (language.setLanguage === "ko-KR") {
     // 한국어 설정
-    maintitle.textContent = "영화 검색 페이지";
-    maindropbtn.textContent = "언어 선택";
-    mainlogin.textContent = "로그인";
-    mainsign.textContent = "회원가입";
-    mainpw.textContent = "비밀번호변경";
-    mainsignout.textContent = "회원탈퇴";
-    maininput.placeholder = "영화 제목을 입력하세요";
-    mainbutton.textContent = "검색";
-    mainprev.textContent = "이전";
-    mainnext.textContent = "다음";
+    language.maintitle.textContent = "영화 검색 페이지";
+    language.maindropbtn.textContent = "언어 선택";
+    language.mainlogin.textContent = "로그인";
+    language.mainsign.textContent = "회원가입";
+    language.mainpw.textContent = "비밀번호변경";
+    language.mainsignout.textContent = "회원탈퇴";
+    language.maininput.placeholder = "영화 제목을 입력하세요";
+    language.mainbutton.textContent = "검색";
+    language.mainprev.textContent = "이전";
+    language.mainnext.textContent = "다음";
   } else {
     // 영어 설정
-    maintitle.textContent = "movie search";
-    maindropbtn.textContent = "Language";
-    mainlogin.textContent = "Sign in";
-    mainsign.textContent = "Sign up";
-    mainpw.textContent = "Account";
-    mainsignout.textContent = "Sign out";
-    maininput.placeholder = "Enter movie title";
-    mainbutton.textContent = "Search";
-    mainprev.textContent = "prev";
-    mainnext.textContent = "next";
+    language.maintitle.textContent = "movie search";
+    language.maindropbtn.textContent = "Language";
+    language.mainlogin.textContent = "Sign in";
+    language.mainsign.textContent = "Sign up";
+    language.mainpw.textContent = "Account";
+    language.mainsignout.textContent = "Sign out";
+    language.maininput.placeholder = "Enter movie title";
+    language.mainbutton.textContent = "Search";
+    language.mainprev.textContent = "prev";
+    language.mainnext.textContent = "next";
   }
 }
 
 // 영화 정보 페이지 언어 변경
 export function infoChangeLanguage() {
-  const page = document.getElementById("changeLanguage-page");
-  const info = document.getElementById("changeLanguage-info");
-  const cast = document.getElementById("changeLanguage-cast");
-  const comment = document.getElementById("changeLanguage-coment");
-  const input = document.getElementById("comment-input");
-  const button = document.getElementById("comment-button");
-
   if (language.setLanguage === "ko-KR") {
     // 한국어 설정
-    page.textContent = "영화 검색 페이지";
-    info.textContent = "영화 내용";
-    cast.textContent = "출연진";
-    comment.textContent = "평가";
-    input.placeholder = "평가를 입력하세요.";
-    button.textContent = "등록";
+    language.page.textContent = "영화 검색 페이지";
+    language.info.textContent = "영화 내용";
+    language.cast.textContent = "출연진";
+    language.comment.textContent = "평가";
+    language.input.placeholder = "평가를 입력하세요.";
+    language.button.textContent = "등록";
   } else {
     // 영어 설정
-    page.textContent = "movie search";
-    info.textContent = "movie overview";
-    cast.textContent = "castmates";
-    comment.textContent = "comments";
-    input.placeholder = "Please provide an evaluation";
-    button.textContent = "Submit";
+    language.page.textContent = "movie search";
+    language.info.textContent = "movie overview";
+    language.cast.textContent = "castmates";
+    language.comment.textContent = "comments";
+    language.input.placeholder = "Please provide an evaluation";
+    language.button.textContent = "Submit";
   }
 }
 
