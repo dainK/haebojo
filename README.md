@@ -95,7 +95,7 @@ https://daink.github.io/haebojo/
       <img src="https://user-images.githubusercontent.com/26786677/278879874-8b2edb02-8ed0-426a-914c-61940f1ae53b.gif" width = "600px"/><br/>
 - [x] 덧글 등록
 - [x] 덧글 삭제<br/>
-      <img src="https://user-images.githubusercontent.com/26786677/278879801-8b3279d0-4339-4456-b8d3-cd914ee59661.gif" width = "600px"/><br/>
+      <img src="https://user-images.githubusercontent.com/26786677/278934826-988db1a0-add3-48a1-81c9-ee4c307c1a98.gif" width = "600px"/><br/>
 <br/>
 <br/>
 
