@@ -1,5 +1,6 @@
-import { comment } from "../config/domConfig.js";
-import { movie_id } from "./info.js";
+// 필요한 모듈 및 파일 가져오기
+import { comment } from "../config/domConfig.js"; // 댓글 구성
+import { info_movie } from "../config/domConfig.js"; // 영화 정보 구성
 
 import {
   doc,
@@ -7,25 +8,29 @@ import {
   getDoc,
   getDocs,
   collection,
-} from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-import { db } from "../config/firebaseConfig.js";
+} from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js"; // Firestore 관련 모듈
+import { db } from "../config/firebaseConfig.js"; // Firebase 설정
 
+// 영화 댓글 생성 함수
 export async function CreateComments(movieid) {
+  // Firestore에서 해당 영화의 댓글 문서 가져오기
   let commentDoc = await getDoc(doc(db, "movie", movieid));
 
   if (typeof commentDoc.data() === "undefined") {
+    // 댓글 문서가 없으면 새로운 데이터 생성
     let newdata = { comments: [] };
-    await setDoc(doc(db, "movie", movie_id), newdata);
+    await setDoc(doc(db, "movie", info_movie.movie_id), newdata);
     return;
   }
 
-  console.log(commentDoc.data());
+  // 댓글 문서 데이터 출력
+  // console.log(commentDoc.data());
 
-  let commnets = commentDoc.data().comments;
+  let comments = commentDoc.data().comments;
 
-  // console.log(commnets);
-  if (!!commnets && commnets.length > 0) {
-    commnets.forEach((e) => {
+  if (!!comments && comments.length > 0) {
+    comments.forEach((e) => {
+      // 각 댓글에 대한 HTML 요소 생성
       const commentbox = document.createElement("div");
       commentbox.classList.add("comment-box");
       comment.commentContainer.appendChild(commentbox);
@@ -43,6 +48,7 @@ export async function CreateComments(movieid) {
         `;
       commentbox.appendChild(commentContent);
 
+      // 댓글 삭제 이벤트 리스너 등록
       commentbox.addEventListener("click", () => {
         DeleteComment(e, commentbox);
       });
@@ -50,13 +56,16 @@ export async function CreateComments(movieid) {
   }
 }
 
+// 댓글 추가 함수
 export async function AddComment(text) {
   if (!!sessionStorage.getItem("user")) {
-    let commentDoc = await getDoc(doc(db, "movie", movie_id));
+    // 사용자가 로그인한 경우
+    let commentDoc = await getDoc(doc(db, "movie", info_movie.movie_id));
     let data = commentDoc.data();
 
     let user = sessionStorage.getItem("user");
 
+    // 현재 날짜 및 시간 생성
     let currentDate = new Date();
     let year = currentDate.getFullYear();
     let month = currentDate.getMonth() + 1; // 월은 0부터 시작하므로 1을 더해줍니다.
@@ -73,22 +82,23 @@ export async function AddComment(text) {
     };
 
     if (!!data.comments) {
+      // 댓글 배열이 이미 존재하는 경우
       data.comments.push(newcomment);
-      await setDoc(doc(db, "movie", movie_id), data);
+      await setDoc(doc(db, "movie", info_movie.movie_id), data);
     } else {
+      // 댓글 배열이 없는 경우
       let newdata = { comments: [] };
       newdata.comments.push(newcomment);
-      await setDoc(doc(db, "movie", movie_id), newdata);
+      await setDoc(doc(db, "movie", info_movie.movie_id), newdata);
     }
-    window.location.reload();
+    window.location.reload(); // 페이지 새로고침
   } else {
     alert("로그인을 해주세요.");
   }
 }
 
+// 댓글 삭제 함수
 async function DeleteComment(data, commentbox) {
-  // console.log("코멘트삭제하기");
-
   const modal = document.createElement("div");
   modal.classList.add("modal");
   document.body.appendChild(modal);
@@ -113,37 +123,30 @@ async function DeleteComment(data, commentbox) {
 
   deletebtn.addEventListener("click", async () => {
     let docs = await getDocs(collection(db, "user"));
-    console.log(docs, "????");
     for (let u of docs.docs) {
       if (u.data().id === data.user) {
         const user = doc(db, "user", u.id);
-        // await deleteDoc(user);
         let pw = inputpw.value;
         var key = CryptoJS.enc.Utf8.parse(pw); // 암호화
         var base64 = CryptoJS.enc.Base64.stringify(key); // 암호화된 값
         var decrypt = CryptoJS.enc.Base64.parse(base64); // 복호화
-        var hashData = decrypt.toString(CryptoJS.enc.Utf8); //복호화된 값
-        console.log(hashData);
+        var hashData = decrypt.toString(CryptoJS.enc.Utf8); // 복호화된 값
 
         if (u.data().pw === base64) {
-          // alert("비밀번호 같음");
-          commentbox.remove();
+          commentbox.remove(); // 댓글 박스 삭제
           modal.style.display = "none";
 
-          let commentDoc = await getDoc(doc(db, "movie", movie_id));
-          let dommentdata = commentDoc.data();
-          console.log(data);
+          let commentDoc = await getDoc(doc(db, "movie", info_movie.movie_id));
+          let commentdata = commentDoc.data();
 
           let newdata = { comments: [] };
-          // let deletcommet;
-          for (let c of dommentdata.comments) {
+          for (let c of commentdata.comments) {
             if (c.comment !== data.comment || c.user !== data.user || c.date !== data.date) {
               newdata.comments.push(c);
             }
           }
-          console.log(newdata);
-          await setDoc(doc(db, "movie", movie_id), newdata);
-          window.location.reload();
+          await setDoc(doc(db, "movie", info_movie.movie_id), newdata);
+          window.location.reload(); // 페이지 새로고침
           return;
         }
       }

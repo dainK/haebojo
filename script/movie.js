@@ -1,6 +1,6 @@
 import { options } from "../config/tmdbOption.js";
 import { page, search, language } from "../config/domConfig.js";
-import { mainChangeLanguage, switchLanguage, truncateText, setLogoByLanguage } from "./language.js";
+import { mainChangeLanguage, switchLanguage, truncateText, setLogoByLanguage } from "./languageSwitch.js";
 import { drawChart } from "./chart.js";
 
 // 페이지 로드가 완료된 후 실행할 함수
@@ -45,7 +45,6 @@ document.addEventListener("DOMContentLoaded", function () {
     switchLanguage("en-US");
     setLogoByLanguage();
   });
-
 });
 
 // 새 페이지 로드 함수
@@ -105,18 +104,22 @@ function createMovieCard(data) {
   card.classList.add("movie-card");
   page.container.appendChild(card);
 
+  // 카드 컨테이너 생성
   const card_wrap = document.createElement("div");
   card_wrap.id = "card-wrap";
   card.appendChild(card_wrap);
 
+  // 카드 세트 생성
   const card_set = document.createElement("div");
   card_set.classList.add("card-set");
   card_wrap.appendChild(card_set);
 
+  // 카드 전면 생성
   const card_front = document.createElement("div");
   card_front.classList.add("card-front");
   card_set.appendChild(card_front);
 
+  // 이미지 생성
   const image = document.createElement("img");
   image.style.width = "280px";
   image.style.height = "400px";
@@ -127,15 +130,18 @@ function createMovieCard(data) {
   }
   card_front.appendChild(image);
 
+  // 카드 뒷면 생성
   const card_back = document.createElement("div");
   card_back.classList.add("card-back");
   card_set.appendChild(card_back);
 
+  // 영화 제목 생성
   const title = document.createElement("div");
   title.classList.add("movie-title");
   title.innerText = data.title;
   card_back.appendChild(title);
 
+  // 영화 정보 생성
   const info = document.createElement("div");
   info.classList.add("movie-info");
   const truncatedOverview = truncateText(data.overview, 70);

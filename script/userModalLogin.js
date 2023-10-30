@@ -1,13 +1,13 @@
 import { getDocs, collection } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-import { db } from "../config/firebaseConfig.js";
+import { db } from "../config/firebaseConfig.js"; // Firebase Firestore 데이터베이스 설정 가져오기
 
 // 로그인 모달 열기 함수
 export async function openLoginModal() {
+  // 모달 엘리먼트 생성
   const modal = document.createElement("div");
-
   modal.classList.add("modal");
 
-  // login-container 엘리먼트 생성
+  // 로그인 컨테이너 엘리먼트 생성
   const loginContainer = document.createElement("div");
   loginContainer.classList.add("modal-container");
 
@@ -25,18 +25,18 @@ export async function openLoginModal() {
   modal.appendChild(loginContainer);
   document.body.appendChild(modal);
 
-  // 로그인 함수
+  // 로그인 버튼 이벤트 리스너 추가
   const login_btn = document.getElementById("login-btn");
   login_btn.addEventListener("click", async () => {
-    // 로그인 버튼 기능
     let login_id = document.getElementById("login-id").value;
     let login_pw = document.getElementById("login-pw").value;
-    var key = CryptoJS.enc.Utf8.parse(login_pw); // 암호화
+    var key = CryptoJS.enc.Utf8.parse(login_pw); // 비밀번호 암호화
     var base64 = CryptoJS.enc.Base64.stringify(key); // 암호화된 값
     var decrypt = CryptoJS.enc.Base64.parse(base64); // 복호화
-    var hashData = decrypt.toString(CryptoJS.enc.Utf8); //복호화된 값
-    console.log(hashData);
+    var hashData = decrypt.toString(CryptoJS.enc.Utf8); // 복호화된 값
+
     let docs = await getDocs(collection(db, "user"));
+
     try {
       let userName = "";
       docs.forEach((doc) => {
@@ -58,6 +58,7 @@ export async function openLoginModal() {
     }
   });
 
+  // 취소 버튼 이벤트 리스너 추가
   const cancel_btn = document.getElementById("login-cancel-btn");
   cancel_btn.addEventListener("click", () => {
     modal.remove();
