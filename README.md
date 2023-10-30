@@ -1,33 +1,32 @@
 # PROJECT
+
 ## 프로젝트 소개
+
 영화를 검색하고 상세내용을 알 수 있는 영화 검색 페이지 입니다.
 ## URL
+
 https://daink.github.io/haebojo/
 ## 기술 스택
+
 ### Front-end
 <img src="https://img.shields.io/badge/css3-1572B6?style=for-the-badge&logo=css3&logoColor=white">
 <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
-<img src="https://img.shields.io/badge/chart.js-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white"><br/>
+<img src="https://img.shields.io/badge/chart.js-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white">
+
 ### Back-end
-<img src="https://img.shields.io/badge/firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white"><br/>
+<img src="https://img.shields.io/badge/firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white">
+
 ### 언어
-<img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"><br/>
+<img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+
 ### 개발 환경 / 협업 툴
 <img src="https://img.shields.io/badge/vscode-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white">
 <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
 <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
 
+### API
+<img src="https://img.shields.io/badge/tmdb-01B4E4?style=for-the-badge&logo=themoviedatabase&logoColor=white">
 
-VSCode
-
-## Programming language
-
-javascript
-
-## API
-
-TMDB <br/>
-Firebase <br/>
 <br/>
 <br/>
 
