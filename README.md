@@ -1,6 +1,15 @@
-# PROJECT URL
+# PROJECT
+## 프로젝트 소개
+영화를 검색하고 상세내용을 알 수 있는 영화 검색 페이지 입니다.
+## URL
 https://daink.github.io/haebojo/
-## Development environment
+## 기술 스택
+### Front-end
+<img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white">
+<img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+
+<img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+<img src="https://www.chartjs.org/img/chartjs-logo.svg">
 
 VSCode
 
@@ -15,7 +24,7 @@ Firebase <br/>
 <br/>
 <br/>
 
-# TEAM haebojo
+# TEAM Haebojo
 ![logo](https://github.com/dainK/haebojo/assets/26786677/8eeb7c73-8468-4f23-b43c-84ebce6df90c)
 <br/>
 <table>
