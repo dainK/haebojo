@@ -13,9 +13,7 @@ export function drawChart(canvas, voteAverage) {
 
   // 차트 옵션
   const options = {
-    // cutoutPercentage: 90,
     cutout: 15,
-    // cutoutPercentage: 100,
     responsive: false, // 반응형 비활성화
     plugins: {
       legend: {

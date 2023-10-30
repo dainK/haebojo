@@ -1,0 +1,104 @@
+/* 영화 검색 페이지 스타일 */
+.navbar .movie-search-page {
+  margin-right: auto;
+}
+
+/* 영화 검색 페이지 제목 스타일 */
+.movie-search-page h1 {
+  font-size: 32px;
+  color: #e1e8ed;
+}
+
+/* 검색 메인 스타일 */
+.search-main {
+  margin: 150px 300px 50px 300px;
+}
+
+/* 검색 스타일 */
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* 검색 입력 필드 스타일 */
+.search input[type="text"] {
+  width: 100%;
+  height: 36px;
+  line-height: 36px;
+  font-size: 1.1em;
+  color: rgba(0, 0, 0, 0.5);
+  border: 0;
+  border-radius: 30px;
+  padding: 10px 20px;
+}
+
+/* 검색 버튼 스타일 */
+#search-button {
+  position: absolute;
+  width: 100px;
+  height: 56px;
+  border-radius: 30px;
+  font-size: 1.1em;
+  right: 0;
+  border: none;
+  background: linear-gradient(0deg, rgba(255, 151, 0, 1) 0%, rgba(251, 125, 2, 1) 100%);
+  color: #fff;
+  overflow: hidden;
+}
+
+/* 검색 버튼 호버 스타일 */
+#search-button:hover {
+  text-decoration: none;
+  color: #fff;
+}
+
+/* 검색 버튼 애니메이션 스타일 */
+#search-button:before {
+  position: absolute;
+  content: "";
+  display: inline-block;
+  top: -180px;
+  left: 0;
+  width: 30px;
+  height: 100%;
+  background-color: #fff;
+  animation: shiny-btn1 3s ease-in-out infinite;
+}
+
+/* 검색 버튼 호버 시 투명도 스타일 */
+#search-button:hover {
+  opacity: 0.7;
+}
+
+/* 검색 버튼 액티브 스타일 */
+#search-button:active {
+  box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.3), -4px -4px 6px 0 rgba(116, 125, 136, 0.2),
+    inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2), inset 4px 4px 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* 검색 버튼 애니메이션 스타일 */
+@keyframes shiny-btn1 {
+  0% {
+    transform: scale(0) rotate(45deg);
+    opacity: 0;
+  }
+  80% {
+    transform: scale(0) rotate(45deg);
+    opacity: 0.5;
+  }
+  81% {
+    transform: scale(4) rotate(45deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(50) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+/* 검색 텍스트 스타일 */
+.navbar .searchText {
+  margin-right: 10px;
+}

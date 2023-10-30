@@ -1,0 +1,116 @@
+/* 모달 스타일 */
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 100;
+}
+
+/* 모달 컨테이너 스타일 */
+.modal-container {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* 모달 제목 스타일 */
+.modal-container h1 {
+  margin: 0 0 20px;
+  color: #333;
+}
+
+/* 모달 폼 스타일 */
+.modal-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 모달 입력 필드 스타일 */
+.modal-form input {
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+/* 모달 버튼 스타일 */
+.modal-form button {
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #ffae00;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+/* 모달 버튼 컨테이너 */
+#profile-img {
+  right: 50px;
+  position: relative;
+  display: inline-block;
+  height: auto;
+}
+
+#profile-image {
+  width: 50px;
+  height: 50px;
+}
+
+.image-buttons {
+  height: 60px;
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+#login-button,
+#sign-button,
+#pwChange-button,
+#signOut-button {
+  width: 100px;
+}
+
+#profile-img:hover .image-buttons {
+  display: flex;
+}
+
+#login-button,
+#sign-button,
+#pwChange-button,
+#signOut-button {
+  height: 50px;
+  color: white;
+  background: rgb(34, 34, 34);
+  background: linear-gradient(0deg, rgba(34, 34, 34, 1) 0%, rgba(66, 66, 66, 1) 100%);
+  border: none;
+}
+
+#login-button:before,
+#sign-button:before,
+#pwChange-button:before,
+#signOut-button:before {
+  height: 0%;
+  width: 2px;
+}
+
+#login-button:hover,
+#sign-button:hover,
+#pwChange-button:hover,
+#signOut-button:hover {
+  box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.5), -4px -4px 6px 0 rgba(116, 125, 136, 0.5),
+    inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2), inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
+}
