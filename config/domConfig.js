@@ -25,7 +25,7 @@ export const user = {
 export const language = {
   setLanguage: localStorage.getItem("language") || "ko-KR",
   koreanFlagButton: document.getElementById("korean-flag"),
-  englishFlagButton: document.getElementById("english-flag")
+  englishFlagButton: document.getElementById("english-flag"),
 };
 
 export const comment = {
@@ -37,4 +37,8 @@ export const comment = {
 export const chartCss = {
   onChart: document.querySelector(".movie-card"),
   offChart: document.getElementById("chartCanvas"),
+};
+
+export const info_movie = {
+  movie_id: "none",
 };
