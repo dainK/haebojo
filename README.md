@@ -86,7 +86,7 @@ https://daink.github.io/haebojo/
       <img src="https://user-images.githubusercontent.com/26786677/278879396-704e43e7-69a8-4dad-a52e-4aa4f604b919.gif" width = "600px"/><br/>
 - [x] 비밀번호 변경
 - [x] 회원삭제<br/>
-      <img src="https://user-images.githubusercontent.com/26786677/278878939-a867cc0a-202a-4a83-b8a1-6733717b2d25.gif" width = "600px"/><br/>
+      <img src="https://user-images.githubusercontent.com/26786677/278934826-988db1a0-add3-48a1-81c9-ee4c307c1a98.gif" width = "600px"/><br/>
 
 ## 상세 페이지
 
