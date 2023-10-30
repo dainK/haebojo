@@ -8,12 +8,12 @@
 
 /* 헤더 스타일 */
 header {
-  z-index: 999; /* 상위 레이어 지정 */
-  background-color: black; /* 배경색 - 검정 */
+  z-index: 999;
+  background-color: black;
   top: 0;
   left: 0;
   right: 0;
-  position: fixed; /* 고정 위치 */
+  position: fixed;
 }
 
 /* 네비게이션 바 스타일 */
@@ -26,7 +26,6 @@ header {
 /* 로고 스타일 */
 .navbar .logo {
   display: flex;
-  /* justify-content: flex-start; */
 }
 
 /* 로고 이미지 스타일 */
@@ -36,121 +35,9 @@ header {
   margin-left: 150px;
 }
 
-/* 영화 검색 페이지 스타일 */
-.navbar .movie-search-page {
-  margin-right: auto;
-}
-
-/* 영화 검색 페이지 제목 스타일 */
-.movie-search-page h1 {
-  font-size: 32px;
-  color: #e1e8ed;
-}
-
-/* .navbar .search {
-  display: flex;
-  align-items: center;
-  margin-left: auto;
-  margin-right: auto;
-} */
-
-/* 검색 메인 스타일 */
-.search-main {
-  margin: 150px 300px 50px 300px;
-}
-
-/* 검색 스타일 */
-.search {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-
-/* 검색 입력 필드 스타일 */
-.search input[type="text"] {
-  width: 100%;
-  height: 36px;
-  line-height: 36px;
-  font-size: 1.1em;
-  color: rgba(0, 0, 0, 0.5);
-  border: 0;
-  border-radius: 30px;
-  padding: 10px 20px;
-}
-
-/* 검색 버튼 스타일 */
-#search-button {
-  position: absolute;
-  width: 100px;
-  height: 56px;
-  border-radius: 30px;
-  font-size: 1.1em;
-  right: 0;
-  border: none;
-  background: linear-gradient(0deg, rgba(255, 151, 0, 1) 0%, rgba(251, 125, 2, 1) 100%);
-  color: #fff;
-  overflow: hidden;
-}
-
-/* 검색 버튼 호버 스타일 */
-#search-button:hover {
-  text-decoration: none;
-  color: #fff;
-}
-
-/* 검색 버튼 애니메이션 스타일 */
-#search-button:before {
-  position: absolute;
-  content: "";
-  display: inline-block;
-  top: -180px;
-  left: 0;
-  width: 30px;
-  height: 100%;
-  background-color: #fff;
-  animation: shiny-btn1 3s ease-in-out infinite;
-}
-
-/* 검색 버튼 호버 시 투명도 스타일 */
-#search-button:hover {
-  opacity: 0.7;
-}
-
-/* 검색 버튼 액티브 스타일 */
-#search-button:active {
-  box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.3), -4px -4px 6px 0 rgba(116, 125, 136, 0.2),
-    inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2), inset 4px 4px 6px 0 rgba(0, 0, 0, 0.2);
-}
-
-/* 검색 버튼 애니메이션 스타일 */
-@keyframes shiny-btn1 {
-  0% {
-    transform: scale(0) rotate(45deg);
-    opacity: 0;
-  }
-  80% {
-    transform: scale(0) rotate(45deg);
-    opacity: 0.5;
-  }
-  81% {
-    transform: scale(4) rotate(45deg);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(50) rotate(45deg);
-    opacity: 0;
-  }
-}
-
-/* 검색 텍스트 스타일 */
-.navbar .searchText {
-  margin-right: 10px;
-}
-
 /* 본문 스타일 */
 body {
-  background-color: rgb(34, 34, 34); /* 배경색 - 어두운 회색 */
+  background-color: rgb(34, 34, 34);
   align-items: center;
   justify-content: center;
 }
@@ -235,8 +122,6 @@ body::-webkit-scrollbar-thumb:hover {
 .movie-title {
   position: relative;
   top: 10px;
-  /* bottom: 10px; */
-  /* display: none; */
   margin: 10px 0, 10px 0;
   font-size: 20px;
 }
@@ -248,9 +133,7 @@ body::-webkit-scrollbar-thumb:hover {
   height: 330px;
   width: 280px;
   white-space: pre-wrap;
-  /* border: 1px solid #ccc; */
   overflow: auto;
-  /* z-index: 12; */
 }
 
 .movie-info::-webkit-scrollbar {
@@ -258,7 +141,6 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .movie-info::-webkit-scrollbar-thumb {
-  /* background-color: white; */
   background: linear-gradient(transparent, #fff, transparent);
   border-radius: 10px;
 }
@@ -268,18 +150,10 @@ body::-webkit-scrollbar-thumb:hover {
   scrollbar-color: white transparent;
 }
 
-/* --------------------------------- */
-/* * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-} */
-
 #card-wrap {
   position: relative;
   width: 300px;
   height: 400px;
-  /* margin: 50px auto; */
   border-radius: 20px;
   perspective: 500px;
   cursor: pointer;
@@ -299,7 +173,6 @@ body::-webkit-scrollbar-thumb:hover {
   left: 0;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   width: 100%;
   height: 100%;
@@ -309,12 +182,10 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 #card-wrap .card-set .card-front {
-  /* background-color: #f54; */
   z-index: 2;
 }
 
 #card-wrap .card-set .card-back {
-  /* background-color: #ccc; */
   background: linear-gradient(0deg, rgba(207, 205, 204, 1) 0%, rgba(161, 154, 148, 1) 100%);
   z-index: 1;
   transform: rotateY(180deg);
@@ -323,230 +194,4 @@ body::-webkit-scrollbar-thumb:hover {
 /* 마우스가 들어올 때 카드를 뒤집을 스타일 */
 #card-wrap:hover .card-set {
   transform: rotateY(180deg);
-}
-
-/* --------------------------------- */
-/* 모달 스타일 */
-.modal {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 100;
-  /* border-radius: 10px; */
-}
-
-/* 모달 컨테이너 스타일 */
-.modal-container {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 20px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-}
-
-/* 모달 제목 스타일 */
-.modal-container h1 {
-  margin: 0 0 20px;
-  color: #333;
-}
-
-/* 모달 폼 스타일 */
-.modal-form {
-  display: flex;
-  flex-direction: column;
-}
-
-/* 모달 입력 필드 스타일 */
-.modal-form input {
-  padding: 10px;
-  margin: 5px 0;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-}
-
-/* 모달 버튼 스타일 */
-.modal-form button {
-  padding: 10px;
-  margin: 10px 0;
-  background-color: #ffae00;
-  color: #fff;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-/* ================================== */
-/* 모달 버튼 컨테이너 */
-
-#profile-img {
-  right: 50px;
-  position: relative;
-  display: inline-block;
-  /* height: ; */
-  height: auto;
-}
-
-#profile-image {
-  width: 50px;
-  height: 50px;
-}
-
-.image-buttons {
-  height: 60px;
-  position: absolute;
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-}
-
-/* 로그인 버튼 */
-#login-button,
-/* 회원가입 버튼 */
-#sign-button,
-/* 패스워드 변경버튼 */
-#pwChange-button ,
-/* 로그아웃 버튼 */
-#signOut-button {
-  width: 100px;
-  /* display: none; */
-}
-
-#profile-img:hover .image-buttons {
-  display: flex;
-  /* height: 100px; */
-}
-
-#login-button,
-#sign-button,
-#pwChange-button,
-#signOut-button {
-  height: 50px;
-  color: white;
-  background: rgb(34, 34, 34);
-  background: linear-gradient(0deg, rgba(34, 34, 34, 1) 0%, rgba(66, 66, 66, 1) 100%);
-  border: none;
-}
-
-#login-button:before,
-#sign-button:before,
-#pwChange-button:before,
-#signOut-button:before {
-  height: 0%;
-  width: 2px;
-}
-
-#login-button:hover,
-#sign-button:hover,
-#pwChange-button:hover,
-#signOut-button:hover {
-  box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.5), -4px -4px 6px 0 rgba(116, 125, 136, 0.5),
-    inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2), inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
-}
-
-/* ================================== */
-
-/* 화면 너비 1200px 이하일 때 스타일 변경 */
-@media (max-width: 1200px) {
-
-  /* .dropbtn {
-    font-size: 10px;
-    margin-left: 20px;
-  } */
-
-  .movie-search-page > h1 {
-    font-size: 20px;
-    margin-left: 20px;
-  }
-
-  .logo img {
-    margin-left: 20px;
-  }
-}
-
-/* 화면 너비 900px 이하일 때 스타일 변경 */
-@media (max-width: 900px) {
- 
-  /* .dropbtn {
-    font-size: 8px;
-    margin-left: 20px;
-  } */
-
-  .movie-search-page > h1 {
-    display: none;
-  }
-
-  .logo img {
-    margin-left: 20px;
-  }
-
-  .search > #search-button {
-    position: absolute;
-    font-size: 10px;
-    width: 20%;
-    height: 30px;
-    right: 0;
-  }
-
-  .search > #search-input {
-    font-size: 10px;
-    width: 70%;
-    height: 10px;
-  }
-}
-
-/* 화면 너비 500px 이하일 때 스타일 변경 */
-@media (max-width: 500px) {
-  /* #language-switcher {
-    width: 50px;
-  } */
-
-  .movie-search-page {
-    display: none;
-  }
-  .search-main {
-    margin: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .search > #search-button {
-    font-size: 10px;
-    width: 50px;
-    height: 30px;
-  }
-
-  .search > #search-input {
-    font-size: 10px;
-    width: 200px;
-    height: 10px;
-  }
-
-  .pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
-
-  .pagination > button {
-    display: flex;
-    padding: 10px;
-  }
-
-  .page-numbers > button {
-    font-size: 10px;
-    padding: 8px;
-  }
-
 }

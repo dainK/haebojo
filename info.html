@@ -4,9 +4,10 @@
     <meta charset="UTF-8" />
     <title>영화 정보 페이지</title>
     <link rel="stylesheet" href="./css/info.css" />
-    <!-- CSS 파일 연결 -->
+    <link rel="stylesheet" href="./css/info_comments.css" />
+    <link rel="stylesheet" href="./css/authentication.css" />
     <script defer src="./script/info.js" type="module"></script>
-    <script defer src="./script/languageSwitch.js" type="module"></script>
+    <!-- CryptoJS 암호화 라이브러리 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
   </head>
 
@@ -14,40 +15,50 @@
     <header class="navbar">
       <a href="index.html">
         <div class="logo">
+          <!-- 한국어 로고 이미지 -->
           <img src="img/logo.png" id="korean-logo" />
+          <!-- 영어 로고 이미지 (이미지 경로가 비어있음) -->
           <img src="" id="english-logo" />
         </div>
       </a>
       <div>
+        <!-- 페이지 제목 (한국어 기본 텍스트) -->
         <h1 id="changeLanguage-page">영화 검색 페이지</h1>
       </div>
     </header>
 
     <div id="movie-tilte-box">
+      <!-- 영화 제목 -->
       <h2 id="movie-tilte"></h2>
     </div>
 
-    <!--비디오 부분-->
+    <!-- 비디오 부분 -->
     <div class="video-box">
       <div class="video-content">
+        <!-- 영화 예고편을 재생할 iframe -->
         <iframe id="youtubeVideo" src="" frameborder="0"></iframe>
       </div>
     </div>
 
+    <!-- 영화 내용 제목 -->
     <h2 id="changeLanguage-info">영화 내용</h2>
     <div id="movie-info-box">
+      <!-- 영화 내용 -->
       <h3 id="movie-info"></h3>
     </div>
 
+    <!-- 출연진 제목 -->
     <h2 id="changeLanguage-cast">출연진</h2>
     <div class="cast-container">
       <div id="cast-list"></div>
     </div>
 
+    <!-- 평가 제목 -->
     <h2 id="changeLanguage-coment">평가</h2>
     <div class="comment-container">
       <div id="comment-list"></div>
 
+      <!-- 덧글 입력창 및 버튼 -->
       <div class="comment-input-top">
         <input type="text" id="comment-input" style="width: auto" placeholder="평가를 입력하세요." />
         <button id="comment-button">덧글 쓰기</button>
@@ -56,6 +67,7 @@
 
     <div>
       <footer>
+        <!-- 팀 정보 및 저작권 정보 -->
         <p id="changeLanguage-team">&copy; 해보조</p>
       </footer>
     </div>

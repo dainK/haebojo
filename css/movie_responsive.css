@@ -1,0 +1,92 @@
+/* 화면 너비 1200px 이하일 때 스타일 변경 */
+@media (max-width: 1200px) {
+  /* .dropbtn {
+    font-size: 10px;
+    margin-left: 20px;
+  } */
+
+  .movie-search-page > h1 {
+    font-size: 20px;
+    margin-left: 20px;
+  }
+
+  .logo img {
+    margin-left: 20px;
+  }
+}
+
+/* 화면 너비 900px 이하일 때 스타일 변경 */
+@media (max-width: 900px) {
+  /* .dropbtn {
+    font-size: 8px;
+    margin-left: 20px;
+  } */
+
+  .movie-search-page > h1 {
+    display: none;
+  }
+
+  .logo img {
+    margin-left: 20px;
+  }
+
+  .search > #search-button {
+    position: absolute;
+    font-size: 10px;
+    width: 20%;
+    height: 30px;
+    right: 0;
+  }
+
+  .search > #search-input {
+    font-size: 10px;
+    width: 70%;
+    height: 10px;
+  }
+}
+
+/* 화면 너비 500px 이하일 때 스타일 변경 */
+@media (max-width: 500px) {
+  /* #language-switcher {
+    width: 50px;
+  } */
+
+  .movie-search-page {
+    display: none;
+  }
+  .search-main {
+    margin: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .search > #search-button {
+    font-size: 10px;
+    width: 50px;
+    height: 30px;
+  }
+
+  .search > #search-input {
+    font-size: 10px;
+    width: 200px;
+    height: 10px;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .pagination > button {
+    display: flex;
+    padding: 10px;
+  }
+
+  .page-numbers > button {
+    font-size: 10px;
+    padding: 8px;
+  }
+}
